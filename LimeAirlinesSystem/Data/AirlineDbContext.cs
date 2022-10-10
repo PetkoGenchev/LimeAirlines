@@ -1,16 +1,31 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LimeAirlinesSystem.Data
+﻿namespace LimeAirlinesSystem.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    using LimeAirlinesSystem.Data.Models;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
+
+    public class AirlineDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+
+        public AirlineDbContext(DbContextOptions<AirlineDbContext> options)
             : base(options)
         {
+        }
+
+        public DbSet<Plane> Planes { get; init; }
+        public DbSet<Flight> Flights { get; init; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder
+                .Entity<Flight>()
+                .HasOne(p => p.Plane)
+                .WithMany(f => f.Flights)
+                .HasForeignKey(p => p.PlaneId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+            base.OnModelCreating(builder);
         }
     }
 }

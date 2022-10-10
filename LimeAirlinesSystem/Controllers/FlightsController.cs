@@ -1,6 +1,6 @@
 ﻿namespace LimeAirlinesSystem.Controllers
 {
-    public class FlightController
+    public class FlightsController
     {
     }
 }
