@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using LimeAirlinesSystem.Data;
-    using LimeAirlinesSystem.Data.Models;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;

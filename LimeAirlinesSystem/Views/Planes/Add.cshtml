@@ -2,9 +2,30 @@
 
 <form method="post">
     <div class="form-group">
-        <label for="exampleFormControlInput1">Email address</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        <label asp-for="Brand"></label>
+        <input asp-for="Brand" class="form-control" placeholder="Boeing, Airbus, etc...">
     </div>
+
+    <div class="form-group">
+        <label asp-for="Model"></label>
+        <input asp-for="Model" class="form-control" placeholder="737, A-380, etc...">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NumberOfSeats"></label>
+        <input asp-for="NumberOfSeats" class="form-control" placeholder="Number of available seats...">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ImageUrl"></label>
+        <input asp-for="ImageUrl" class="form-control" placeholder="Place aircraft URL here...">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Year"></label>
+        <input asp-for="Year" class="form-control" placeholder="@DateTime.UtcNow.Year">
+    </div>
+
     <div class="form-group">
         <label for="exampleFormControlSelect1">Example select</label>
         <select class="form-control" id="exampleFormControlSelect1">
@@ -30,17 +51,3 @@
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
     </div>
 </form>
-
-
-
-
-@*
-        public string Brand { get; init; }
-
-        public string Model { get; init; }
-
-        public int NumberOfSeats { get; init; }
-
-        public int ImageUrl { get; init; }
-
-        public int Year { get; init; }*@
