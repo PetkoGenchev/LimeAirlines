@@ -17,16 +17,17 @@
         [MaxLength(PlaneBrandAndModelMaxLength)]
         public string Model { get; set; }
 
-        [Required]
-        [MaxLength(NumberofSeatsMaxLength)]
+        [MaxLength(NumberofSeatsMaxValue)]
         public int NumberOfSeats { get; set; }
 
         [Required]
-        public int ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
 
-        [Required]
         public int Year { get; set; }
 
         public IEnumerable<Flight> Flights = new List<Flight>();
+
+        public int CategoryId { get; set; }
+        public Category Category { get; init; }
     }
 }

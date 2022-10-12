@@ -22,7 +22,7 @@ namespace LimeAirlinesSystem
         {
             services
                 .AddDbContext<AirlineDbContext>(options => options
-                .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                .UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
