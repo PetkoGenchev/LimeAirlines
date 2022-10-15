@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimeAirlinesSystem.Data.Migrations
 {
     [DbContext(typeof(AirlineDbContext))]
-    [Migration("20221012122848_Tables")]
-    partial class Tables
+    [Migration("20221014120554_PlaneFlightAndCategoryTables")]
+    partial class PlaneFlightAndCategoryTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -96,7 +96,7 @@ namespace LimeAirlinesSystem.Data.Migrations
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<int>("NumberOfSeats")
-                        .HasMaxLength(400)
+                        .HasMaxLength(1000)
                         .HasColumnType("int");
 
                     b.Property<int>("Year")

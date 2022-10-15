@@ -15,7 +15,7 @@ namespace LimeAirlinesSystem.Models.Planes
 
         [Required]
         [StringLength(
-            PlaneBrandAndModelMaxLength, 
+            PlaneBrandAndModelMaxLength,
             MinimumLength = PlaneBrandAndModelMinLength,
             ErrorMessage = "The field Model must be a text with a minimum length of {1}")]
         public string Model { get; init; }
@@ -29,7 +29,7 @@ namespace LimeAirlinesSystem.Models.Planes
         [Display(Name = "Image URL")]
         public string ImageUrl { get; init; }
 
-        [Range(PlaneMinValue,PlaneMaxValue)]
+        [Range(PlaneMinValue, PlaneMaxValue)]
         public int Year { get; init; }
 
         [Display(Name = "Category")]

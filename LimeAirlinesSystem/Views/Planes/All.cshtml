@@ -4,11 +4,13 @@
 <div class="row">
     @foreach (var plane in Model)
     {
-        <div class="card">
-            <img class="card-img-top" src="@plane.ImageUrl" alt="@plane.Brand @plane.Model - @plane.Year (@plane.Category)">
-            <div class="card-body">
-                <h5 class="card-title">@plane.Year @plane.Brand @plane.Model (@plane.Category)</h5>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="@plane.ImageUrl" alt="@plane.Brand @plane.Model - @plane.Year (@plane.Category)">
+                <div class="card-body">
+                    <h5 class="card-title">@plane.Year @plane.Brand @plane.Model (@plane.Category)</h5>
+                    <a asp-controller="Planes" asp-action="Details" asp-route-id=@plane.Id class="btn btn-primary">View More</a>
+                </div>
             </div>
         </div>
     }

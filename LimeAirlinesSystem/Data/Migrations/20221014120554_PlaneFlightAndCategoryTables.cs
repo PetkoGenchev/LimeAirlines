@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LimeAirlinesSystem.Data.Migrations
 {
-    public partial class Tables : Migration
+    public partial class PlaneFlightAndCategoryTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -173,7 +173,7 @@ namespace LimeAirlinesSystem.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Brand = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Model = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    NumberOfSeats = table.Column<int>(type: "int", maxLength: 400, nullable: false),
+                    NumberOfSeats = table.Column<int>(type: "int", maxLength: 1000, nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)

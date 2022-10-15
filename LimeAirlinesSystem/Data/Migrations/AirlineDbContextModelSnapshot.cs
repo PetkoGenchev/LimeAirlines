@@ -94,7 +94,7 @@ namespace LimeAirlinesSystem.Data.Migrations
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<int>("NumberOfSeats")
-                        .HasMaxLength(400)
+                        .HasMaxLength(1000)
                         .HasColumnType("int");
 
                     b.Property<int>("Year")
