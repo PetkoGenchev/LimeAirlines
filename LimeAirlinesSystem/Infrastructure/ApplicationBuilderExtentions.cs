@@ -19,15 +19,20 @@
 
             data.Database.Migrate();
 
-            SeedCategories(data);
+            SeedCategoriesAndClasses(data);
 
             return app;
 
         }
 
-        private static void SeedCategories(AirlineDbContext data)
+        private static void SeedCategoriesAndClasses(AirlineDbContext data)
         {
             if (data.Categories.Any())
+            {
+                return;
+            }
+
+            if (data.Classes.Any())
             {
                 return;
             }
@@ -39,6 +44,15 @@
                 new Category{Name = "Mid-Size Jet"},
                 new Category{Name = "Narrow Body Aircraft"},
                 new Category{Name = "Wide Body Airliner"},
+            });
+
+
+            data.Classes.AddRange(new[]
+{
+                new Class{Name = "First Class"},
+                new Class{Name = "Business Class"},
+                new Class{Name = "Economy Class"},
+
             });
 
             data.SaveChanges();

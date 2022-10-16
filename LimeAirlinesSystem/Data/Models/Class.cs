@@ -3,8 +3,9 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static Data.DataConstants;
-    public class Passanger
+    using static DataConstants;
+
+    public class Class
     {
         public int Id { get; init; }
 
@@ -12,12 +13,6 @@
         [MaxLength(CategoryAndPassangerMaxLength)]
         public string Name { get; set; }
 
-        public int FlightId { get; set; }
-        public Flight Flight { get; init; }
-
-        public int ClassId { get; set; }
-        public Class Class { get; init; }
-
-
+        public IEnumerable<Passanger> Passangers = new List<Passanger>();
     }
 }

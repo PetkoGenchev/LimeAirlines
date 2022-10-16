@@ -25,6 +25,7 @@
 
         public int Year { get; set; }
 
+
         public IEnumerable<Flight> Flights = new List<Flight>();
 
         public int CategoryId { get; set; }

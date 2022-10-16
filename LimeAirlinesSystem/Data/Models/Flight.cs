@@ -10,15 +10,8 @@
     {
         public int Id { get; init; }
 
-        //[Required]
-        //public bool typeOfTrip { get; init; }
+        public bool typeOfTrip { get; init; }
         //One-way or Round Trip
-
-        //[Required]
-        //public int ClassId { get; set; }
-        //public Class Class { get; init; }
-
-
 
         [Required]
         [MaxLength(FlightLocationMaxLength)]
@@ -33,8 +26,6 @@
 
         [Required]
         public DateTime FlightEndDate { get; set; }
-
-
 
         public int PlaneId { get; set; }
         public Plane Plane { get; init; }

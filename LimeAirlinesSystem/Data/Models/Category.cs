@@ -10,7 +10,7 @@
         public int Id { get; init; }
 
         [Required]
-        [MaxLength(PlaneCategoryMaxLength)]
+        [MaxLength(CategoryAndPassangerMaxLength)]
         public string Name { get; set; }
 
         public IEnumerable<Plane> Planes { get; init; } = new List<Plane>();

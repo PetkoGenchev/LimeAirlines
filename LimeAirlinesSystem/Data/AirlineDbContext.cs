@@ -15,6 +15,8 @@
         public DbSet<Plane> Planes { get; init; }
         public DbSet<Flight> Flights { get; init; }
         public DbSet<Category> Categories { get; init; }
+        public DbSet<Class> Classes { get; init; }
+        public DbSet<Passanger> Passangers { get; init; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -31,6 +33,22 @@
                 .WithMany(f => f.Planes)
                 .HasForeignKey(p => p.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Passanger>()
+                .HasOne(p => p.Flight)
+                .WithMany(f => f.Passangers)
+                .HasForeignKey(p => p.FlightId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Passanger>()
+                .HasOne(p => p.Class)
+                .WithMany(f => f.Passangers)
+                .HasForeignKey(p => p.ClassId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
 
 
 

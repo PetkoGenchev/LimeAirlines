@@ -10,7 +10,7 @@
         public const int PlaneMaxValue = 2100;
         public const int FlightLocationMinLength = 2;
         public const int FlightLocationMaxLength = 50;
-        public const int PlaneCategoryMaxLength = 20;
+        public const int CategoryAndPassangerMaxLength = 20;
 
 
     }
