@@ -10,8 +10,6 @@
     {
         public int Id { get; init; }
 
-        public bool typeOfTrip { get; init; }
-        //One-way or Round Trip
 
         [Required]
         [MaxLength(FlightLocationMaxLength)]
@@ -33,3 +31,8 @@
         public IEnumerable<Passanger> Passangers = new List<Passanger>();
     }
 }
+
+
+// NEED TO ADD TYPE OF TRIP WHEN YOU SEARCH ON HOME AND SHOULD SHOW 2 TRIPS
+//public bool typeOfTrip { get; init; }
+//One - way or Round Trip

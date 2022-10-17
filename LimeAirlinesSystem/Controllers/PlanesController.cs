@@ -18,7 +18,7 @@
 
         public IActionResult All()
         {
-            var cars = this.data
+            var planes = this.data
                 .Planes
                 .OrderByDescending(p => p.Id)
                 .Select(p => new PlaneListingViewModel
@@ -27,15 +27,14 @@
                     Brand = p.Brand,
                     Model = p.Model,
                     ImageUrl = p.ImageUrl,
+                    NumberOfSeats = p.NumberOfSeats,
                     Year = p.Year,
                     Category = p.Category.Name
                 })
                 .ToList();
 
-            return View(cars);
+            return View(planes);
         }
-
-
 
 
 

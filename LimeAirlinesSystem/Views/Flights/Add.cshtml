@@ -1,1 +1,39 @@
-﻿
+﻿@model AddFlightFormModel
+
+@{
+    ViewData["Title"] = "Add Flight";
+}
+
+
+
+
+
+
+
+
+<div class="form-group">
+    <label asp-for="PlaneId"></label>
+    <select asp-for="PlaneId" class="form-control">
+        @foreach (var plane in Model.Planes)
+        {
+            <option value="@plane.Id">@plane.Year @plane.Brand @plane.Brand</option>
+        }
+    </select>
+</div>
+
+
+
+
+
+
+@*      public string StartLocation { get; set; }
+
+        public string EndLocation { get; set; }
+
+        public DateTime FlightStartDate { get; set; }
+
+        public DateTime FlightEndDate { get; set; }
+
+        public int PlaneId { get; set; }
+
+        public IEnumerable<PlaneListingViewModel> Planes { get; set; }*@

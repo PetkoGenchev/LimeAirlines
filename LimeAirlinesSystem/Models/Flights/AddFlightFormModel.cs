@@ -14,25 +14,24 @@ namespace LimeAirlinesSystem.Models.Flights
 
     public class AddFlightFormModel
     {
-        public bool typeOfTrip { get; init; }
-
         [Required]
-        [StringLength(FlightLocationMaxLength,MinimumLength = FlightLocationMinLength)]
+        [StringLength(FlightLocationMaxLength, MinimumLength = FlightLocationMinLength)]
         [Display(Name = "Departing from")]
-        public string StartLocation { get; set; }
+        public string StartLocation { get; init; }
 
         [Required]
         [StringLength(FlightLocationMaxLength, MinimumLength = FlightLocationMinLength)]
         [Display(Name = "Arriving at")]
-        public string EndLocation { get; set; }
+        public string EndLocation { get; init; }
 
         [Required]
-        public DateTime FlightStartDate { get; set; }
+        public DateTime FlightStartDate { get; init; }
 
         [Required]
-        public DateTime FlightEndDate { get; set; }
+        public DateTime FlightEndDate { get; init; }
 
-        public int PlaneId { get; set; }
+        public int PlaneId { get; init; }
 
-        public IEnumerable<Passanger> Passangers = new List<Passanger>();
+        public IEnumerable<PlaneListingViewModel> Planes { get; set; }
     }
+}
