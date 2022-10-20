@@ -12,11 +12,12 @@
         [MaxLength(CategoryAndPassangerMaxLength)]
         public string Name { get; set; }
 
+        
+        [MaxLength(NumberofSeatsMaxValue)]
+        public int Count { get; set; }
+
         public int FlightId { get; set; }
         public Flight Flight { get; init; }
-
-        public int ClassId { get; set; }
-        public Class Class { get; init; }
 
 
     }

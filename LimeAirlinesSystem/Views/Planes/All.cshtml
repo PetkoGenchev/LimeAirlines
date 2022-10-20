@@ -1,8 +1,8 @@
-﻿@model IEnumerable<PlaneListingViewModel>
+﻿@model FlightIndexQueryModel
 
 
 <div class="row">
-    @foreach (var plane in Model)
+    @foreach (var plane in Model.Planes)
     {
         <div class="col-md-4">
             <div class="card mb-3">

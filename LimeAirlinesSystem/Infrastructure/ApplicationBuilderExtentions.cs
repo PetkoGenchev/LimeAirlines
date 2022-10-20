@@ -19,20 +19,20 @@
 
             data.Database.Migrate();
 
-            SeedCategoriesAndClasses(data);
+            SeedCategoriesAndFlightTypes(data);
 
             return app;
 
         }
 
-        private static void SeedCategoriesAndClasses(AirlineDbContext data)
+        private static void SeedCategoriesAndFlightTypes(AirlineDbContext data)
         {
             if (data.Categories.Any())
             {
                 return;
             }
 
-            if (data.Classes.Any())
+            if (data.TripTypes.Any())
             {
                 return;
             }
@@ -47,12 +47,10 @@
             });
 
 
-            data.Classes.AddRange(new[]
+            data.TripTypes.AddRange(new[]
 {
-                new Class{Name = "First Class"},
-                new Class{Name = "Business Class"},
-                new Class{Name = "Economy Class"},
-
+                new TripType{Name = "One-Way"},
+                new TripType{Name = "Round Trip"}
             });
 
             data.SaveChanges();

@@ -2,10 +2,10 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Numerics;
     using LimeAirlinesSystem.Data;
     using LimeAirlinesSystem.Data.Models;
     using LimeAirlinesSystem.Models.Flights;
+    using LimeAirlinesSystem.Models.Home;
     using LimeAirlinesSystem.Models.Planes;
     using Microsoft.AspNetCore.Mvc;
 
@@ -22,13 +22,15 @@
             var flights = this.data
                 .Flights
                 .OrderByDescending(f => f.Id)
-                .Select(f => new AllFlightsQueryModel
+                .Select(f => new FlightIndexViewModel
                 {
+                    Id = f.Id,
                     StartLocation = f.StartLocation,
                     EndLocation = f.EndLocation,
                     FlightStartDate = f.FlightStartDate.ToString(),
                     FlightEndDate = f.FlightEndDate.ToString(),
-                    Plane = f.Plane.Model,
+                    Price = f.Price,
+                    ImageUrl = f.ImageUrl
                 })
                 .ToList();
 
@@ -63,7 +65,10 @@
                 EndLocation = flight.EndLocation,
                 FlightStartDate = flight.FlightStartDate,
                 FlightEndDate = flight.FlightEndDate,
-                PlaneId = flight.PlaneId
+                PlaneId = flight.PlaneId,
+                Price = flight.Price,
+                ImageUrl = flight.ImageUrl
+                
             };
 
             this.data.Flights.Add(flightAdd);
@@ -74,10 +79,10 @@
 
         }
 
-        private IEnumerable<FlightPlaneViewModel> GetPlaneData()
+        private IEnumerable<PlaneListingViewModel> GetPlaneData()
         => this.data
             .Planes
-            .Select(p => new FlightPlaneViewModel
+            .Select(p => new PlaneListingViewModel
             {
                 Id = p.Id,
                 Brand = p.Brand,

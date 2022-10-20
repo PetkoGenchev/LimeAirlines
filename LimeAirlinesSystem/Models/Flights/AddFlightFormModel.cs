@@ -25,11 +25,26 @@ namespace LimeAirlinesSystem.Models.Flights
         public string EndLocation { get; init; }
 
         [Required]
-        public DateTime FlightStartDate { get; init; }
+        [DataType(DataType.Date)]
+        [Display(Name = "Departure")]
+        public DateTime FlightStartDate { get; init; } = DateTime.UtcNow;
 
         [Required]
-        public DateTime FlightEndDate { get; init; }
+        [DataType(DataType.Date)]
+        [Display(Name = "Return")]
+        public DateTime FlightEndDate { get; init; } = DateTime.UtcNow;
 
+        [MaxLength(FlightMinValue)]
+        [Display(Name = "Fare")]
+        public int Price { get; set; }
+
+        [Required]
+        [Url]
+        [Display(Name = "Image URL")]
+        public string ImageUrl { get; init; }
+
+
+        [Display(Name = "Aircraft Type")]
         public int PlaneId { get; init; }
 
         public IEnumerable<PlaneListingViewModel> Planes { get; set; }

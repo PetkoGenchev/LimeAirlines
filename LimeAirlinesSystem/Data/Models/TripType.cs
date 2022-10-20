@@ -1,18 +1,15 @@
 ﻿namespace LimeAirlinesSystem.Data.Models
 {
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using static DataConstants;
 
-    public class Class
+    public class TripType
     {
         public int Id { get; init; }
 
         [Required]
-        [MaxLength(CategoryAndPassangerMaxLength)]
+        [MaxLength(FlightMinValue)]
         public string Name { get; set; }
-
-        public IEnumerable<Passanger> Passangers = new List<Passanger>();
     }
 }

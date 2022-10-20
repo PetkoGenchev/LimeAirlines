@@ -4,36 +4,46 @@
     ViewData["Title"] = "Add Flight";
 }
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+            <h2 class-"heading-margin text-center">Add Plane</h2>
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="StartLocation"></label>
+                    <input asp-for="StartLocation" class="form-control" placeholder="Sofia,Berlin,Tokio...">
+                    <span asp-validation-for="StartLocation" class="small text-danger"></span>
+                </div>
 
+                <div class="form-group">
+                    <label asp-for="EndLocation"></label>
+                    <input asp-for="EndLocation" class="form-control" placeholder="Sofia,Berlin,Tokio...">
+                    <span asp-validation-for="EndLocation" class="small text-danger"></span>
+                </div>
 
+                <div class="form-group">
+                    <label asp-for="FlightStartDate"></label>
+                    <input asp-for="FlightStartDate" class="form-control" placeholder="Select Date">
+                    <span asp-validation-for="FlightStartDate" class="small text-danger"></span>
+                </div>
 
+                <div class="form-group">
+                    <label asp-for="FlightEndDate"></label>
+                    <input asp-for="FlightEndDate" class="form-control" placeholder="Select Date">
+                    <span asp-validation-for="FlightEndDate" class="small text-danger"></span>
+                </div>
 
-
-
-
-<div class="form-group">
-    <label asp-for="PlaneId"></label>
-    <select asp-for="PlaneId" class="form-control">
-        @foreach (var plane in Model.Planes)
-        {
-            <option value="@plane.Id">@plane.Year @plane.Brand @plane.Brand</option>
-        }
-    </select>
+                <div class="form-group">
+                    <label asp-for="PlaneId"></label>
+                    <select asp-for="PlaneId" class="form-control">
+                        @foreach (var plane in Model.Planes)
+                        {
+                            <option value="@plane.Id">@plane.Year @plane.Brand @plane.Model</option>
+                        }
+                    </select>
+                </div>
+                <input class="btn btn-primary" type="submit" value="Save" />
+            </form>
+        </div>
+    </div>
 </div>
-
-
-
-
-
-
-@*      public string StartLocation { get; set; }
-
-        public string EndLocation { get; set; }
-
-        public DateTime FlightStartDate { get; set; }
-
-        public DateTime FlightEndDate { get; set; }
-
-        public int PlaneId { get; set; }
-
-        public IEnumerable<PlaneListingViewModel> Planes { get; set; }*@

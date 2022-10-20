@@ -11,6 +11,7 @@
         public const int FlightLocationMinLength = 2;
         public const int FlightLocationMaxLength = 50;
         public const int CategoryAndPassangerMaxLength = 20;
+        public const int FlightMinValue = 10;
 
 
     }

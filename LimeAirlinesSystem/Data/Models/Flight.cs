@@ -25,14 +25,18 @@
         [Required]
         public DateTime FlightEndDate { get; set; }
 
+
+        [MaxLength(FlightMinValue)]
+        public int Price { get; set; }
+
+        [Required]
+        public string ImageUrl { get; set; }
+
         public int PlaneId { get; set; }
         public Plane Plane { get; init; }
 
         public IEnumerable<Passanger> Passangers = new List<Passanger>();
+
+
     }
 }
-
-
-// NEED TO ADD TYPE OF TRIP WHEN YOU SEARCH ON HOME AND SHOULD SHOW 2 TRIPS
-//public bool typeOfTrip { get; init; }
-//One - way or Round Trip
