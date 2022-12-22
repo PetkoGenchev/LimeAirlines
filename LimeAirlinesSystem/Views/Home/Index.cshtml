@@ -1,4 +1,4 @@
-﻿@model List<FlightIndexViewModel>
+﻿@model FlightsQueryModel
 
 
 @{
@@ -7,24 +7,93 @@
 
 
 @{
-    var firstFlight = Model.Any() ? Model[0] : null;
+    var firstFlight = Model.Flights.Any() ? Model.Flights[0] : null;
 
-    var secondFlight = Model.Count() > 1 ? Model[1] : null;
+    var secondFlight = Model.Flights.Count() > 1 ? Model.Flights[1] : null;
 
-    var thirdFlight = Model.Count() > 2 ? Model[2] : null;
+    var thirdFlight = Model.Flights.Count() > 2 ? Model.Flights[2] : null;
 }
+
+<form method="get">
+    <div class="row">
+        <div class="form-group col-md-4">
+            <div class="form-group">
+                <label asp-for="TripTypeId"></label>
+                <select asp-for="TripTypeId" class="form-control">
+                    <option value="">All</option>
+
+                    @foreach (var triptype in Model.TripTypes)
+                    {
+                        <option value=@triptype>@triptype</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            <div class="form-group">
+                <label asp-for="StartLocation"></label>
+                <select asp-for="StartLocation" class="form-control">
+                    <option value="">All</option>
+
+                    @foreach (var startlocation in Model.Locations)
+                    {
+                        <option value=@startlocation>@startlocation</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            <div class="form-group">
+                <label asp-for="EndLocation"></label>
+                <select asp-for="EndLocation" class="form-control">
+                    <option value="">All</option>
+
+                    @foreach (var endlocation in Model.Locations)
+                    {
+                        <option value=@endlocation>@endlocation</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="FlightStartDate"></label>
+            <input asp-for="FlightStartDate" class="form-control" placeholder="Select Date">
+            <span asp-validation-for="FlightStartDate" class="small text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="FlightEndDate"></label>
+            <input asp-for="FlightEndDate" class="form-control" placeholder="Select Date">
+            <span asp-validation-for="FlightEndDate" class="small text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label asp-for="Passangers"></label>
+            <input asp-for="Passangers" class="form-control" placeholder="1,2,3,10...">
+        </div>
+
+
+        <div class="form-group col-md-3">
+            <input type="submit" class-"btn btn-primary" value="Search">
+        </div>
+    </div>
+</form>
+
 
 <h2>Flight Offers</h2>
 
 
-@if (!Model.Any())
+@if (!Model.Flights.Any())
 {
     <div class="jumbotron">
         <h1 class="display-4">Welcome to the Lime family!</h1>
-        <p class="lead">There are no flight options currently.Please check again .</p>
+        <p class="lead">There are no flight options currently.Please check again later.</p>
         <hr class="my-4">
         <p class="lead">
-        <a asp-controller="Planes" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add Plane</a>
+            <a asp-controller="Flights" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add Flight</a>
         </p>
     </div>
 }
@@ -39,9 +108,9 @@
         @if (firstFlight != null)
         {
             <div class="carousel-item active">
-                <img class="d-block w-100" src="@firstFlight.ImageUrl" alt="@firstPlane.Brand @firstPlane.Model">
-             <div class="carousel-caption d-none d-md-block">
-                    <h5><a class="btn btn-primary" asp-controller="Planes" asp-action="Details" asp-route-id="@firstPlane.Id">@firstPlane.Year @firstPlane.Brand @firstPlane.Model</a></h5>
+                <img class="d-block w-100" src="@firstFlight.ImageUrl" alt="@firstFlight.StartLocation to @firstFlight.EndLocation from USD @firstFlight.Price">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5><a class="btn btn-primary" asp-controller="Flights" asp-action="Details" asp-route-id="@firstFlight.Id">@firstFlight.StartLocation @firstFlight.EndLocation</a></h5>
                 </div>
             </div>
         }
@@ -49,9 +118,9 @@
         @if (secondFlight != null)
         {
             <div class="carousel-item">
-                <img class="d-block w-100" src="@secondPlane.ImageUrl" alt="@secondPlane.Brand @secondPlane.Model">
+                <img class="d-block w-100" src="@secondFlight.ImageUrl" alt="@secondFlight.StartLocation to @secondFlight.EndLocation from USD @secondFlight.Price">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5><a class="btn btn-primary" asp-controller="Planes" asp-action="Details" asp-route-id="@secondPlane.Id">@secondPlane.Year @secondPlane.Brand @secondPlane.Model</a></h5>
+                    <h5><a class="btn btn-primary" asp-controller="Flights" asp-action="Details" asp-route-id="@secondFlight.Id">@secondFlight.StartLocation @secondFlight.EndLocation</a></h5>
                 </div>
             </div>
         }
@@ -59,9 +128,9 @@
         @if (thirdFlight != null)
         {
             <div class="carousel-item">
-                <img class="d-block w-100" src="@thirdPlane.ImageUrl" alt="@thirdPlane.Brand @secondPlane.Model">
+                <img class="d-block w-100" src="@thirdFlight.ImageUrl" alt="@thirdFlight.StartLocation to @thirdFlight.EndLocation from USD @thirdFlight.Price">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5><a class="btn btn-primary" asp-controller="Planes" asp-action="Details" asp-route-id="@thirdPlane.Id">@thirdPlane.Year @thirdPlane.Brand @thirdPlane.Model</a></h5>
+                    <h5><a class="btn btn-primary" asp-controller="Flights" asp-action="Details" asp-route-id="@thirdFlight.Id">@thirdFlight.StartLocation @thirdFlight.EndLocation</a></h5>
                 </div>
             </div>
         }
@@ -75,18 +144,3 @@
         <span class="sr-only">Next</span>
     </button>
 </div>
-
-
-@*
-@foreach (var plane in Model.Planes)
-{
-    <div class="col-md-4">
-        <div class="card mb-3">
-            <img class="card-img-top" src="@plane.ImageUrl" alt="@plane.Brand @plane.Model - @plane.Year (@plane.Category)">
-            <div class="card-body">
-                <h5 class="card-title">@plane.Year @plane.Brand @plane.Model (@plane.Category)</h5>
-                <a asp-controller="Planes" asp-action="Details" asp-route-id=@plane.Id class="btn btn-primary">View More</a>
-            </div>
-        </div>
-    </div>
-}*@

@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.ComponentModel.DataAnnotations;
 
-namespace LimeAirlinesSystem.Models.Flights
+namespace LimeAirlinesSystem.Services.Flights.Models
 {
     public class FlightPassangerViewModel
     {

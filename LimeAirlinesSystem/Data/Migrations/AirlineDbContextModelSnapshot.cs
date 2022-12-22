@@ -54,7 +54,15 @@ namespace LimeAirlinesSystem.Data.Migrations
                     b.Property<DateTime>("FlightStartDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("PlaneId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Price")
+                        .HasMaxLength(10)
                         .HasColumnType("int");
 
                     b.Property<string>("StartLocation")
@@ -67,6 +75,32 @@ namespace LimeAirlinesSystem.Data.Migrations
                     b.HasIndex("PlaneId");
 
                     b.ToTable("Flights");
+                });
+
+            modelBuilder.Entity("LimeAirlinesSystem.Data.Models.Passanger", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Count")
+                        .HasMaxLength(1000)
+                        .HasColumnType("int");
+
+                    b.Property<int>("FlightId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FlightId");
+
+                    b.ToTable("Passangers");
                 });
 
             modelBuilder.Entity("LimeAirlinesSystem.Data.Models.Plane", b =>
@@ -105,6 +139,23 @@ namespace LimeAirlinesSystem.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Planes");
+                });
+
+            modelBuilder.Entity("LimeAirlinesSystem.Data.Models.TripType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TripTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -318,6 +369,17 @@ namespace LimeAirlinesSystem.Data.Migrations
                     b.Navigation("Plane");
                 });
 
+            modelBuilder.Entity("LimeAirlinesSystem.Data.Models.Passanger", b =>
+                {
+                    b.HasOne("LimeAirlinesSystem.Data.Models.Flight", "Flight")
+                        .WithMany("Passangers")
+                        .HasForeignKey("FlightId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Flight");
+                });
+
             modelBuilder.Entity("LimeAirlinesSystem.Data.Models.Plane", b =>
                 {
                     b.HasOne("LimeAirlinesSystem.Data.Models.Category", "Category")
@@ -383,6 +445,11 @@ namespace LimeAirlinesSystem.Data.Migrations
             modelBuilder.Entity("LimeAirlinesSystem.Data.Models.Category", b =>
                 {
                     b.Navigation("Planes");
+                });
+
+            modelBuilder.Entity("LimeAirlinesSystem.Data.Models.Flight", b =>
+                {
+                    b.Navigation("Passangers");
                 });
 
             modelBuilder.Entity("LimeAirlinesSystem.Data.Models.Plane", b =>

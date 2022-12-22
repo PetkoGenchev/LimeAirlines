@@ -17,35 +17,14 @@
             => this.data = data;
 
 
-        public IActionResult All()
+        public IActionResult Add() => View(new FlightFormModel
         {
-            var flights = this.data
-                .Flights
-                .OrderByDescending(f => f.Id)
-                .Select(f => new FlightIndexViewModel
-                {
-                    Id = f.Id,
-                    StartLocation = f.StartLocation,
-                    EndLocation = f.EndLocation,
-                    FlightStartDate = f.FlightStartDate.ToString(),
-                    FlightEndDate = f.FlightEndDate.ToString(),
-                    Price = f.Price,
-                    ImageUrl = f.ImageUrl
-                })
-                .ToList();
-
-            return View(flights);
-        }
-
-
-        public IActionResult Add() => View(new AddFlightFormModel
-        {
-            Planes = this.GetPlaneData()
+            Planes = this.GetFlightData()
         });
 
 
         [HttpPost]
-        public IActionResult Add(AddFlightFormModel flight)
+        public IActionResult Add(FlightFormModel flight)
         {
             if (!this.data.Planes.Any(p => p.Id == flight.PlaneId))
             {
@@ -75,7 +54,7 @@
 
             this.data.SaveChanges();
 
-            return RedirectToAction(nameof(All));
+            return View(); /*RedirectToAction(nameof(All));*/
 
         }
 
@@ -90,5 +69,10 @@
                 Year = p.Year
             })
             .ToList();
+
+
+        // NEED A GET AND POST METHOD FOR "FilteredFlights"
+
+
     }
 }

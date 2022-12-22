@@ -1,11 +1,8 @@
-﻿using LimeAirlinesSystem.Models.Planes;
-
-namespace LimeAirlinesSystem.Models.Home
+﻿namespace LimeAirlinesSystem.Services.Flights.Models
 {
-    public class FlightIndexViewModel
+    public class FlightIndexViewModel : IFlightModel
     {
         public int Id { get; init; }
-        public string TripType { get; init; }
         public string StartLocation { get; init; }
         public string EndLocation { get; init; }
         public string FlightStartDate { get; init; }

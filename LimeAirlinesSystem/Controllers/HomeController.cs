@@ -1,10 +1,12 @@
 ﻿namespace LimeAirlinesSystem.Controllers
 {
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
     using LimeAirlinesSystem.Data;
     using LimeAirlinesSystem.Models;
     using LimeAirlinesSystem.Models.Planes;
+    using LimeAirlinesSystem.Services.Flights.Models;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : Controller
@@ -16,28 +18,27 @@
             this.data = data;
         }
 
+
         public IActionResult Index()
         {
-            var cars = this.data
-                .Planes
-                .OrderByDescending(p => p.Id)
-                .Select(p => new PlaneListingViewModel
-                {
-                    Id = p.Id,
-                    Brand = p.Brand,
-                    Model = p.Model,
-                    ImageUrl = p.ImageUrl,
-                    Year = p.Year,
-                    Category = p.Category.Name
-                })
-                .Take(3)
-                .ToList();
 
-            return View(cars);
+            //return this.RedirectToAction("All","Flights",new {model = FilteredFlightsQueryModel{})
         }
 
+
+        private IEnumerable<FlightTypeServiceModel> GetFlightTypes()
+            => this.data
+                .TripTypes
+                .Select(f => new FlightTypeServiceModel
+                {
+                    Id = f.Id,
+                    Name = f.Name
+                })
+                .ToList();
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error() 
+        public IActionResult Error()
             => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

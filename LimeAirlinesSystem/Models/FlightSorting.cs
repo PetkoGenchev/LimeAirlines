@@ -2,8 +2,9 @@
 {
     public enum FlightSorting
     {
-        Price = 0,
+        LowestPrice = 0,
         Duration = 1,
-        DepartureTime = 2
+        ArrivalTime = 2,
+        DepartureTime = 3,
     }
 }

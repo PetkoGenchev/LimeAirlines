@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LimeAirlinesSystem.Data.Migrations
 {
-    public partial class PlaneFlightAndCategoryTables : Migration
+    public partial class FlightPlaneTripCategoryPassangerTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -57,6 +57,19 @@ namespace LimeAirlinesSystem.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TripTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TripTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -199,6 +212,8 @@ namespace LimeAirlinesSystem.Data.Migrations
                     EndLocation = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     FlightStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FlightEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Price = table.Column<int>(type: "int", maxLength: 10, nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PlaneId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -208,6 +223,27 @@ namespace LimeAirlinesSystem.Data.Migrations
                         name: "FK_Flights_Planes_PlaneId",
                         column: x => x.PlaneId,
                         principalTable: "Planes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Passangers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Count = table.Column<int>(type: "int", maxLength: 1000, nullable: false),
+                    FlightId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Passangers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Passangers_Flights_FlightId",
+                        column: x => x.FlightId,
+                        principalTable: "Flights",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -257,6 +293,11 @@ namespace LimeAirlinesSystem.Data.Migrations
                 column: "PlaneId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Passangers_FlightId",
+                table: "Passangers",
+                column: "FlightId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Planes_CategoryId",
                 table: "Planes",
                 column: "CategoryId");
@@ -280,13 +321,19 @@ namespace LimeAirlinesSystem.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Flights");
+                name: "Passangers");
+
+            migrationBuilder.DropTable(
+                name: "TripTypes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Flights");
 
             migrationBuilder.DropTable(
                 name: "Planes");

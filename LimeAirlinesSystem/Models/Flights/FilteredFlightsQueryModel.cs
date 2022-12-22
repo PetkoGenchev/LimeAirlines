@@ -1,11 +1,19 @@
-﻿using System.Collections;
-
-namespace LimeAirlinesSystem.Models.Flights
+﻿namespace LimeAirlinesSystem.Models.Flights
 {
+    using System.Collections.Generic;
     public class FilteredFlightsQueryModel
     {
-        public const int FlightsPerPage = 4;
+        public IEnumerable<int> MaxPrice { get; init; }
 
-        public string 
+        public IEnumerable<string> DepartureTime { get; init; }
+
+        public IEnumerable<int> MaxDuration { get; init; }
+
+        public FlightSorting Sorting { get; init; }
+
+        public int TotalPrice { get; init; }
+
+
+        // I need to receive flight options that were filtered in Index
     }
 }
