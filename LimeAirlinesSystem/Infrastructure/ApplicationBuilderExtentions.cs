@@ -1,9 +1,12 @@
 ﻿namespace LimeAirlinesSystem.Infrastructure
 {
+    using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using LimeAirlinesSystem.Data;
     using LimeAirlinesSystem.Data.Models;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -15,18 +18,29 @@
         {
             using var scopedServices = app.ApplicationServices.CreateScope();
 
-            var data = scopedServices.ServiceProvider.GetService<AirlineDbContext>();
+            var services = scopedServices.ServiceProvider;
 
-            data.Database.Migrate();
+            MigrateDatabase(services);
 
-            SeedCategoriesAndFlightTypes(data);
+            SeedCategoriesAndFlightTypes(services);
+            SeedAdministrator(services);
 
             return app;
 
         }
 
-        private static void SeedCategoriesAndFlightTypes(AirlineDbContext data)
+
+        private static void MigrateDatabase(IServiceProvider services)
         {
+            var data = services.GetRequiredService<AirlineDbContext>();
+
+            data.Database.Migrate();
+        }
+
+        private static void SeedCategoriesAndFlightTypes(IServiceProvider services)
+        {
+            var data = services.GetRequiredService<AirlineDbContext>();
+
             if (data.Categories.Any())
             {
                 return;
@@ -55,6 +69,41 @@
 
             data.SaveChanges();
 
+        }
+
+        private static void SeedAdministrator(IServiceProvider services)
+        {
+            var userManager = services.GetRequiredService<UserManager<User>>();
+            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+            Task
+                .Run(async () =>
+            {
+                if (await roleManager.RoleExistsAsync(AdministratorRoleName))
+                {
+                    return;
+                }
+
+                var role = new IdentityRole { Name = AdministratorRoleName };
+
+                await roleManager.CreateAsync(role);
+
+                const string adminEmail = "admin@limeair.com";
+                const string adminPassword = "admin123";
+
+                var user = new User
+                {
+                    Email = adminEmail,
+                    UserName = adminEmail,
+                    FullName = "Admin"
+                };
+
+                await userManager.CreateAsync(user, adminPassword);
+
+                await userManager.AddToRoleAsync(user, role.Name);
+            })
+            .GetAwaiter()
+            .GetResult();
         }
 
     }

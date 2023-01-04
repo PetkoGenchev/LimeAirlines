@@ -35,7 +35,7 @@
         public int PlaneId { get; set; }
         public Plane Plane { get; init; }
 
-        public IEnumerable<Passanger> Passangers = new List<Passanger>();
+        public IEnumerable<User> Passangers = new List<User>();
 
 
     }
