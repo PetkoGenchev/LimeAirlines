@@ -1,5 +1,6 @@
 ﻿namespace LimeAirlinesSystem.Models.Flights
 {
+    using LimeAirlinesSystem.Services.Flights.Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -28,8 +29,8 @@
         [Display(Name = "Trip")]
         public int TripTypeId { get; init; }
 
-        public IEnumerable<FlightTypeViewModel> TripTypes { get; set; }
+        public IEnumerable<FlightTypeServiceModel> TripTypes { get; set; }
         public IEnumerable<string> Locations { get; set; }
-        public List<FlightIndexViewModel> Flights { get; init; }
+        public List<FlightServiceModel> Flights { get; init; }
     }
 }

@@ -4,11 +4,12 @@
 
     public class FlightQueryServiceModel
     {
+        public int CurrentPage { get; init; }
+
+        public int FlightsPerPage { get; init; }
+
         public int TotalFlights { get; init; }
 
-        public int TotalLocations { get; init; }
-
-        public IEnumerable<CheapestFlightServiceModel> CheapestFlights { get; init; }
         public IEnumerable<FlightServiceModel> Flights { get; init; }
     }
 }

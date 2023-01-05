@@ -58,10 +58,10 @@
 
         }
 
-        private IEnumerable<PlaneListingViewModel> GetPlaneData()
+        private IEnumerable<PlaneListingServiceModel> GetPlaneData()
         => this.data
             .Planes
-            .Select(p => new PlaneListingViewModel
+            .Select(p => new PlaneListingServiceModel
             {
                 Id = p.Id,
                 Brand = p.Brand,

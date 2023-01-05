@@ -4,10 +4,11 @@
     using System.ComponentModel.DataAnnotations;
     using System;
     using LimeAirlinesSystem.Models.Planes;
+    using LimeAirlinesSystem.Services.Flights.Models;
 
     using static Data.DataConstants;
 
-    public class FlightFormModel
+    public class FlightFormModel : IFlightModel
     {
         [Required]
         [StringLength(FlightLocationMaxLength, MinimumLength = FlightLocationMinLength)]
@@ -42,6 +43,6 @@
         [Display(Name = "Aircraft Type")]
         public int PlaneId { get; init; }
 
-        public IEnumerable<PlaneListingViewModel> Planes { get; set; }
+        public IEnumerable<PlaneListingServiceModel> Planes { get; set; }
     }
 }

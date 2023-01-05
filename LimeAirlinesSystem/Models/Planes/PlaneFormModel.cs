@@ -1,13 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace LimeAirlinesSystem.Models.Planes
+﻿namespace LimeAirlinesSystem.Models.Planes
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using static Data.DataConstants;
 
-    public class AddPlaneFormModel
+    public class PlaneFormModel
     {
         [Required]
         [StringLength(PlaneBrandAndModelMaxLength, MinimumLength = PlaneBrandAndModelMinLength)]
@@ -35,6 +33,6 @@ namespace LimeAirlinesSystem.Models.Planes
         [Display(Name = "Category")]
         public int CategoryId { get; init; }
 
-        public IEnumerable<PlaneCategoryViewModel> Categories { get; set; }
+        public IEnumerable<PlaneCategoryServiceModel> Categories { get; set; }
     }
 }

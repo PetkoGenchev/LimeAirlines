@@ -1,6 +1,6 @@
 ﻿namespace LimeAirlinesSystem.Models.Planes
 {
-    public class PlaneListingViewModel
+    public class PlaneListingServiceModel
     {
         public int Id { get; init; }
         public string Brand { get; init; }

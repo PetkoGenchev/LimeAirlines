@@ -21,7 +21,7 @@
             var planes = this.data
                 .Planes
                 .OrderByDescending(p => p.Id)
-                .Select(p => new PlaneListingViewModel
+                .Select(p => new PlaneListingServiceModel
                 {
                     Id = p.Id,
                     Brand = p.Brand,
@@ -79,10 +79,10 @@
         }
 
 
-        private IEnumerable<PlaneCategoryViewModel> GetPlaneCategories()
+        private IEnumerable<PlaneCategoryServiceModel> GetPlaneCategories()
         => this.data
             .Categories
-            .Select(c => new PlaneCategoryViewModel
+            .Select(c => new PlaneCategoryServiceModel
             {
                 Id = c.Id,
                 Name = c.Name
