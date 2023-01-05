@@ -4,7 +4,7 @@
     using System.Linq;
     using LimeAirlinesSystem.Data;
     using LimeAirlinesSystem.Data.Models;
-    using LimeAirlinesSystem.Models.Planes;
+    using LimeAirlinesSystem.Services.Planes.Models;
     using Microsoft.AspNetCore.Mvc;
 
     public class PlanesController : Controller

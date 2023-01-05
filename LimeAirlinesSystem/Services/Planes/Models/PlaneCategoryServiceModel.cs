@@ -1,4 +1,4 @@
-﻿namespace LimeAirlinesSystem.Models.Planes
+﻿namespace LimeAirlinesSystem.Services.Planes.Models
 {
     public class PlaneCategoryServiceModel
     {

@@ -6,7 +6,7 @@
     using LimeAirlinesSystem.Data.Models;
     using LimeAirlinesSystem.Models.Flights;
     using LimeAirlinesSystem.Models.Home;
-    using LimeAirlinesSystem.Models.Planes;
+    using LimeAirlinesSystem.Services.Planes.Models;
     using Microsoft.AspNetCore.Mvc;
 
     public class FlightsController : Controller

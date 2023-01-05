@@ -1,7 +1,6 @@
 ﻿namespace LimeAirlinesSystem.Services.Flights
 {
-    public interface IFlightService
+    public class FlightService
     {
-
     }
 }

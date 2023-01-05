@@ -3,10 +3,10 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System;
-    using LimeAirlinesSystem.Models.Planes;
     using LimeAirlinesSystem.Services.Flights.Models;
 
     using static Data.DataConstants;
+    using LimeAirlinesSystem.Services.Planes.Models;
 
     public class FlightFormModel : IFlightModel
     {
