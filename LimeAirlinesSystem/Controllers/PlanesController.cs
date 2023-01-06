@@ -2,18 +2,24 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using AutoMapper;
     using LimeAirlinesSystem.Data;
     using LimeAirlinesSystem.Data.Models;
+    using LimeAirlinesSystem.Services.Planes;
     using LimeAirlinesSystem.Services.Planes.Models;
     using Microsoft.AspNetCore.Mvc;
 
     public class PlanesController : Controller
 
     {
-        private readonly AirlineDbContext data;
+        private readonly IPlaneService planes;
+        private readonly IMapper mapper;
 
-        public PlanesController(AirlineDbContext data)
-            => this.data = data;
+        public PlanesController(IPlaneService planes, IMapper mapper)
+        {
+            this.planes = planes;
+            this.mapper = mapper;
+        }
 
 
         public IActionResult All()
