@@ -5,8 +5,10 @@
     using AutoMapper;
     using LimeAirlinesSystem.Data;
     using LimeAirlinesSystem.Data.Models;
+    using LimeAirlinesSystem.Models.Planes;
     using LimeAirlinesSystem.Services.Planes;
     using LimeAirlinesSystem.Services.Planes.Models;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class PlanesController : Controller
@@ -44,55 +46,38 @@
 
 
 
-        public IActionResult Add() => View(new AddPlaneFormModel
+        public IActionResult Add() => View(new PlaneFormModel
         {
-            Categories = this.GetPlaneCategories()
+            Categories = this.planes.AllCategories()
         });
 
 
         [HttpPost]
-        public IActionResult Add(AddPlaneFormModel plane)
+        [Authorize]
+        public IActionResult Add(PlaneFormModel plane)
         {
-            if (!this.data.Categories.Any(c => c.Id == plane.CategoryId))
+            if (!this.planes.CategoryExists(plane.CategoryId))
             {
                 this.ModelState.AddModelError(nameof(plane.CategoryId), "Category does not exist");
             }
 
             if (!ModelState.IsValid)
             {
-                plane.Categories = this.GetPlaneCategories();
+                plane.Categories = this.planes.AllCategories();
 
                 return View(plane);
             }
 
-            var planeAdd = new Plane
-            {
-                Brand = plane.Brand,
-                Model = plane.Model,
-                NumberOfSeats = plane.NumberOfSeats,
-                ImageUrl = plane.ImageUrl,
-                Year = plane.Year,
-                CategoryId = plane.CategoryId
-            };
-
-            this.data.Planes.Add(planeAdd);
-
-            this.data.SaveChanges();
-
+            var planeId = this.planes.Create(
+                plane.Brand,
+                plane.Model,
+                plane.NumberOfSeats,
+                plane.ImageUrl,
+                plane.Year,
+                plane.CategoryId);
 
             return RedirectToAction(nameof(All));
 
         }
-
-
-        private IEnumerable<PlaneCategoryServiceModel> GetPlaneCategories()
-        => this.data
-            .Categories
-            .Select(c => new PlaneCategoryServiceModel
-            {
-                Id = c.Id,
-                Name = c.Name
-            })
-            .ToList();
     }
 }
