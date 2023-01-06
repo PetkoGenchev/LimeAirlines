@@ -40,6 +40,35 @@
         }
 
 
+        public bool Edit(
+            int id, 
+            string brand, 
+            string model, 
+            int numberofSeats, 
+            string imageUrl, 
+            int year, 
+            int categoryId)
+        {
+            var planeData = this.data.Planes.Find(id);
+
+            if (planeData == null)
+            {
+                return false;
+            }
+
+            planeData.Brand = brand;
+            planeData.Model = model;
+            planeData.NumberOfSeats = numberofSeats;
+            planeData.ImageUrl = imageUrl;
+            planeData.Year = year;
+            planeData.CategoryId = categoryId;
+
+            this.data.SaveChanges();
+
+            return true;
+        }
+
+
         public IEnumerable<PlaneCategoryServiceModel> AllCategories()
         => this.data
             .Categories

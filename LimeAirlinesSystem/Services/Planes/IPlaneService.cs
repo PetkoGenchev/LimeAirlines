@@ -14,7 +14,7 @@
             int categoryId
             );
 
-        int Edit(
+        bool Edit(
             int carId,
             string brand,
             string model,
