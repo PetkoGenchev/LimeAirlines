@@ -43,6 +43,6 @@
         [Display(Name = "Aircraft Type")]
         public int PlaneId { get; init; }
 
-        public IEnumerable<PlaneListingServiceModel> Planes { get; set; }
+        public IEnumerable<PlaneServiceModel> Planes { get; set; }
     }
 }

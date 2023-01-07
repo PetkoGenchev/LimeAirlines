@@ -20,6 +20,27 @@
         }
 
 
+        public PlaneQueryServiceModel All(
+            int currentPage = 1,
+            int planesPerPage = int.MaxValue)
+        {
+            var planesQuery = this.data.Planes;
+
+            var totalPlanes = planesQuery.Count();
+
+            var planes = GetPlanes(planesQuery
+                .Skip((currentPage - 1) * planesPerPage)
+                .Take(planesPerPage));
+
+            return new PlaneQueryServiceModel
+            {
+                TotalPlanes = totalPlanes,
+                CurrentPage = currentPage,
+                PlanesPerPage = planesPerPage,
+                Planes = planes
+            };
+        }
+
 
         public int Create(string brand, string model, int numberofSeats, string imageUrl, int year, int categoryId)
         {
@@ -41,12 +62,12 @@
 
 
         public bool Edit(
-            int id, 
-            string brand, 
-            string model, 
-            int numberofSeats, 
-            string imageUrl, 
-            int year, 
+            int id,
+            string brand,
+            string model,
+            int numberofSeats,
+            string imageUrl,
+            int year,
             int categoryId)
         {
             var planeData = this.data.Planes.Find(id);
@@ -76,11 +97,16 @@
             .ToList();
 
 
-        public bool CategoryExists(int categoryId) 
+        public bool CategoryExists(int categoryId)
             => this.data
             .Categories
             .Any(c => c.Id == categoryId);
 
+
+        private IEnumerable<PlaneServiceModel> GetPlanes(IQueryable<Plane> planeQuery)
+             => planeQuery
+            .ProjectTo<PlaneServiceModel>(this.mapper)
+            .ToList();
 
     }
 }
