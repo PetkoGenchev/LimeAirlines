@@ -19,6 +19,14 @@
             this.mapper = mapper.ConfigurationProvider;
         }
 
+        public PlaneServiceModel Details(int planeId)
+            => this.data
+            .Planes
+            .Where(p => p.Id == planeId)
+            .ProjectTo<PlaneServiceModel>(this.mapper)
+            .FirstOrDefault();
+
+
 
         public PlaneQueryServiceModel All(
             int currentPage = 1,

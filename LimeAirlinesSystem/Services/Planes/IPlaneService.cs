@@ -5,6 +5,16 @@
 
     public interface IPlaneService
     {
+
+        PlaneServiceModel Details(int planeId);
+
+
+        PlaneQueryServiceModel All(
+            int currentPage = 1,
+            int planesPerPage = int.MaxValue);
+
+
+
         int Create(
             string brand,
             string model,
@@ -15,7 +25,7 @@
             );
 
         bool Edit(
-            int carId,
+            int planeId,
             string brand,
             string model,
             int numberofSeats,
