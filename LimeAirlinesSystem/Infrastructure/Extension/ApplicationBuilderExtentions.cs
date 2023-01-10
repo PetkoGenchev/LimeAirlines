@@ -1,4 +1,4 @@
-﻿namespace LimeAirlinesSystem.Infrastructure
+﻿namespace LimeAirlinesSystem.Infrastructure.Extension
 {
     using System;
     using System.Linq;
@@ -10,6 +10,7 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
 
+    using static LimeAirlinesSystem.Areas.Admin.AdminConstants;
 
     public static class ApplicationBuilderExtentions
     {
@@ -73,7 +74,7 @@
 
         private static void SeedAdministrator(IServiceProvider services)
         {
-            var userManager = services.GetRequiredService<UserManager<User>>();
+            var userManager = services.GetRequiredService<UserManager<Passanger>>();
             var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
             Task
@@ -91,7 +92,7 @@
                 const string adminEmail = "admin@limeair.com";
                 const string adminPassword = "admin123";
 
-                var user = new User
+                var user = new Passanger
                 {
                     Email = adminEmail,
                     UserName = adminEmail,

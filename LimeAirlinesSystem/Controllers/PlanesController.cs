@@ -1,7 +1,7 @@
 ﻿namespace LimeAirlinesSystem.Controllers
 {
     using AutoMapper;
-    using LimeAirlinesSystem.Infrastructure;
+    using LimeAirlinesSystem.Infrastructure.Extension;
     using LimeAirlinesSystem.Models.Planes;
     using LimeAirlinesSystem.Services.Planes;
     using Microsoft.AspNetCore.Authorization;

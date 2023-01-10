@@ -4,7 +4,6 @@
     {
         LowestPrice = 0,
         Duration = 1,
-        ArrivalTime = 2,
-        DepartureTime = 3,
+        DepartureTime = 2,
     }
 }

@@ -23,12 +23,7 @@
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Departure")]
-        public DateTime FlightStartDate { get; init; } = DateTime.UtcNow;
-
-        [Required]
-        [DataType(DataType.Date)]
-        [Display(Name = "Return")]
-        public DateTime FlightEndDate { get; init; } = DateTime.UtcNow;
+        public DateTime FlightDateTime { get; init; } = DateTime.UtcNow;
 
         [MaxLength(FlightMinValue)]
         [Display(Name = "Fare")]

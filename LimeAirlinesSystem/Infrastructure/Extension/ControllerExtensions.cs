@@ -1,4 +1,4 @@
-﻿namespace LimeAirlinesSystem.Infrastructure
+﻿namespace LimeAirlinesSystem.Infrastructure.Extension
 {
     using System;
     using Microsoft.AspNetCore.Mvc;

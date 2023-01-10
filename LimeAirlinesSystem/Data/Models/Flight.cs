@@ -20,10 +20,7 @@
         public string EndLocation { get; set; }
 
         [Required]
-        public DateTime FlightStartDate { get; set; }
-
-        [Required]
-        public DateTime FlightEndDate { get; set; }
+        public DateTime FlightDateTime { get; set; }
 
 
         [MaxLength(FlightMinValue)]
@@ -32,10 +29,12 @@
         [Required]
         public string ImageUrl { get; set; }
 
+        public bool IsPublic { get; set; }
+
         public int PlaneId { get; set; }
         public Plane Plane { get; init; }
 
-        public IEnumerable<User> Passangers = new List<User>();
+        public IEnumerable<Passanger> Passangers = new List<Passanger>();
 
 
     }

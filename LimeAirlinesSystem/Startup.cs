@@ -1,10 +1,14 @@
 namespace LimeAirlinesSystem
 {
     using LimeAirlinesSystem.Data;
-    using LimeAirlinesSystem.Infrastructure;
+    using LimeAirlinesSystem.Data.Models;
+    using LimeAirlinesSystem.Infrastructure.Extension;
+    using LimeAirlinesSystem.Services.Flights;
+    using LimeAirlinesSystem.Services.Planes;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -27,17 +31,28 @@ namespace LimeAirlinesSystem
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services
-                .AddDefaultIdentity<IdentityUser>(options =>
+                .AddDefaultIdentity<Passanger>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
             })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AirlineDbContext>();
 
+            services.AddAutoMapper(typeof(Startup));
+
+            services.AddMemoryCache();
+
             services
-                .AddControllersWithViews();
+                .AddControllersWithViews(options =>
+                {
+                    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+                });
+
+            services.AddTransient<IPlaneService, PlaneService>();
+            services.AddTransient<IFlightService,FlightService>();
         }
 
 
@@ -64,6 +79,8 @@ namespace LimeAirlinesSystem
                 .UseAuthorization()
                 .UseEndpoints(endpoints =>
             {
+                endpoints.MapDefaultAreaRoute();
+
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });

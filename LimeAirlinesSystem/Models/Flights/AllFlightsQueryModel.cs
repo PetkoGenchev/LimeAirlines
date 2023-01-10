@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class FlightsQueryModel
+    public class AllFlightsQueryModel
     {
         [Display(Name = "Departing From")]
         public string StartLocation { get; init; }
@@ -16,12 +16,7 @@
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Departure")]
-        public DateTime FlightStartDate { get; init; } = DateTime.UtcNow;
-
-        [Required]
-        [DataType(DataType.Date)]
-        [Display(Name = "Return")]
-        public DateTime FlightEndDate { get; init; } = DateTime.UtcNow;
+        public DateTime FlightDateTime { get; init; } = DateTime.UtcNow;
 
         public int Passangers { get; init; }
 
