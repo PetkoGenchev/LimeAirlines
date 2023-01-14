@@ -7,6 +7,15 @@
 
     public class AllFlightsQueryModel
     {
+        public const int FlightsPerPage = 3;
+
+        [Display(Name = "Trip")]
+        public string TripType { get; init; }
+
+        public int CurrentPage { get; init; } = 1;
+
+        public int TotalFlights { get; set; }
+
         [Display(Name = "Departing From")]
         public string StartLocation { get; init; }
 
@@ -20,12 +29,10 @@
 
         public int Passangers { get; init; }
 
+        public IEnumerable<int> TripTypes { get; set; }
 
-        [Display(Name = "Trip")]
-        public int TripTypeId { get; init; }
-
-        public IEnumerable<FlightTypeServiceModel> TripTypes { get; set; }
         public IEnumerable<string> Locations { get; set; }
+
         public List<FlightServiceModel> Flights { get; init; }
     }
 }

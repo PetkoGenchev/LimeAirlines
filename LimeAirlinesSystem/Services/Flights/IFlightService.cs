@@ -1,6 +1,7 @@
 ﻿namespace LimeAirlinesSystem.Services.Flights
 {
     using LimeAirlinesSystem.Services.Flights.Models;
+    using System;
     using System.Collections.Generic;
 
     public interface IFlightService
@@ -12,10 +13,9 @@
             int passangers = 0,
             string tripType = null,
             int currentPage = 1,
-            int flightsPerPage = int.MaxValue
+            int flightsPerPage = int.MaxValue,
+            bool publicOnly = true
             );
-
-        IEnumerable<CheapestFlightServiceModel> Cheapest();
 
         int Create(
             string startLocation,
@@ -35,9 +35,15 @@
             int planeId,
             bool isPublic);
 
+        IEnumerable<CheapestFlightServiceModel> Cheapest();
         void ChangeVisibility(int flightId);
-        IEnumerable<FlightTypeServiceModel> AllTripTypes();
+        IEnumerable<int> AllTripTypes();
         IEnumerable<string> AllDestinations();
+
+
+
+
+
 
     }
 }

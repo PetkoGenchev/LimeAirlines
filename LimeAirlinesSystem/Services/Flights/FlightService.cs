@@ -1,9 +1,14 @@
 ﻿namespace LimeAirlinesSystem.Services.Flights
 {
     using AutoMapper;
+    using AutoMapper.QueryableExtensions;
     using LimeAirlinesSystem.Data;
+    using LimeAirlinesSystem.Data.Models;
     using LimeAirlinesSystem.Services.Flights.Models;
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
+
     public class FlightService : IFlightService
     {
         private readonly AirlineDbContext data;
@@ -17,36 +22,39 @@
 
 
         public FlightQueryServiceModel All(
-            string startLocation = null, 
-            string endLocation = null, 
-            string flightDateTime = null, 
-            int passangers = 0, 
-            string tripType = null, 
-            int currentPage = 1, 
-            int flightsPerPage = int.MaxValue)
+            string startLocation = null,
+            string endLocation = null,
+            string flightDateTime = null,
+            int passangers = 0,
+            string tripType = null,
+            int currentPage = 1,
+            int flightsPerPage = int.MaxValue,
+            bool publicOnly = true)
         {
-            
+            var flightQuery = this.data.Flights
+                .Where(f => !publicOnly || f.IsPublic);
+
+            if (!string.IsNullOrEmpty(startLocation))
+            {
+                flightQuery = flightQuery.Where(f => f.StartLocation == startLocation);
+            }
+
+            if (!string.IsNullOrEmpty(endLocation))
+            {
+                flightQuery = flightQuery.Where(f => f.StartLocation == endLocation);
+            }
+
+            if (!string.IsNullOrEmpty(flightDateTime))
+            {
+                flightQuery = flightQuery.Where(f => f.FlightDateTime == flightDateTime);
+            }
+
+            var totalFlights = flightQuery.Count();
+
+            var flights = 
+
         }
 
-        public IEnumerable<string> AllDestinations()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<FlightTypeServiceModel> AllTripTypes()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void ChangeVisibility(int flightId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<CheapestFlightServiceModel> Cheapest()
-        {
-            throw new System.NotImplementedException();
-        }
 
         public int Create(string startLocation, string endLocation, string flightDateTime, int price, string imageUrl, int planeId)
         {
@@ -57,5 +65,42 @@
         {
             throw new System.NotImplementedException();
         }
+
+        public IEnumerable<string> AllDestinations()
+            => this.data
+            .Flights
+            .Select(f => f.StartLocation)
+            .Distinct()
+            .OrderBy(br => br)
+            .ToList();
+
+        public IEnumerable<int> AllTripTypes()
+            => this.data
+            .TripTypes
+            .Select(t => t.Id)
+            .Distinct()
+            .OrderBy(br => br)
+            .ToList();
+
+        public void ChangeVisibility(int flightId)
+        {
+            var flight = this.data.Flights.Find(flightId);
+
+            flight.IsPublic = !flight.IsPublic;
+        }
+
+        public IEnumerable<CheapestFlightServiceModel> Cheapest()
+            => this.data
+            .Flights
+            .Where(f => f.IsPublic)
+            .OrderByDescending(p => p.Price)
+            .ProjectTo<CheapestFlightServiceModel>(this.mapper)
+            .Take(4)
+            .ToList();
+
+        private IEnumerable<FlightServiceModel> GetFlights(IQueryable<Flight> flightQuery)
+            => flightQuery
+                .ProjectTo<FlightServiceModel>(this.mapper)
+                .ToList();
     }
 }
