@@ -25,7 +25,7 @@
             string imageUrl,
             int planeId);
 
-        int Edit(
+        bool Edit(
             int flightId,
             string startLocation,
             string endLocation,
@@ -39,7 +39,7 @@
         void ChangeVisibility(int flightId);
         IEnumerable<int> AllTripTypes();
         IEnumerable<string> AllDestinations();
-
+        IEnumerable<FlightServiceModel> MyFlights(string userId);
 
 
 

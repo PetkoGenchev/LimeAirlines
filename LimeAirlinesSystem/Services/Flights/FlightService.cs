@@ -51,19 +51,59 @@
 
             var totalFlights = flightQuery.Count();
 
-            var flights = 
+            var flights = GetFlights(flightQuery
+                .Skip((currentPage - 1) * flightsPerPage)
+                .Take(flightsPerPage));
 
+            return new FlightQueryServiceModel
+            {
+                CurrentPage = currentPage,
+                TotalFlights = totalFlights,
+                FlightsPerPage = flightsPerPage,
+                Flights = flights
+            };
         }
 
 
         public int Create(string startLocation, string endLocation, string flightDateTime, int price, string imageUrl, int planeId)
         {
-            throw new System.NotImplementedException();
+            var flightData = new Flight
+            {
+                StartLocation = startLocation,
+                EndLocation = endLocation,
+                FlightDateTime = flightDateTime,
+                Price = price,
+                ImageUrl = imageUrl,
+                PlaneId = planeId,
+                IsPublic = true
+            };
+
+            this.data.Flights.Add(flightData);
+            this.data.SaveChanges();
+
+            return flightData.Id;
         }
 
-        public int Edit(int flightId, string startLocation, string endLocation, string flightDateTime, int price, string imageUrl, int planeId, bool isPublic)
+        public bool Edit(int flightId, string startLocation, string endLocation, string flightDateTime, int price, string imageUrl, int planeId, bool isPublic)
         {
-            throw new System.NotImplementedException();
+            var flightData = this.data.Flights.Find(flightId);
+
+            if (flightData == null)
+            {
+                return false;
+            }
+
+            flightData.StartLocation = startLocation;
+            flightData.EndLocation = endLocation;
+            flightData.Price = price;
+            flightData.IsPublic = isPublic;
+            flightData.FlightDateTime = flightDateTime;
+            flightData.PlaneId  = planeId;
+            flightData.ImageUrl = imageUrl;
+
+            this.data.SaveChanges();
+
+            return true;
         }
 
         public IEnumerable<string> AllDestinations()
@@ -93,7 +133,7 @@
             => this.data
             .Flights
             .Where(f => f.IsPublic)
-            .OrderByDescending(p => p.Price)
+            .OrderBy(p => p.Price)
             .ProjectTo<CheapestFlightServiceModel>(this.mapper)
             .Take(4)
             .ToList();
@@ -102,5 +142,10 @@
             => flightQuery
                 .ProjectTo<FlightServiceModel>(this.mapper)
                 .ToList();
+
+        public IEnumerable<FlightServiceModel> MyFlights(string userId)
+            => GetFlights(this.data
+                .Flights
+                .Where(f => f.Passangers.Any(c => c.Id == userId)));
     }
 }

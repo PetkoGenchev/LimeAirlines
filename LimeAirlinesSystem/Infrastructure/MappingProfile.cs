@@ -19,7 +19,7 @@
             this.CreateMap<Plane, PlaneServiceModel>()
             .ForMember(p => p.CategoryName, cfg => cfg.MapFrom(p => p.Category.Name));
 
-            this.CreateMap<Flight, FlightServiceModel>()
+            this.CreateMap<Flight, FlightServiceModel>();
         }
     }
 }
