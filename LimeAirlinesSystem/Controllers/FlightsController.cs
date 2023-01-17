@@ -22,6 +22,19 @@
         }
 
 
+        public IActionResult All([FromQuery] AllFlightsQueryModel query)
+        {
+            var queryResult = this.flights.All(
+                query.TripType,
+                query.StartLocation,
+                query.EndLocation,
+                query.CurrentPage,
+                //query.FlightDateTime,
+                AllFlightsQueryModel.FlightsPerPage);
+
+            var 
+        }
+
 
 
     }

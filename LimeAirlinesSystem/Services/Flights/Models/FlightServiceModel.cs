@@ -1,5 +1,7 @@
 ﻿namespace LimeAirlinesSystem.Services.Flights.Models
 {
+    using System;
+
     public class FlightServiceModel : IFlightModel
     {
         public int Id { get; init; }
