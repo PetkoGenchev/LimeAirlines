@@ -1,44 +1,48 @@
 ﻿namespace LimeAirlinesSystem.Controllers
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
-    using LimeAirlinesSystem.Data;
-    using LimeAirlinesSystem.Models;
-    using LimeAirlinesSystem.Models.Planes;
+    using LimeAirlinesSystem.Services.Flights;
     using LimeAirlinesSystem.Services.Flights.Models;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Caching.Memory;
+    using static WebConstants.Cache;
 
     public class HomeController : Controller
     {
-        private readonly AirlineDbContext data;
+        private readonly IFlightService flights;
+        private readonly IMemoryCache cache;
 
-        public HomeController(AirlineDbContext data)
+        public HomeController(
+            IFlightService flights,
+            IMemoryCache cache)
         {
-            this.data = data;
+            this.flights = flights;
+            this.cache = cache;
         }
-
 
         public IActionResult Index()
         {
+            var cheapestFlights = this.cache.Get<List<CheapestFlightServiceModel>>(CheapestFlightsCacheKey);
+
+            if (cheapestFlights == null)
+            {
+                cheapestFlights = this.flights
+                    .Cheapest()
+                    .ToList();
+
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
+
+                this.cache.Set(CheapestFlightsCacheKey, cheapestFlights, cacheOptions);
+            }
+            return View(cheapestFlights);
 
             //return this.RedirectToAction("All","Flights",new {model = FilteredFlightsQueryModel{})
         }
 
-
-        private IEnumerable<FlightTypeServiceModel> GetFlightTypes()
-            => this.data
-                .TripTypes
-                .Select(f => new FlightTypeServiceModel
-                {
-                    Id = f.Id,
-                    Name = f.Name
-                })
-                .ToList();
-
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-            => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        public IActionResult Error() => View();
     }
 }

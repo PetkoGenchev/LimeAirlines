@@ -10,6 +10,6 @@
 
         public int TotalFlights { get; init; }
 
-        public IEnumerable<FlightServiceModel> Flights { get; init; }
+        public IEnumerable<FlightServiceModel> Flights { get; set; }
     }
 }

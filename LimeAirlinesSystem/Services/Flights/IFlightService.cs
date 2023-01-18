@@ -1,6 +1,7 @@
 ﻿namespace LimeAirlinesSystem.Services.Flights
 {
     using LimeAirlinesSystem.Services.Flights.Models;
+    using LimeAirlinesSystem.Services.Planes.Models;
     using System;
     using System.Collections.Generic;
 
@@ -39,11 +40,11 @@
         void ChangeVisibility(int flightId);
         IEnumerable<int> AllTripTypes();
         IEnumerable<string> AllDestinations();
-        IEnumerable<FlightServiceModel> MyFlights(string userId);
+        IEnumerable<FlightServiceModel> UserFlights(string userId);
+        IEnumerable<PlaneServiceModel> AllPlanes();
+        bool PlaneExists(int planeId);
 
-
-
-
+        FlightServiceModel Details(int flightId);
 
     }
 }

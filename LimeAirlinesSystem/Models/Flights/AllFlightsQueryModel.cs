@@ -1,6 +1,7 @@
 ﻿namespace LimeAirlinesSystem.Models.Flights
 {
     using LimeAirlinesSystem.Services.Flights.Models;
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -24,7 +25,7 @@
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Departure")]
-        public DateTime FlightDateTime { get; init; } = DateTime.UtcNow;
+        public string FlightDateTime { get; init; } = DateTime.UtcNow.ToString();
 
         public int Passangers { get; init; }
 
@@ -32,6 +33,6 @@
 
         public IEnumerable<string> Locations { get; set; }
 
-        public List<FlightServiceModel> Flights { get; init; }
+        public IEnumerable<FlightServiceModel> Flights { get; set; }
     }
 }

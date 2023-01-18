@@ -5,6 +5,7 @@
     using LimeAirlinesSystem.Data;
     using LimeAirlinesSystem.Data.Models;
     using LimeAirlinesSystem.Services.Flights.Models;
+    using LimeAirlinesSystem.Services.Planes.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -65,7 +66,13 @@
         }
 
 
-        public int Create(string startLocation, string endLocation, string flightDateTime, int price, string imageUrl, int planeId)
+        public int Create(
+            string startLocation, 
+            string endLocation, 
+            string flightDateTime, 
+            int price, 
+            string imageUrl, 
+            int planeId)
         {
             var flightData = new Flight
             {
@@ -84,7 +91,15 @@
             return flightData.Id;
         }
 
-        public bool Edit(int flightId, string startLocation, string endLocation, string flightDateTime, int price, string imageUrl, int planeId, bool isPublic)
+        public bool Edit(
+            int flightId, 
+            string startLocation, 
+            string endLocation, 
+            string flightDateTime, 
+            int price, 
+            string imageUrl, 
+            int planeId, 
+            bool isPublic)
         {
             var flightData = this.data.Flights.Find(flightId);
 
@@ -143,9 +158,27 @@
                 .ProjectTo<FlightServiceModel>(this.mapper)
                 .ToList();
 
-        public IEnumerable<FlightServiceModel> MyFlights(string userId)
+        public IEnumerable<FlightServiceModel> UserFlights(string userId)
             => GetFlights(this.data
                 .Flights
                 .Where(f => f.Passangers.Any(c => c.Id == userId)));
+
+        public IEnumerable<PlaneServiceModel> AllPlanes()
+            => this.data
+            .Planes
+            .ProjectTo<PlaneServiceModel>(this.mapper)
+            .ToList();
+
+        public bool PlaneExists(int planeId)
+            => this.data
+            .Planes
+            .Any(p => p.Id == planeId);
+
+        public FlightServiceModel Details(int flightId)
+            => this.data
+            .Flights
+            .Where(f => f.Id == flightId)
+            .ProjectTo<FlightServiceModel>(this.mapper)
+            .FirstOrDefault();
     }
 }

@@ -1,13 +1,11 @@
 ﻿namespace LimeAirlinesSystem.Controllers
 {
-    using System.Collections.Generic;
-    using System.Linq;
+
     using AutoMapper;
-    using LimeAirlinesSystem.Data;
-    using LimeAirlinesSystem.Data.Models;
+    using LimeAirlinesSystem.Infrastructure.Extension;
     using LimeAirlinesSystem.Models.Flights;
     using LimeAirlinesSystem.Services.Flights;
-    using LimeAirlinesSystem.Services.Planes.Models;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class FlightsController : Controller
@@ -25,17 +23,136 @@
         public IActionResult All([FromQuery] AllFlightsQueryModel query)
         {
             var queryResult = this.flights.All(
-                query.TripType,
                 query.StartLocation,
                 query.EndLocation,
+                query.FlightDateTime,
+                query.Passangers,
+                query.TripType,
                 query.CurrentPage,
-                //query.FlightDateTime,
                 AllFlightsQueryModel.FlightsPerPage);
 
-            var 
+            var flightLocations = this.flights.AllDestinations();
+
+            query.Locations = flightLocations;
+            query.TotalFlights = queryResult.TotalFlights;
+            query.Flights = queryResult.Flights;
+
+            return View(query);
+        }
+
+
+        public IActionResult FilteredView()
+        {
+
         }
 
 
 
+
+
+        [Authorize]
+        public IActionResult MyFlights()
+        {
+            var myFlights = this.flights.UserFlights(this.User.Id());
+
+            return View(myFlights);
+        }
+
+
+
+        public IActionResult Add()
+        {
+            return View(new FlightFormModel
+            {
+                Planes = this.flights.AllPlanes()
+            });
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Add(FlightFormModel flight)
+        {
+            if (!this.flights.PlaneExists(flight.PlaneId))
+            {
+                this.ModelState.AddModelError(nameof(flight.PlaneId), "Plane does not exist");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                flight.Planes = this.flights.AllPlanes();
+
+                return View(flight);
+            }
+
+            var flightId = this.flights.Create(
+                flight.StartLocation,
+                flight.EndLocation,
+                flight.FlightDateTime.ToString(),
+                flight.Price,
+                flight.ImageUrl,
+                flight.PlaneId);
+
+            return RedirectToAction(nameof(All));
+        }
+
+
+
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
+            var flight = this.flights.Details(id);
+
+            var flightForm = this.mapper.Map<FlightFormModel>(flight);
+
+            flightForm.Planes = this.flights.AllPlanes();
+
+            return View(flightForm);
+        }
+
+        [HttpPost]
+        [Authorize]
+
+        public IActionResult Edit(int id, FlightFormModel flight)
+        {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
+            if (!this.flights.PlaneExists(flight.PlaneId))
+            {
+                this.ModelState.AddModelError(nameof(flight.PlaneId), "Plane does not exist");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                flight.Planes = this.flights.AllPlanes();
+
+                return View(flight);
+            }
+
+            var edited = this.flights.Edit(
+                id,
+                flight.StartLocation,
+                flight.EndLocation,
+                flight.FlightDateTime.ToString(),
+                flight.Price,
+                flight.ImageUrl,
+                flight.PlaneId,
+                this.User.IsAdmin());
+
+            if (!edited)
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction(nameof(All));
+
+        }
     }
 }
