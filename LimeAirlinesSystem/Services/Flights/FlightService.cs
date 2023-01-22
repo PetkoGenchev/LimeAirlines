@@ -4,6 +4,7 @@
     using AutoMapper.QueryableExtensions;
     using LimeAirlinesSystem.Data;
     using LimeAirlinesSystem.Data.Models;
+    using LimeAirlinesSystem.Models;
     using LimeAirlinesSystem.Services.Flights.Models;
     using LimeAirlinesSystem.Services.Planes.Models;
     using System;
@@ -64,6 +65,52 @@
                 Flights = flights
             };
         }
+
+
+        //public FlightQueryServiceModel FilteredView(
+        //    int flightsPerPage = int.MaxValue,
+        //    int currentPage = 1,
+        //    int maxPrice = int.MaxValue,
+        //    string departureTime = null,
+        //    FlightSorting sorting = FlightSorting.DepartureTime)
+        //{
+        //    var flightQuery = this.data.Flights;
+
+
+        //    if (maxPrice > 0)
+        //    {
+        //        flightQuery = flightQuery.Where(f => f.Price <= maxPrice);
+        //    }
+
+        //    if (!string.IsNullOrEmpty(departureTime))
+        //    {
+        //        flightQuery = flightQuery.Where(f => f.FlightDateTime = departureTime);
+        //    }
+
+
+        //    flightQuery = sorting switch
+        //    {
+        //        FlightSorting.DepartureTime => flightQuery.OrderByDescending(c => c.FlightDateTime),
+        //        FlightSorting.Duration => flightQuery.OrderBy(c => c.Duration),
+        //        FlightSorting.LowestPrice or _ => flightQuery   .OrderByDescending(c => c.Price)
+        //    };
+
+
+        //    var totalFlights = flightQuery.Count();
+
+        //    var flights = GetFlights(flightQuery
+        //        .Skip((currentPage - 1) * flightsPerPage)
+        //        .Take(flightsPerPage));
+
+        //    return new FlightQueryServiceModel
+        //    {
+        //        CurrentPage = currentPage,
+        //        TotalFlights = totalFlights,
+        //        FlightsPerPage = flightsPerPage,
+        //        Flights = flights
+        //    };
+        //}
+
 
 
         public int Create(

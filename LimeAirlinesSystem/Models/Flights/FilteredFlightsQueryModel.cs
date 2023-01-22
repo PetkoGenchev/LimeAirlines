@@ -14,7 +14,6 @@
 
         public string DepartureTime { get;init; }
 
-        public IEnumerable<int> MaxPrices { get; init; }
 
         public IEnumerable<string> DepartureTimes { get; init; }
 

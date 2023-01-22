@@ -38,13 +38,18 @@
             query.Flights = queryResult.Flights;
 
             return View(query);
+            //return RedirectToAction(nameof(FilteredView));
         }
 
 
-        public IActionResult FilteredView()
-        {
-
-        }
+        //public IActionResult FilteredView([FromQuery] FilteredFlightsQueryModel query)
+        //{
+        //    var queryResult = this.flights.FilteredView(
+        //        query.DepartureTime,
+        //        query.MaxPrice,
+        //        query.CurrentPage,
+        //        query.)
+        //}
 
 
 

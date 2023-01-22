@@ -1,5 +1,6 @@
 ﻿namespace LimeAirlinesSystem.Services.Flights
 {
+    using LimeAirlinesSystem.Models;
     using LimeAirlinesSystem.Services.Flights.Models;
     using LimeAirlinesSystem.Services.Planes.Models;
     using System;
@@ -17,6 +18,15 @@
             int flightsPerPage = int.MaxValue,
             bool publicOnly = true
             );
+
+
+        //public FlightQueryServiceModel FilteredView(
+        //    int flightsPerPage = int.MaxValue,
+        //    int currentPage = 1,
+        //    int maxPrice = int.MaxValue,
+        //    string departureTime = null,
+        //    FlightSorting sorting = FlightSorting.DepartureTime
+        //    );
 
         int Create(
             string startLocation,
