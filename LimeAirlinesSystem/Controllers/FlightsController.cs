@@ -38,6 +38,7 @@
             query.Flights = queryResult.Flights;
 
             return View(query);
+            //return this.RedirectToAction("FilteredView", "Flights", new { model = FilteredFlightsQueryModel{ })
             //return RedirectToAction(nameof(FilteredView));
         }
 
