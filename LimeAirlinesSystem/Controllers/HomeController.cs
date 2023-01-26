@@ -6,6 +6,7 @@
     using LimeAirlinesSystem.Models.Flights;
     using LimeAirlinesSystem.Services.Flights;
     using LimeAirlinesSystem.Services.Flights.Models;
+    using LimeAirlinesSystem.Services.Home;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Caching.Memory;
     using static WebConstants.Cache;
@@ -25,9 +26,6 @@
 
         public IActionResult Index()
         {
-
-
-
 
             var cheapestFlights = this.cache.Get<List<CheapestFlightServiceModel>>(CheapestFlightsCacheKey);
 

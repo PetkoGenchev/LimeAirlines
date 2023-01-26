@@ -1,20 +1,12 @@
-﻿@model AllFlightsQueryModel
+﻿@*@model AllFlightsQueryModel*@
+@model List<CheapestFlightServiceModel>
 
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewBag.Title = "Home Page";
 }
 
-
-@{
-    var firstFlight = Model.Flights.Any() ? Model.Flights[0] : null;
-
-    var secondFlight = Model.Flights.Count() > 1 ? Model.Flights[1] : null;
-
-    var thirdFlight = Model.Flights.Count() > 2 ? Model.Flights[2] : null;
-}
-
-<form method="get">
+@*<form method="get">
     <div class="row">
         <div class="form-group col-md-4">
             <div class="form-group">
@@ -59,15 +51,15 @@
         </div>
 
         <div class="form-group">
-            <label asp-for="FlightStartDate"></label>
-            <input asp-for="FlightStartDate" class="form-control" placeholder="Select Date">
-            <span asp-validation-for="FlightStartDate" class="small text-danger"></span>
+            <label asp-for="FlightDateTime"></label>
+            <input asp-for="FlightDateTime" class="form-control" placeholder="Select Date">
+            <span asp-validation-for="FlightDateTime" class="small text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="FlightEndDate"></label>
-            <input asp-for="FlightEndDate" class="form-control" placeholder="Select Date">
-            <span asp-validation-for="FlightEndDate" class="small text-danger"></span>
+            <label asp-for="FlightDateTime"></label>
+            <input asp-for="FlightDateTime" class="form-control" placeholder="Select Date">
+            <span asp-validation-for="FlightDateTime" class="small text-danger"></span>
         </div>
 
         <div class="form-group col-md-4">
@@ -80,13 +72,13 @@
             <input type="submit" class-"btn btn-primary" value="Search">
         </div>
     </div>
-</form>
+</form>*@
 
 
 <h2>Flight Offers</h2>
 
 
-@if (!Model.Flights.Any())
+@if (!Model.Any())
 {
     <div class="jumbotron">
         <h1 class="display-4">Welcome to the Lime family!</h1>

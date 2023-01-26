@@ -34,5 +34,7 @@
         public IEnumerable<string> Locations { get; set; }
 
         public IEnumerable<FlightServiceModel> Flights { get; set; }
+
+        //public IEnumerable<CheapestFlightServiceModel> CheapestFlight { get; set; } = new List<CheapestFlightServiceModel>();
     }
 }
