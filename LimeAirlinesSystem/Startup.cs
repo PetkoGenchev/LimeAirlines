@@ -2,7 +2,7 @@ namespace LimeAirlinesSystem
 {
     using LimeAirlinesSystem.Data;
     using LimeAirlinesSystem.Data.Models;
-    using LimeAirlinesSystem.Infrastructure.Extension;
+    using LimeAirlinesSystem.Infrastructure.Extensions;
     using LimeAirlinesSystem.Services.Flights;
     using LimeAirlinesSystem.Services.Planes;
     using Microsoft.AspNetCore.Builder;
@@ -13,6 +13,7 @@ namespace LimeAirlinesSystem
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+
 
     public class Startup
     {

@@ -5,7 +5,7 @@
     using Microsoft.EntityFrameworkCore;
     using System.Reflection.Emit;
 
-    public class AirlineDbContext : IdentityDbContext
+    public class AirlineDbContext : IdentityDbContext<Passanger>
     {
 
         public AirlineDbContext(DbContextOptions<AirlineDbContext> options)

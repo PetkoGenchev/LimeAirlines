@@ -1,14 +1,14 @@
-﻿@model List<PlaneListingServiceModel>
+﻿@model AllPlanesQueryModel
 
 
 <div class="row">
-    @foreach (var plane in Model)
+    @foreach (var plane in Model.Planes)
     {
         <div class="col-md-4">
             <div class="card mb-3">
-                <img class="card-img-top" src="@plane.ImageUrl" alt="@plane.Brand @plane.Model - @plane.Year (@plane.Category)">
+                <img class="card-img-top" src="@plane.ImageUrl" alt="@plane.Brand @plane.Model - @plane.Year (@plane.CategoryName)">
                 <div class="card-body">
-                    <h5 class="card-title">@plane.Year @plane.Brand @plane.Model (@plane.Category)</h5>
+                    <h5 class="card-title">@plane.Year @plane.Brand @plane.Model (@plane.CategoryName)</h5>
                     <a asp-controller="Planes" asp-action="Details" asp-route-id=@plane.Id class="btn btn-primary">View More</a>
                 </div>
             </div>

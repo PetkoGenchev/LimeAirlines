@@ -2,7 +2,7 @@
 {
 
     using AutoMapper;
-    using LimeAirlinesSystem.Infrastructure.Extension;
+    using LimeAirlinesSystem.Infrastructure.Extensions;
     using LimeAirlinesSystem.Models.Flights;
     using LimeAirlinesSystem.Services.Flights;
     using Microsoft.AspNetCore.Authorization;
