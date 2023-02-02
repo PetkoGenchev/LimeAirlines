@@ -1,7 +1,5 @@
 ﻿namespace LimeAirlinesSystem.Services.Flights.Models
 {
-    using System;
-
     public class FlightServiceModel : IFlightModel
     {
         public int Id { get; init; }
@@ -17,6 +15,11 @@
         public string ImageUrl { get; init; }
 
         public bool IsPublic { get; init; }
+
+        //Just Added Plane Brand
+        public string PlaneBrand { get; init; }
+
+
 
     }
 }
