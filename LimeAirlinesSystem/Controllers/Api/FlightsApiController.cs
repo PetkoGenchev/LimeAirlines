@@ -18,6 +18,13 @@ namespace LimeAirlinesSystem.Controllers.Api
         [HttpGet]
         public FlightQueryServiceModel All([FromQuery] AllFlightsApiRequestModel query)
             => this.flights.All(
-                query.)
+                query.StartLocation,
+                query.EndLocation,
+                query.FlightDateTime,
+                query.CurrentPage,
+                query.TripType,
+                query.Passangers);
+
+        // WHY THERE ARE NO FLIGHTSPERPAGE
     }
 }
