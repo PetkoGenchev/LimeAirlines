@@ -15,6 +15,6 @@ namespace LimeAirlinesSystem.Models.Api.Flights
         public int Passangers { get; init; }
         public int CurrentPage { get; init; } = 1;
 
-        public const int FlightsPerPage = 10;
+        public int FlightsPerPage = 10;
     }
 }

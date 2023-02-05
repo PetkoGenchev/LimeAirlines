@@ -23,8 +23,8 @@ namespace LimeAirlinesSystem.Controllers.Api
                 query.FlightDateTime,
                 query.CurrentPage,
                 query.TripType,
-                query.Passangers);
+                query.Passangers,
+                query.FlightsPerPage);
 
-        // WHY THERE ARE NO FLIGHTSPERPAGE
     }
 }

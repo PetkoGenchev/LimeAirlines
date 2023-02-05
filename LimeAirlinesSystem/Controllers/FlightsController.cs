@@ -20,27 +20,28 @@
         }
 
 
-        public IActionResult All([FromQuery] AllFlightsQueryModel query)
-        {
-            var queryResult = this.flights.All(
-                query.StartLocation,
-                query.EndLocation,
-                query.FlightDateTime,
-                query.Passangers,
-                query.TripType,
-                query.CurrentPage,
-                AllFlightsQueryModel.FlightsPerPage);
+        //public IActionResult All([FromQuery] AllFlightsQueryModel query)
+        //{
+        //    var queryResult = this.flights.All(
+        //        query.StartLocation,
+        //        query.EndLocation,
+        //        query.FlightDateTime,
+        //        query.Passangers,
+        //        query.TripType,
+        //        query.CurrentPage,
+        //        AllFlightsQueryModel.FlightsPerPage);
 
-            var flightLocations = this.flights.AllDestinations();
+        //    var flightLocations = this.flights.AllDestinations();
 
-            query.Locations = flightLocations;
-            query.TotalFlights = queryResult.TotalFlights;
-            query.Flights = queryResult.Flights;
+        //    query.Locations = flightLocations;
+        //    query.TotalFlights = queryResult.TotalFlights;
+        //    query.Flights = queryResult.Flights;
 
-            return View(query);
+        //    return View(query);
             //return this.RedirectToAction("FilteredView", "Flights", new { model = FilteredFlightsQueryModel{ })
             //return RedirectToAction(nameof(FilteredView));
-        }
+        //}
+
 
 
         //public IActionResult FilteredView([FromQuery] FilteredFlightsQueryModel query)
@@ -98,7 +99,10 @@
                 flight.ImageUrl,
                 flight.PlaneId);
 
-            return RedirectToAction(nameof(All));
+            //return RedirectToAction(nameof(All));
+
+            //return this.RedirectToAction("Index", "Home");
+            return this.RedirectToAction("Index", "Home");
         }
 
 
@@ -157,7 +161,9 @@
                 return BadRequest();
             }
 
-            return RedirectToAction(nameof(All));
+            //return RedirectToAction(nameof(All));
+
+            return this.RedirectToAction("Index", "Home");
 
         }
     }
