@@ -4,7 +4,6 @@
     using AutoMapper.QueryableExtensions;
     using LimeAirlinesSystem.Data;
     using LimeAirlinesSystem.Data.Models;
-    using LimeAirlinesSystem.Models;
     using LimeAirlinesSystem.Services.Flights.Models;
     using LimeAirlinesSystem.Services.Planes.Models;
     using System;

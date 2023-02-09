@@ -54,22 +54,30 @@
 
             data.Categories.AddRange(new[]
             {
-                new Category{Name = "Helicopter"},
-                new Category{Name = "Turboprop Aircraft"},
-                new Category{Name = "Mid-Size Jet"},
-                new Category{Name = "Narrow Body Aircraft"},
-                new Category{Name = "Wide Body Airliner"},
+                new Category{Id = 1, Name = "Helicopter"},
+                new Category{Id = 2, Name = "Turboprop Aircraft"},
+                new Category{Id = 3, Name = "Mid-Size Jet"},
+                new Category{Id = 4, Name = "Narrow Body Aircraft"},
+                new Category{Id = 5, Name = "Wide Body Airliner"},
             });
 
 
             data.TripTypes.AddRange(new[]
 {
-                new TripType{Name = "One-Way"},
-                new TripType{Name = "Round Trip"}
+                new TripType{Id = 1, Name = "One-Way"},
+                new TripType{Id = 2, Name = "Round Trip"}
             });
 
             data.SaveChanges();
 
+
+            data.Categories.AddRange(new[]
+{
+                new Plane{Brand = , Model = , NumberOfSeats = , ImageUrl = , Year = , CategoryId = },
+                new Plane{Brand = , Model = , NumberOfSeats = , ImageUrl = , Year = , CategoryId = },
+            });
+
+            data.SaveChanges();
         }
 
         private static void SeedAdministrator(IServiceProvider services)

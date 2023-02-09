@@ -2,16 +2,31 @@
 
 
 <div class="row">
-    @foreach (var plane in Model.Planes)
+    @if (!Model.Planes.Any())
     {
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <img class="card-img-top" src="@plane.ImageUrl" alt="@plane.Brand @plane.Model - @plane.Year (@plane.CategoryName)">
-                <div class="card-body">
-                    <h5 class="card-title">@plane.Year @plane.Brand @plane.Model (@plane.CategoryName)</h5>
-@*                    <a asp-controller="Planes" asp-action="Details" asp-route-id=@plane.Id class="btn btn-primary">View More</a>
-*@                </div>
-            </div>
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome to the Plane Editor!</h1>
+            <p class="lead">There are no plane options currently.Please add new flight vehicles.</p>
+            <hr class="my-4">
+            <p class="lead">
+                <a asp-controller="Planes" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add Plane</a>
+            </p>
         </div>
+
     }
+    else
+    {
+        @foreach (var plane in Model.Planes)
+        {
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <img class="card-img-top" src="@plane.ImageUrl" alt="@plane.Brand @plane.Model - @plane.Year (@plane.CategoryName)">
+                    <div class="card-body">
+                        <h5 class="card-title">@plane.Year @plane.Brand @plane.Model (@plane.CategoryName)</h5>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
 </div>
