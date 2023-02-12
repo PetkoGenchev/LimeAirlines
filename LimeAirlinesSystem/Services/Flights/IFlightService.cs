@@ -11,7 +11,8 @@
         FlightQueryServiceModel All(
             string startLocation = null,
             string endLocation = null,
-            string flightDateTime = null,
+            string flightStartDateTime = null,
+            string flightEndDateTime = null,
             int passangers = 0,
             string tripType = null,
             int currentPage = 1,
@@ -31,7 +32,8 @@
         int Create(
             string startLocation,
             string endLocation,
-            string flightDateTime,
+            string flightStartDateTime,
+            string flightEndDateTime,
             int price,
             string imageUrl,
             int planeId);
@@ -40,7 +42,8 @@
             int flightId,
             string startLocation,
             string endLocation,
-            string flightDateTime,
+            string flightStartDateTime,
+            string flightEndDateTime,
             int price,
             string imageUrl,
             int planeId,

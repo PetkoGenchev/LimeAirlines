@@ -21,9 +21,16 @@
         public string EndLocation { get; init; }
 
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         [Display(Name = "Departure")]
-        public DateTime FlightDateTime { get; init; } = DateTime.UtcNow;
+        public DateTime FlightStartDateTime { get; init; } = DateTime.UtcNow;
+
+
+        [Required]
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Arrival")]
+        public DateTime FlightEndDateTime { get; init; } = DateTime.UtcNow;
+
 
         [MaxLength(FlightMinValue)]
         [Display(Name = "Fare")]

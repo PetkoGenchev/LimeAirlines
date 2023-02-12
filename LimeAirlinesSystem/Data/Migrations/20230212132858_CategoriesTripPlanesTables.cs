@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LimeAirlinesSystem.Data.Migrations
 {
-    public partial class Tables : Migration
+    public partial class CategoriesTripPlanesTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,8 +28,7 @@ namespace LimeAirlinesSystem.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -214,7 +213,8 @@ namespace LimeAirlinesSystem.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StartLocation = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     EndLocation = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    FlightDateTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FlightStartDateTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FlightEndDateTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<int>(type: "int", maxLength: 10, nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsPublic = table.Column<bool>(type: "bit", nullable: false),

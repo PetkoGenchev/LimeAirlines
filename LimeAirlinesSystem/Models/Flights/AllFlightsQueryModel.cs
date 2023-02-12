@@ -25,7 +25,13 @@
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Departure")]
-        public string FlightDateTime { get; init; } = DateTime.UtcNow.ToString();
+        public string FlightStartDateTime { get; init; } = DateTime.UtcNow.ToString();
+
+
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Arrival")]
+        public string FlightEndDateTime { get; init; } = DateTime.UtcNow.ToString();
 
         public int Passangers { get; init; }
 

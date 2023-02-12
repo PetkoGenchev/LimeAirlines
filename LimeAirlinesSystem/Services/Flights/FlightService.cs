@@ -25,7 +25,8 @@
         public FlightQueryServiceModel All(
             string startLocation = null,
             string endLocation = null,
-            string flightDateTime = null,
+            string flightStartDateTime = null,
+            string flightEndDateTime = null,
             int passangers = 0,
             string tripType = null,
             int currentPage = 1,
@@ -45,9 +46,14 @@
                 flightQuery = flightQuery.Where(f => f.StartLocation == endLocation);
             }
 
-            if (!string.IsNullOrEmpty(flightDateTime))
+            if (!string.IsNullOrEmpty(flightStartDateTime))
             {
-                flightQuery = flightQuery.Where(f => f.FlightDateTime == flightDateTime);
+                flightQuery = flightQuery.Where(f => f.FlightStartDateTime == flightStartDateTime);
+            }
+
+            if (!string.IsNullOrEmpty(flightEndDateTime))
+            {
+                flightQuery = flightQuery.Where(f => f.FlightEndDateTime == flightEndDateTime);
             }
 
             var totalFlights = flightQuery.Count();
@@ -115,7 +121,8 @@
         public int Create(
             string startLocation, 
             string endLocation, 
-            string flightDateTime, 
+            string flightStartDateTime, 
+            string flightEndDateTime, 
             int price, 
             string imageUrl, 
             int planeId)
@@ -124,7 +131,8 @@
             {
                 StartLocation = startLocation,
                 EndLocation = endLocation,
-                FlightDateTime = flightDateTime,
+                FlightStartDateTime = flightStartDateTime,
+                FlightEndDateTime = flightEndDateTime,
                 Price = price,
                 ImageUrl = imageUrl,
                 PlaneId = planeId,
@@ -141,7 +149,8 @@
             int flightId, 
             string startLocation, 
             string endLocation, 
-            string flightDateTime, 
+            string flightStartDateTime, 
+            string flightEndDateTime, 
             int price, 
             string imageUrl, 
             int planeId, 
@@ -158,7 +167,8 @@
             flightData.EndLocation = endLocation;
             flightData.Price = price;
             flightData.IsPublic = isPublic;
-            flightData.FlightDateTime = flightDateTime;
+            flightData.FlightStartDateTime = flightStartDateTime;
+            flightData.FlightEndDateTime = flightEndDateTime;
             flightData.PlaneId  = planeId;
             flightData.ImageUrl = imageUrl;
 

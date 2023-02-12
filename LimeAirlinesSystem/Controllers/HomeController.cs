@@ -32,7 +32,8 @@
             var queryResult = this.flights.All(
                 query.StartLocation,
                 query.EndLocation,
-                query.FlightDateTime,
+                query.FlightStartDateTime,
+                query.FlightEndDateTime,
                 query.Passangers,
                 query.TripType,
                 query.CurrentPage,

@@ -8,7 +8,8 @@
 
         public string EndLocation { get; init; }
 
-        public string FlightDateTime { get; init; }
+        public string FlightStartDateTime { get; init; }
+        public string FlightEndDateTime { get; init; }
 
         public int Price { get; init; }
 

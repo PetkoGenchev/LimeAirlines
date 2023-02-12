@@ -1,0 +1,20 @@
+﻿@model IEnumerable<PlaneServiceModel>
+
+<div class="row">
+    @foreach (var plane in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img class="card-img-top" src="@plane.ImageUrl" alt="@plane.Brand @plane.Model - @plane.Year (@plane.CategoryName)">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-center">@plane.Year  @plane.Brand @plane.Model (@plane.CategoryName)</h5>
+                    @if (User.IsAdmin())
+                    {
+                        <a asp-controller="Cars" asp-action="Edit" asp-route-id="@plane.Id" class="btn btn-warning">Edit</a>
+                        <a asp-controller="Cars" asp-action="Delete" asp-route-id="@plane.Id" class="btn btn-danger">Delete</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

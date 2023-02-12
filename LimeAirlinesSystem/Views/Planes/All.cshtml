@@ -15,32 +15,38 @@
 }
 
 
+@if (!Model.Planes.Any())
+{
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to the Plane Editor!</h1>
+        <p class="lead">There are no plane options currently.Please add new flight vehicles.</p>
+        <hr class="my-4">
+        <p class="lead">
+            <a asp-controller="Planes" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add Plane</a>
+        </p>
+    </div>
+
+}
+
+<partial name="_PlanesPartial" model="@Model.Planes" />
+
 <div class="row mb-5">
-    @if (!Model.Planes.Any())
-    {
-        <div class="jumbotron">
-            <h1 class="display-4">Welcome to the Plane Editor!</h1>
-            <p class="lead">There are no plane options currently.Please add new flight vehicles.</p>
-            <hr class="my-4">
-            <p class="lead">
-                <a asp-controller="Planes" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add Plane</a>
-            </p>
-        </div>
+    <div class="col-md-6">
+        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+           asp-controller="Planes"
+           asp-action="All"
+           asp-route-currentPage="@previousPage"><<</a>
+    </div>
 
-    }
-    else
-    {
-        @foreach (var plane in Model.Planes)
-        {
-            <div class="col-md-4">
-                <div class="card mb-3">
-                    <img class="card-img-top" src="@plane.ImageUrl" alt="@plane.Brand @plane.Model - @plane.Year (@plane.CategoryName)">
-                    <div class="card-body">
-                        <h5 class="card-title">@plane.Year @plane.Brand @plane.Model (@plane.CategoryName)</h5>
-                    </div>
-                </div>
-            </div>
-        }
+    @{
+        var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
+        !Model.Planes.Any();
     }
 
+    <div class="col-md-6">
+        <a class="btn btn-primary float-sm-right @(shouldButtonBeDisabled ? "disabled" : string.Empty)" style="margin-top: 10px"
+           asp-controller="Planes"
+           asp-action="All"
+           asp-route-currentPage="@(Model.CurrentPage + 1)">>></a>
+    </div>
 </div>
