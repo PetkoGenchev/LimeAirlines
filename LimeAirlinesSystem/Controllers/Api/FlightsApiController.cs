@@ -20,8 +20,8 @@ namespace LimeAirlinesSystem.Controllers.Api
             => this.flights.All(
                 query.StartLocation,
                 query.EndLocation,
-                query.FlightStartDateTime,
-                query.FlightEndDateTime,
+                query.FlightStartDate,
+                query.FlightEndDate,
                 query.CurrentPage,
                 query.TripType,
                 query.Passangers,

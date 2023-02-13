@@ -20,10 +20,10 @@
         public string EndLocation { get; set; }
 
         [Required]
-        public string FlightStartDateTime { get; set; }
+        public string FlightStartDate { get; set; }
 
         [Required]
-        public string FlightEndDateTime { get; set; }
+        public string FlightEndDate { get; set; }
 
 
         [MaxLength(FlightMinValue)]

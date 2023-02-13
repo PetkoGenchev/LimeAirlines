@@ -7,7 +7,7 @@
 
     public class AllFlightsQueryModel
     {
-        public const int FlightsPerPage = 3;
+        public const int FlightsPerPage = 5;
 
         [Display(Name = "Trip")]
         public string TripType { get; init; }
@@ -25,13 +25,13 @@
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Departure")]
-        public string FlightStartDateTime { get; init; } = DateTime.UtcNow.ToString();
+        public string FlightStartDate { get; init; } = DateTime.UtcNow.ToString();
 
 
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Arrival")]
-        public string FlightEndDateTime { get; init; } = DateTime.UtcNow.ToString();
+        public string FlightEndDate { get; init; } = DateTime.UtcNow.ToString();
 
         public int Passangers { get; init; }
 
