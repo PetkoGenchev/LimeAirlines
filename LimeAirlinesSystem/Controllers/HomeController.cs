@@ -24,9 +24,6 @@
             this.cache = cache;
         }
 
-
-        //-------------------------------------------
-
         public IActionResult Index([FromQuery] AllFlightsQueryModel query)
         {
             var queryResult = this.flights.All(
@@ -36,6 +33,8 @@
                 query.FlightEndDate,
                 query.Passangers,
                 query.TripType,
+                query.MaxPrice,
+                query.Sorting,
                 query.CurrentPage,
                 AllFlightsQueryModel.FlightsPerPage);
 
@@ -44,8 +43,6 @@
             query.Locations = flightLocations;
             query.TotalFlights = queryResult.TotalFlights;
             query.Flights = queryResult.Flights;
-
-            //return View(query);
 
             var cheapestFlights = this.cache.Get<List<CheapestFlightServiceModel>>(CheapestFlightsCacheKey);
 
@@ -69,38 +66,7 @@
             };
 
             return View(homeService);
-
-            //return View(cheapestFlights);
-
-            //return this.RedirectToAction("All","Flights",new {model = FilteredFlightsQueryModel{})
         }
-
-
-        //-------------------------------------------------
-
-
-
-        //public IActionResult Index()
-        //{
-
-        //    var cheapestFlights = this.cache.Get<List<CheapestFlightServiceModel>>(CheapestFlightsCacheKey);
-
-        //    if (cheapestFlights == null)
-        //    {
-        //        cheapestFlights = this.flights
-        //            .Cheapest()
-        //            .ToList();
-
-
-        //        var cacheOptions = new MemoryCacheEntryOptions()
-        //            .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
-
-        //        this.cache.Set(CheapestFlightsCacheKey, cheapestFlights, cacheOptions);
-        //    }
-        //    return View(cheapestFlights);
-
-        //    //return this.RedirectToAction("All","Flights",new {model = FilteredFlightsQueryModel{})
-        //}
 
         public IActionResult Error() => View();
     }

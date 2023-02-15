@@ -4,6 +4,7 @@
     using AutoMapper.QueryableExtensions;
     using LimeAirlinesSystem.Data;
     using LimeAirlinesSystem.Data.Models;
+    using LimeAirlinesSystem.Models;
     using LimeAirlinesSystem.Services.Flights.Models;
     using LimeAirlinesSystem.Services.Planes.Models;
     using System;
@@ -25,10 +26,12 @@
         public FlightQueryServiceModel All(
             string startLocation = null,
             string endLocation = null,
-            string flightStartDateTime = null,
-            string flightEndDateTime = null,
+            string flightStartDate = null,
+            string flightEndDate = null,
             int passangers = 0,
             string tripType = null,
+            int maxPrice = int.MaxValue,
+            FlightSorting sorting = FlightSorting.Duration,
             int currentPage = 1,
             int flightsPerPage = int.MaxValue,
             bool publicOnly = true)
@@ -46,15 +49,22 @@
                 flightQuery = flightQuery.Where(f => f.StartLocation == endLocation);
             }
 
-            if (!string.IsNullOrEmpty(flightStartDateTime))
+            if (!string.IsNullOrEmpty(flightStartDate))
             {
-                flightQuery = flightQuery.Where(f => f.FlightStartDateTime == flightStartDateTime);
+                flightQuery = flightQuery.Where(f => f.FlightStartDate == flightStartDate);
             }
 
-            if (!string.IsNullOrEmpty(flightEndDateTime))
+            if (!string.IsNullOrEmpty(flightEndDate))
             {
-                flightQuery = flightQuery.Where(f => f.FlightEndDateTime == flightEndDateTime);
+                flightQuery = flightQuery.Where(f => f.FlightEndDate == flightEndDate);
             }
+
+            flightQuery = sorting switch
+            {
+                FlightSorting.Duration => flightQuery.OrderBy(f => f.)
+            }
+
+
 
             var totalFlights = flightQuery.Count();
 
@@ -121,8 +131,8 @@
         public int Create(
             string startLocation, 
             string endLocation, 
-            string flightStartDateTime, 
-            string flightEndDateTime, 
+            string flightStartDate, 
+            string flightEndDate, 
             int price, 
             string imageUrl, 
             int planeId)
@@ -131,8 +141,8 @@
             {
                 StartLocation = startLocation,
                 EndLocation = endLocation,
-                FlightStartDateTime = flightStartDateTime,
-                FlightEndDateTime = flightEndDateTime,
+                FlightStartDate = flightStartDate,
+                FlightEndDate = flightEndDate,
                 Price = price,
                 ImageUrl = imageUrl,
                 PlaneId = planeId,
@@ -149,8 +159,8 @@
             int flightId, 
             string startLocation, 
             string endLocation, 
-            string flightStartDateTime, 
-            string flightEndDateTime, 
+            string flightStartDate, 
+            string flightEndDate, 
             int price, 
             string imageUrl, 
             int planeId, 
@@ -167,8 +177,8 @@
             flightData.EndLocation = endLocation;
             flightData.Price = price;
             flightData.IsPublic = isPublic;
-            flightData.FlightStartDateTime = flightStartDateTime;
-            flightData.FlightEndDateTime = flightEndDateTime;
+            flightData.FlightStartDate = flightStartDate;
+            flightData.FlightEndDate = flightEndDate;
             flightData.PlaneId  = planeId;
             flightData.ImageUrl = imageUrl;
 

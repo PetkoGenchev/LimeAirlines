@@ -11,29 +11,22 @@
         FlightQueryServiceModel All(
             string startLocation = null,
             string endLocation = null,
-            string flightStartDateTime = null,
-            string flightEndDateTime = null,
+            string flightStartDate = null,
+            string flightEndDate = null,
             int passangers = 0,
             string tripType = null,
+            int maxPrice = int.MaxValue,
+            FlightSorting sorting = FlightSorting.Duration,
             int currentPage = 1,
             int flightsPerPage = int.MaxValue,
             bool publicOnly = true
             );
 
-
-        //public FlightQueryServiceModel FilteredView(
-        //    int flightsPerPage = int.MaxValue,
-        //    int currentPage = 1,
-        //    int maxPrice = int.MaxValue,
-        //    string departureTime = null,
-        //    FlightSorting sorting = FlightSorting.DepartureTime
-        //    );
-
         int Create(
             string startLocation,
             string endLocation,
-            string flightStartDateTime,
-            string flightEndDateTime,
+            string flightStartDate,
+            string flightEndDate,
             int price,
             string imageUrl,
             int planeId);
@@ -42,8 +35,8 @@
             int flightId,
             string startLocation,
             string endLocation,
-            string flightStartDateTime,
-            string flightEndDateTime,
+            string flightStartDate,
+            string flightEndDate,
             int price,
             string imageUrl,
             int planeId,

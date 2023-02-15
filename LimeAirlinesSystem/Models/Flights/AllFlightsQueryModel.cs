@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Runtime.CompilerServices;
 
     public class AllFlightsQueryModel
     {
@@ -22,16 +23,16 @@
         [Display(Name = "Arriving At")]
         public string EndLocation { get; init; }
 
-        [Required]
-        [DataType(DataType.Date)]
         [Display(Name = "Departure")]
         public string FlightStartDate { get; init; } = DateTime.UtcNow.ToString();
 
-
-        [Required]
-        [DataType(DataType.Date)]
         [Display(Name = "Arrival")]
         public string FlightEndDate { get; init; } = DateTime.UtcNow.ToString();
+
+        public int MaxTransfers { get; init; }
+
+        public int MaxPrice { get; init; }
+        public FlightSorting Sorting { get; init; }
 
         public int Passangers { get; init; }
 

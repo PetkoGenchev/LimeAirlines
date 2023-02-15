@@ -8,18 +8,15 @@
 
         public string EndLocation { get; init; }
 
-        public string FlightStartDateTime { get; init; }
-        public string FlightEndDateTime { get; init; }
+        public string FlightStartDate { get; init; }
+
+        public string FlightEndDate { get; init; }
 
         public int Price { get; init; }
 
         public string ImageUrl { get; init; }
 
         public bool IsPublic { get; init; }
-
-        //Just Added Plane Brand
-        public string PlaneBrand { get; init; }
-
 
 
     }

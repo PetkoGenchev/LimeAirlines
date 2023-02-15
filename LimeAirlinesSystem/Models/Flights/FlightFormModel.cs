@@ -21,15 +21,15 @@
         public string EndLocation { get; init; }
 
         [Required]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [Display(Name = "Departure")]
-        public DateTime FlightStartDateTime { get; init; } = DateTime.UtcNow;
+        public DateTime FlightStartDate { get; init; } = DateTime.UtcNow;
 
 
         [Required]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [Display(Name = "Arrival")]
-        public DateTime FlightEndDateTime { get; init; } = DateTime.UtcNow;
+        public DateTime FlightEndDate { get; init; } = DateTime.UtcNow;
 
 
         [MaxLength(FlightMinValue)]
@@ -40,6 +40,16 @@
         [Url]
         [Display(Name = "Image URL")]
         public string ImageUrl { get; init; }
+
+
+        [Required]
+        [DataType(DataType.Time)]
+        [Display(Name = "Flight Duration")]
+        public TimeSpan FlightDuration { get; init; }
+
+        [Required]
+        [Display(Name = "Transfers")]
+        public int Transfer { get; init; }
 
 
         [Display(Name = "Aircraft Type")]

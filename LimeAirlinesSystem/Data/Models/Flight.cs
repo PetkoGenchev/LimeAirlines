@@ -25,6 +25,10 @@
         [Required]
         public string FlightEndDate { get; set; }
 
+        public TimeSpan FlightDuration { get; set; }
+
+        public int Transfer { get; set; }
+
 
         [MaxLength(FlightMinValue)]
         public int Price { get; set; }

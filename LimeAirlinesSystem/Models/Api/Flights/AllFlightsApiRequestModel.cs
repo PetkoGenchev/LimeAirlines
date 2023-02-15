@@ -13,6 +13,8 @@ namespace LimeAirlinesSystem.Models.Api.Flights
         public string EndLocation { get; init; }
         public string FlightStartDate { get; init; } = DateTime.UtcNow.ToString();
         public string FlightEndDate { get; init; } = DateTime.UtcNow.ToString();
+        public TimeSpan FlightDuration { get; init; }
+        public int Transfer { get; init; }
         public int Passangers { get; init; }
         public int CurrentPage { get; init; } = 1;
 

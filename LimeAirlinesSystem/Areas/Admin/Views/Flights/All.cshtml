@@ -28,7 +28,6 @@
                 <td scope="col">@flight.FlightStartDateTime</td>
                 <td scope="col">@flight.FlightEndDateTime</td>
                 <td scope="col">@flight.Price</td>
-                <td scope="col">@flight.PlaneBrand</td>
                 <td scope="col">@(flight.IsPublic ? "Yes" : "No")</td>
                 <td scope="col">
                     <a asp-area="" asp-controller="Flights" asp-action="Delete" asp-route-id="@flight.Id" class="btn btn-danger float-right ml-3">Delete</a>
