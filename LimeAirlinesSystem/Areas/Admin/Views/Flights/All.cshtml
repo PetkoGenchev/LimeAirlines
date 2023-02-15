@@ -14,6 +14,7 @@
             <th scope="col">EndLocation</th>
             <th scope="col">FlightDateTime</th>
             <th scope="col">Price</th>
+@*            <th scope="col">ImageUrl</th>*@
             <th scope="col">Plane</th>
             <th scope="col"></th>
         </tr>
@@ -25,8 +26,10 @@
                 <td scope="col">@flight.Id</td>
                 <td scope="col">@flight.StartLocation</td>
                 <td scope="col">@flight.EndLocation</td>
-                <td scope="col">@flight.FlightStartDateTime</td>
-                <td scope="col">@flight.FlightEndDateTime</td>
+                <td scope="col">@flight.FlightStartDate</td>
+                <td scope="col">@flight.FlightEndDate</td>
+                <td scope="col">@flight.FlightDuration</td>
+                <td scope="col">@flight.Transfer</td>
                 <td scope="col">@flight.Price</td>
                 <td scope="col">@(flight.IsPublic ? "Yes" : "No")</td>
                 <td scope="col">

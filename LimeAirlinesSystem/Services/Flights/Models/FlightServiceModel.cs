@@ -12,6 +12,10 @@
 
         public string FlightEndDate { get; init; }
 
+        public string FlightDuration { get; init; }
+
+        public int Transfer { get; init; }
+
         public int Price { get; init; }
 
         public string ImageUrl { get; init; }

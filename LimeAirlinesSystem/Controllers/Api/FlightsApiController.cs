@@ -22,9 +22,11 @@ namespace LimeAirlinesSystem.Controllers.Api
                 query.EndLocation,
                 query.FlightStartDate,
                 query.FlightEndDate,
-                query.CurrentPage,
-                query.TripType,
                 query.Passangers,
+                query.TripType,
+                query.MaxPrice,
+                query.Sorting,
+                query.CurrentPage,
                 query.FlightsPerPage);
 
     }

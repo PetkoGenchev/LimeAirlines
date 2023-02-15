@@ -29,13 +29,18 @@
             string flightStartDate = null,
             string flightEndDate = null,
             int passangers = 0,
-            string tripType = null,
+            string tripType = "One-Way",
             int maxPrice = int.MaxValue,
             FlightSorting sorting = FlightSorting.Duration,
             int currentPage = 1,
             int flightsPerPage = int.MaxValue,
             bool publicOnly = true)
         {
+
+            // NEED TO ADD FUNCTIONALITY FOR DIFFERENT TRIP TYPES
+            // NEED TO ADD FUNCTIONALITY FOR PASSANGERS TAKING SEATS
+            //     AND CHANGE VISIBLITY FOR FULL FLIGHTS
+
             var flightQuery = this.data.Flights
                 .Where(f => !publicOnly || f.IsPublic);
 
@@ -59,10 +64,18 @@
                 flightQuery = flightQuery.Where(f => f.FlightEndDate == flightEndDate);
             }
 
+            if (maxPrice != int.MaxValue)
+            {
+                flightQuery = flightQuery.Where(f => f.Price <= maxPrice);
+            }
+
+
             flightQuery = sorting switch
             {
-                FlightSorting.Duration => flightQuery.OrderBy(f => f.)
-            }
+                FlightSorting.Duration => flightQuery.OrderBy(f => f.FlightDuration),
+                FlightSorting.LowestPrice => flightQuery.OrderBy(f => f.Price),
+                FlightSorting.Transfers or _ => flightQuery.OrderBy(f => f.Transfer)
+            };
 
 
 
@@ -80,52 +93,6 @@
                 Flights = flights
             };
         }
-
-
-        //public FlightQueryServiceModel FilteredView(
-        //    int flightsPerPage = int.MaxValue,
-        //    int currentPage = 1,
-        //    int maxPrice = int.MaxValue,
-        //    string departureTime = null,
-        //    FlightSorting sorting = FlightSorting.DepartureTime)
-        //{
-        //    var flightQuery = this.data.Flights;
-
-
-        //    if (maxPrice > 0)
-        //    {
-        //        flightQuery = flightQuery.Where(f => f.Price <= maxPrice);
-        //    }
-
-        //    if (!string.IsNullOrEmpty(departureTime))
-        //    {
-        //        flightQuery = flightQuery.Where(f => f.FlightDateTime = departureTime);
-        //    }
-
-
-        //    flightQuery = sorting switch
-        //    {
-        //        FlightSorting.DepartureTime => flightQuery.OrderByDescending(c => c.FlightDateTime),
-        //        FlightSorting.Duration => flightQuery.OrderBy(c => c.Duration),
-        //        FlightSorting.LowestPrice or _ => flightQuery   .OrderByDescending(c => c.Price)
-        //    };
-
-
-        //    var totalFlights = flightQuery.Count();
-
-        //    var flights = GetFlights(flightQuery
-        //        .Skip((currentPage - 1) * flightsPerPage)
-        //        .Take(flightsPerPage));
-
-        //    return new FlightQueryServiceModel
-        //    {
-        //        CurrentPage = currentPage,
-        //        TotalFlights = totalFlights,
-        //        FlightsPerPage = flightsPerPage,
-        //        Flights = flights
-        //    };
-        //}
-
 
 
         public int Create(
