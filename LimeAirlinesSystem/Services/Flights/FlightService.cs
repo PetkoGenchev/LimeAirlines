@@ -36,9 +36,6 @@
             bool publicOnly = true)
         {
 
-            // NEED TO ADD FUNCTIONALITY FOR DIFFERENT TRIP TYPES
-            // NEED TO ADD FUNCTIONALITY FOR PASSANGERS TAKING SEATS
-            //     AND CHANGE VISIBLITY FOR FULL FLIGHTS
 
             var flightQuery = this.data.Flights
                 .Where(f => !publicOnly || f.IsPublic);

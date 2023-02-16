@@ -64,7 +64,6 @@
 
             //return RedirectToAction(nameof(All));
 
-            //return this.RedirectToAction("Index", "Home");
             return this.RedirectToAction("Index", "Home");
         }
 
@@ -123,8 +122,6 @@
             {
                 return BadRequest();
             }
-
-            //return RedirectToAction(nameof(All));
 
             return this.RedirectToAction("Index", "Home");
 
