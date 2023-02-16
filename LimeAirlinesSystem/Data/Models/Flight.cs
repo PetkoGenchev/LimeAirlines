@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants;
+    using static DataConstants.Flight;
 
     public class Flight
     {
@@ -20,17 +20,13 @@
         public string EndLocation { get; set; }
 
         [Required]
-        public string FlightStartDate { get; set; }
-
-        [Required]
-        public string FlightEndDate { get; set; }
+        public string FlightDate { get; set; }
 
         public TimeSpan FlightDuration { get; set; }
 
         public int Transfer { get; set; }
 
-
-        [MaxLength(FlightMinValue)]
+        [MaxLength(FlightPriceMinValue)]
         public int Price { get; set; }
 
         [Required]

@@ -11,8 +11,7 @@
         FlightQueryServiceModel All(
             string startLocation = null,
             string endLocation = null,
-            string flightStartDate = null,
-            string flightEndDate = null,
+            string flightDate = null,
             int passangers = 0,
             string tripType = null,
             int maxPrice = int.MaxValue,
@@ -25,8 +24,7 @@
         int Create(
             string startLocation,
             string endLocation,
-            string flightStartDate,
-            string flightEndDate,
+            string flightDate,
             int price,
             string imageUrl,
             int planeId);
@@ -35,8 +33,7 @@
             int flightId,
             string startLocation,
             string endLocation,
-            string flightStartDate,
-            string flightEndDate,
+            string flightDate,
             int price,
             string imageUrl,
             int planeId,

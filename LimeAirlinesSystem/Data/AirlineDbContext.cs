@@ -22,19 +22,19 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder
-            //    .Entity<Flight>()
-            //    .HasOne(p => p.Plane)
-            //    .WithMany(f => f.Flights)
-            //    .HasForeignKey(p => p.PlaneId)
-            //    .OnDelete(DeleteBehavior.Restrict);
+            builder
+                .Entity<Flight>()
+                .HasOne(p => p.Plane)
+                .WithMany(f => f.Flights)
+                .HasForeignKey(p => p.PlaneId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            //builder
-            //    .Entity<Plane>()
-            //    .HasOne(p => p.Category)
-            //    .WithMany(f => f.Planes)
-            //    .HasForeignKey(p => p.CategoryId)
-            //    .OnDelete(DeleteBehavior.Restrict);
+            builder
+                .Entity<Plane>()
+                .HasOne(p => p.Category)
+                .WithMany(f => f.Planes)
+                .HasForeignKey(p => p.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);
         }

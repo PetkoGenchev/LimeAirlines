@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LimeAirlinesSystem.Data.Migrations
 {
-    public partial class FlightsPlanesTables : Migration
+    public partial class PlanesFlightsTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -202,7 +202,7 @@ namespace LimeAirlinesSystem.Data.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -213,8 +213,7 @@ namespace LimeAirlinesSystem.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StartLocation = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     EndLocation = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    FlightStartDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FlightEndDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FlightDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FlightDuration = table.Column<TimeSpan>(type: "time", nullable: false),
                     Transfer = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<int>(type: "int", maxLength: 10, nullable: false),
@@ -230,7 +229,7 @@ namespace LimeAirlinesSystem.Data.Migrations
                         column: x => x.PlaneId,
                         principalTable: "Planes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

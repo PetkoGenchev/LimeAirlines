@@ -8,8 +8,8 @@
     {
         public int Id { get; init; }
 
+
         [Required]
-        [MaxLength(FlightMinValue)]
         public string Name { get; set; }
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Explore Life</title>
+    <title>@ViewBag.Title - Explore Life</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -18,15 +18,21 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+
+                        @if (User.IsAdmin())
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Planes" asp-action="Add">Add a new Aircraft</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Flights" asp-action="Add">Add a new Flight</a>
+                            </li>
+                        }
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Flights" asp-action="Add">Add a new Flight</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Planes" asp-action="All">Our Fleet</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Planes" asp-action="All">All Planes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Planes" asp-action="Add">Add a new Aircraft</a>
-                        </li>
+                        
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -34,6 +40,12 @@
         </nav>
     </header>
     <div class="container">
+        @if (TempData.ContainsKey(WebConstants.GlobalMessageKey))
+        {
+            <div class="alert alert-success text-center" role="alert">
+                @TempData[WebConstants.GlobalMessageKey]
+            </div>
+        }
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

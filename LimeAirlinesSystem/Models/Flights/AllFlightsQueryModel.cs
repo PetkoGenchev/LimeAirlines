@@ -23,10 +23,7 @@
         public string EndLocation { get; init; }
 
         [Display(Name = "Departure")]
-        public string FlightStartDate { get; init; } = DateTime.UtcNow.ToString();
-
-        [Display(Name = "Arrival")]
-        public string FlightEndDate { get; init; } = DateTime.UtcNow.ToString();
+        public string FlightDate { get; init; } = DateTime.UtcNow.ToString();
 
         public int MaxTransfers { get; init; }
 

@@ -3,7 +3,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using LimeAirlinesSystem.Services.Planes.Models;
-    using static Data.DataConstants;
+
+    using static Data.DataConstants.Plane;
 
     public class PlaneFormModel
     {

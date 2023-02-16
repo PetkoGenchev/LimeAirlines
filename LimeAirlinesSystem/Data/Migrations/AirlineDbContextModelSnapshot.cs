@@ -53,16 +53,12 @@ namespace LimeAirlinesSystem.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("FlightDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<TimeSpan>("FlightDuration")
                         .HasColumnType("time");
-
-                    b.Property<string>("FlightEndDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FlightStartDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -360,9 +356,9 @@ namespace LimeAirlinesSystem.Data.Migrations
             modelBuilder.Entity("LimeAirlinesSystem.Data.Models.Flight", b =>
                 {
                     b.HasOne("LimeAirlinesSystem.Data.Models.Plane", "Plane")
-                        .WithMany()
+                        .WithMany("Flights")
                         .HasForeignKey("PlaneId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Plane");
@@ -373,7 +369,7 @@ namespace LimeAirlinesSystem.Data.Migrations
                     b.HasOne("LimeAirlinesSystem.Data.Models.Category", "Category")
                         .WithMany("Planes")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Category");
@@ -433,6 +429,11 @@ namespace LimeAirlinesSystem.Data.Migrations
             modelBuilder.Entity("LimeAirlinesSystem.Data.Models.Category", b =>
                 {
                     b.Navigation("Planes");
+                });
+
+            modelBuilder.Entity("LimeAirlinesSystem.Data.Models.Plane", b =>
+                {
+                    b.Navigation("Flights");
                 });
 #pragma warning restore 612, 618
         }

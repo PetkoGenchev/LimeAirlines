@@ -4,9 +4,10 @@
     using System.ComponentModel.DataAnnotations;
     using System;
     using LimeAirlinesSystem.Services.Flights.Models;
-
-    using static Data.DataConstants;
     using LimeAirlinesSystem.Services.Planes.Models;
+
+    using static Data.DataConstants.Flight;
+
 
     public class FlightFormModel : IFlightModel
     {
@@ -23,16 +24,9 @@
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Departure")]
-        public DateTime FlightStartDate { get; init; } = DateTime.UtcNow;
+        public DateTime FlightDate { get; init; } = DateTime.UtcNow;
 
-
-        [Required]
-        [DataType(DataType.Date)]
-        [Display(Name = "Arrival")]
-        public DateTime FlightEndDate { get; init; } = DateTime.UtcNow;
-
-
-        [MaxLength(FlightMinValue)]
+        [MaxLength(FlightPriceMinValue)]
         [Display(Name = "Fare")]
         public int Price { get; set; }
 

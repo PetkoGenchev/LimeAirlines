@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using LimeAirlinesSystem.Data.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
-
-namespace LimeAirlinesSystem.Areas.Identity.Pages.Account
+﻿namespace LimeAirlinesSystem.Areas.Identity.Pages.Account
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Text;
+    using System.Text.Encodings.Web;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.Authorization;
+    using LimeAirlinesSystem.Data.Models;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Identity.UI.Services;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.AspNetCore.WebUtilities;
+    using Microsoft.Extensions.Logging;
+
+
+    using static Data.DataConstants.Passanger;
+
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
@@ -51,11 +54,18 @@ namespace LimeAirlinesSystem.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
 
+
+            [Display(Name = "Full Name")]
+            [StringLength(FullNameMaxLength,MinimumLength = FullNameMinLength)]
+            public string FullName { get; set; }
+
+
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(PasswordMaxLength, MinimumLength = PasswordMinLength)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
+
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
@@ -75,8 +85,15 @@ namespace LimeAirlinesSystem.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new Passanger { UserName = Input.Email, Email = Input.Email };
+                var user = new Passanger 
+                { 
+                    UserName = Input.Email, 
+                    Email = Input.Email,
+                    FullName = Input.FullName
+                };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");

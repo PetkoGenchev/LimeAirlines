@@ -57,8 +57,7 @@
             var flightId = this.flights.Create(
                 flight.StartLocation,
                 flight.EndLocation,
-                flight.FlightStartDate.ToString(),
-                flight.FlightEndDate.ToString(),
+                flight.FlightDate.ToString(),
                 flight.Price,
                 flight.ImageUrl,
                 flight.PlaneId);
@@ -114,8 +113,7 @@
                 id,
                 flight.StartLocation,
                 flight.EndLocation,
-                flight.FlightStartDate.ToString(),
-                flight.FlightEndDate.ToString(),
+                flight.FlightDate.ToString(),
                 flight.Price,
                 flight.ImageUrl,
                 flight.PlaneId,
