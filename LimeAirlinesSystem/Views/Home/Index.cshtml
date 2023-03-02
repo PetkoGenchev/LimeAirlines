@@ -5,15 +5,15 @@
     ViewBag.Title = "Home Page";
 }
 
-@*<form method="get">
+<form method="get">
     <div class="row">
         <div class="form-group col-md-4">
             <div class="form-group">
-                <label asp-for="TripTypeId"></label>
-                <select asp-for="TripTypeId" class="form-control">
+                <label asp-for="QueryModel.TripType"></label>
+                <select asp-for="QueryModel.TripType" class="form-control">
                     <option value="">All</option>
 
-                    @foreach (var triptype in Model.TripTypes)
+                    @foreach (var triptype in Model.QueryModel.TripTypes)
                     {
                         <option value=@triptype>@triptype</option>
                     }
@@ -71,7 +71,7 @@
             <input type="submit" class-"btn btn-primary" value="Search">
         </div>
     </div>
-</form>*@
+</form>
 
 
 <h2>Book a flight</h2>
