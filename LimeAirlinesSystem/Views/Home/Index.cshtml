@@ -1,9 +1,9 @@
 ﻿@model HomeServiceModel
 
 
-@{
-    ViewBag.Title = "Home Page";
-}
+@*@{
+    ViewBag.Title = "Lime Airlines";
+}*@
 
 <form method="get">
     <div class="row">
@@ -11,23 +11,23 @@
             <div class="form-group">
                 <label asp-for="QueryModel.TripType"></label>
                 <select asp-for="QueryModel.TripType" class="form-control">
-                    <option value="">All</option>
 
                     @foreach (var triptype in Model.QueryModel.TripTypes)
                     {
-                        <option value=@triptype>@triptype</option>
+                        <option value=@triptype.Id>@triptype.Name</option>
                     }
                 </select>
+                <span asp-validation-for="QueryModel.TripType" class="small text-danger"></span>
             </div>
         </div>
 
         <div class="form-group col-md-4">
             <div class="form-group">
-                <label asp-for="StartLocation"></label>
-                <select asp-for="StartLocation" class="form-control">
+                <label asp-for="QueryModel.StartLocation"></label>
+                <select asp-for="QueryModel.StartLocation" class="form-control">
                     <option value="">All</option>
 
-                    @foreach (var startlocation in Model.Locations)
+                    @foreach (var startlocation in Model.QueryModel.Locations)
                     {
                         <option value=@startlocation>@startlocation</option>
                     }
@@ -37,33 +37,29 @@
 
         <div class="form-group col-md-4">
             <div class="form-group">
-                <label asp-for="EndLocation"></label>
-                <select asp-for="EndLocation" class="form-control">
+                <label asp-for="QueryModel.EndLocation"></label>
+                <select asp-for="QueryModel.EndLocation" class="form-control">
                     <option value="">All</option>
 
-                    @foreach (var endlocation in Model.Locations)
+                    @foreach (var endlocation in Model.QueryModel.Locations)
                     {
                         <option value=@endlocation>@endlocation</option>
                     }
+
+@*STARTING AND ENDING LOCATIONS CANNOT BE THE SAME ERROR*@
                 </select>
             </div>
         </div>
 
         <div class="form-group">
-            <label asp-for="FlightDateTime"></label>
-            <input asp-for="FlightDateTime" class="form-control" placeholder="Select Date">
-            <span asp-validation-for="FlightDateTime" class="small text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="FlightDateTime"></label>
-            <input asp-for="FlightDateTime" class="form-control" placeholder="Select Date">
-            <span asp-validation-for="FlightDateTime" class="small text-danger"></span>
+            <label asp-for="QueryModel.FlightDate"></label>
+            <input asp-for="QueryModel.FlightDate" class="form-control" placeholder="Select Date">
+            <span asp-validation-for="QueryModel.FlightDate" class="small text-danger"></span>
         </div>
 
         <div class="form-group col-md-4">
-            <label asp-for="Passangers"></label>
-            <input asp-for="Passangers" class="form-control" placeholder="1,2,3,10...">
+            <label asp-for="QueryModel.Passangers"></label>
+            <input asp-for="QueryModel.Passangers" class="form-control" placeholder="1,2,3,10...">
         </div>
 
 

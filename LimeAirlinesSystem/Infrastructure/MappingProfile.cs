@@ -20,6 +20,8 @@
             .ForMember(p => p.CategoryName, cfg => cfg.MapFrom(p => p.Category.Name));
 
             this.CreateMap<Flight, FlightServiceModel>();
+
+            this.CreateMap<TripType, FlightTypeServiceModel>();
         }
     }
 }

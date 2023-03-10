@@ -41,7 +41,7 @@
 
         IEnumerable<CheapestFlightServiceModel> Cheapest();
         void ChangeVisibility(int flightId);
-        IEnumerable<int> AllTripTypes();
+        IEnumerable<FlightTypeServiceModel> AllTripTypes();
         IEnumerable<string> AllDestinations();
         IEnumerable<FlightServiceModel> UserFlights(string userId);
         IEnumerable<PlaneServiceModel> AllPlanes();

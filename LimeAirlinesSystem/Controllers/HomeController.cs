@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using LimeAirlinesSystem.Infrastructure.Extensions;
     using LimeAirlinesSystem.Models.Flights;
     using LimeAirlinesSystem.Services.Flights;
     using LimeAirlinesSystem.Services.Flights.Models;
@@ -24,8 +25,10 @@
             this.cache = cache;
         }
 
+
         public IActionResult Index([FromQuery] AllFlightsQueryModel query)
         {
+
             var queryResult = this.flights.All(
                 query.StartLocation,
                 query.EndLocation,
@@ -37,8 +40,13 @@
                 query.CurrentPage,
                 AllFlightsQueryModel.FlightsPerPage);
 
+
+
             var flightLocations = this.flights.AllDestinations();
 
+            var tripTypes = this.flights.AllTripTypes();
+
+            query.TripTypes = tripTypes;
             query.Locations = flightLocations;
             query.TotalFlights = queryResult.TotalFlights;
             query.Flights = queryResult.Flights;

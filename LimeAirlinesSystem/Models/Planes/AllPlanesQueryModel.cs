@@ -5,7 +5,7 @@
 
     public class AllPlanesQueryModel
     {
-        public const int PlanesPerPage = 5;
+        public const int PlanesPerPage = 6;
 
         public int CurrentPage { get; init; } = 1;
 

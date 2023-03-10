@@ -28,7 +28,7 @@
             string endLocation = null,
             string flightDate = null,
             int passangers = 0,
-            string tripType = "One-Way",
+            string tripType = null,
             int maxPrice = int.MaxValue,
             FlightSorting sorting = FlightSorting.Duration,
             int currentPage = 1,
@@ -36,6 +36,10 @@
             bool publicOnly = true)
         {
 
+            if (tripType == "Round Trip")
+            {
+
+            }
 
             var flightQuery = this.data.Flights
                 .Where(f => !publicOnly || f.IsPublic);
@@ -149,12 +153,10 @@
             .OrderBy(br => br)
             .ToList();
 
-        public IEnumerable<int> AllTripTypes()
+        public IEnumerable<FlightTypeServiceModel> AllTripTypes()
             => this.data
             .TripTypes
-            .Select(t => t.Id)
-            .Distinct()
-            .OrderBy(br => br)
+            .ProjectTo<FlightTypeServiceModel>(this.mapper)
             .ToList();
 
         public void ChangeVisibility(int flightId)

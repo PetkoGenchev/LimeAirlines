@@ -1,5 +1,6 @@
 ﻿namespace LimeAirlinesSystem.Models.Flights
 {
+    using LimeAirlinesSystem.Data.Models;
     using LimeAirlinesSystem.Services.Flights.Models;
     using System;
     using System.Collections.Generic;
@@ -32,9 +33,9 @@
 
         public int Passangers { get; init; }
 
-        public IEnumerable<int> TripTypes { get; set; }
-
         public IEnumerable<string> Locations { get; set; }
+
+        public IEnumerable<FlightTypeServiceModel> TripTypes { get; set; }
 
         public IEnumerable<FlightServiceModel> Flights { get; set; }
     }
