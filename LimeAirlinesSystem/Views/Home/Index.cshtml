@@ -27,7 +27,7 @@
                 <select asp-for="QueryModel.StartLocation" class="form-control">
                     <option value="">All</option>
 
-                    @foreach (var startlocation in Model.QueryModel.Locations)
+                    @foreach (var startlocation in Model.QueryModel.StartLocations)
                     {
                         <option value=@startlocation>@startlocation</option>
                     }
@@ -41,17 +41,17 @@
                 <select asp-for="QueryModel.EndLocation" class="form-control">
                     <option value="">All</option>
 
-                    @foreach (var endlocation in Model.QueryModel.Locations)
+                    @foreach (var endlocation in Model.QueryModel.EndLocations)
                     {
                         <option value=@endlocation>@endlocation</option>
                     }
 
-@*STARTING AND ENDING LOCATIONS CANNOT BE THE SAME ERROR*@
+                    @*STARTING AND ENDING LOCATIONS CANNOT BE THE SAME ERROR*@
                 </select>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-4">
             <label asp-for="QueryModel.FlightDate"></label>
             <input asp-for="QueryModel.FlightDate" class="form-control" placeholder="Select Date">
             <span asp-validation-for="QueryModel.FlightDate" class="small text-danger"></span>
@@ -70,7 +70,7 @@
 </form>
 
 
-<h2>Book a flight</h2>
+<h2 class="h2-center">Book a flight</h2>
 
 
 @if (!Model.CheapestFlight.Any())
@@ -86,11 +86,42 @@
 }
 else
 {
-    <div class="mb-5"></div>
+    <div class="row flight-form">
+        @for (int i = 0; i < Model.CheapestFlight.Count; i++)
+        {
+            var flight = Model.CheapestFlight[i];
+
+            <div class="col-md-4  flight-promo">
+                <div class="card mb-3 card-width">
+                    <div class="img-wrapper">
+                        <img class="card-img" src="@flight.ImageUrl" alt="@flight.EndLocation @flight.Price">
+                    </div>
+                    <div class="card-img-overlay">
+                        <h5 class="card-title text-left">@flight.EndLocation</h5>
+                        <p class="card-text text-white font-weight-bold">From @flight.StartLocation starting BGN @flight.Price</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
+    @*    <div class="card bg-dark text-white">
+        <img class="card-img" src="..." alt="Card image">
+        <div class="card-img-overlay">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+    </div>*@
+
+
+
+
+    @*    <div class="mb-5"></div>
 
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-            @for (int i = 0; i < 4; i++)
+            @for (int i = 0; i < Model.CheapestFlight.Count; i++)
             {
                 var flight = Model.CheapestFlight[i];
                 <div class="carousel-item @(i == 0 ? "active" : string.Empty)">
@@ -108,6 +139,6 @@ else
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div>
+    </div>*@
 }
 

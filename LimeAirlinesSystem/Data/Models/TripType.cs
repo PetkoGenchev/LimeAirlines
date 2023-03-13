@@ -2,8 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants;
-
     public class TripType
     {
         public int Id { get; init; }

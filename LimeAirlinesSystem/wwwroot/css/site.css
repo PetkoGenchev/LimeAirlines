@@ -74,3 +74,55 @@ body {
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+.img-wrapper {
+    width: 248px;
+    height: 200px;
+    border-color: unset;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.card-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.flight-promo {
+    width: 100%;
+    height: 100%;
+    max-width: unset;
+}
+
+.flight-form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.card-img-overlay {
+    width: 248px;
+    height: 200px;
+}
+.h2-center {
+    text-align: center;
+}
+.card.mb-3.card-width {
+    width: 248px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.card-img-top.img-planes-partial {
+    height: 80%;
+}
+.planes-partial {
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.card-body.text-center {
+    height: 20%;
+}
+.div-planes-partial {
+    margin-bottom: 20px;
+}
+

@@ -25,6 +25,10 @@
 
         [Display(Name = "Departure")]
         public string FlightDate { get; init; } = DateTime.UtcNow.ToString();
+        //[DataType(DataType.Date)]
+        //public DateTime FlightDate { get; set; }
+
+
 
         public int MaxTransfers { get; init; }
 
@@ -33,7 +37,8 @@
 
         public int Passangers { get; init; }
 
-        public IEnumerable<string> Locations { get; set; }
+        public IEnumerable<string> StartLocations { get; set; }
+        public IEnumerable<string> EndLocations { get; set; }
 
         public IEnumerable<FlightTypeServiceModel> TripTypes { get; set; }
 

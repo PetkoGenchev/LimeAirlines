@@ -71,7 +71,7 @@ namespace LimeAirlinesSystem.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Price")
-                        .HasMaxLength(10)
+                        .HasMaxLength(5)
                         .HasColumnType("int");
 
                     b.Property<string>("StartLocation")
@@ -208,8 +208,7 @@ namespace LimeAirlinesSystem.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

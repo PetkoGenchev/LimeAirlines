@@ -42,12 +42,16 @@
 
 
 
-            var flightLocations = this.flights.AllDestinations();
+            var flightStartLocations = this.flights.AllStartingLocations();
+            var flightEndLocations = this.flights.AllFinalLocations();
 
             var tripTypes = this.flights.AllTripTypes();
 
             query.TripTypes = tripTypes;
-            query.Locations = flightLocations;
+
+            query.StartLocations = flightStartLocations;
+            query.EndLocations = flightEndLocations;
+
             query.TotalFlights = queryResult.TotalFlights;
             query.Flights = queryResult.Flights;
 

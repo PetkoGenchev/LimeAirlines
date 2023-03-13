@@ -38,7 +38,7 @@
 
             if (tripType == "Round Trip")
             {
-
+                // ADD HERE FUNCTIONALITITES FOR ONE-WAY AND ROUND TRIPS
             }
 
             var flightQuery = this.data.Flights
@@ -91,11 +91,11 @@
 
 
         public int Create(
-            string startLocation, 
-            string endLocation, 
-            string flightDate,  
-            int price, 
-            string imageUrl, 
+            string startLocation,
+            string endLocation,
+            string flightDate,
+            int price,
+            string imageUrl,
             int planeId)
         {
             var flightData = new Flight
@@ -116,13 +116,13 @@
         }
 
         public bool Edit(
-            int flightId, 
-            string startLocation, 
-            string endLocation, 
-            string flightDate, 
-            int price, 
-            string imageUrl, 
-            int planeId, 
+            int flightId,
+            string startLocation,
+            string endLocation,
+            string flightDate,
+            int price,
+            string imageUrl,
+            int planeId,
             bool isPublic)
         {
             var flightData = this.data.Flights.Find(flightId);
@@ -137,7 +137,7 @@
             flightData.Price = price;
             flightData.IsPublic = isPublic;
             flightData.FlightDate = flightDate;
-            flightData.PlaneId  = planeId;
+            flightData.PlaneId = planeId;
             flightData.ImageUrl = imageUrl;
 
             this.data.SaveChanges();
@@ -145,10 +145,18 @@
             return true;
         }
 
-        public IEnumerable<string> AllDestinations()
+        public IEnumerable<string> AllStartingLocations()
             => this.data
             .Flights
             .Select(f => f.StartLocation)
+            .Distinct()
+            .OrderBy(br => br)
+            .ToList();
+
+        public IEnumerable<string> AllFinalLocations()
+            => this.data
+            .Flights
+            .Select(f => f.EndLocation)
             .Distinct()
             .OrderBy(br => br)
             .ToList();

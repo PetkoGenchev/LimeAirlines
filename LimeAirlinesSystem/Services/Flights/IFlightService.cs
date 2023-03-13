@@ -42,7 +42,8 @@
         IEnumerable<CheapestFlightServiceModel> Cheapest();
         void ChangeVisibility(int flightId);
         IEnumerable<FlightTypeServiceModel> AllTripTypes();
-        IEnumerable<string> AllDestinations();
+        IEnumerable<string> AllStartingLocations();
+        IEnumerable<string> AllFinalLocations();
         IEnumerable<FlightServiceModel> UserFlights(string userId);
         IEnumerable<PlaneServiceModel> AllPlanes();
         bool PlaneExists(int planeId);
