@@ -24,7 +24,7 @@
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Departure")]
-        public DateTime FlightDate { get; init; } = DateTime.UtcNow;
+        public DateTime FlightDate { get; set; } = DateTime.UtcNow;
 
         [MaxLength(FlightPriceMinValue)]
         [Display(Name = "Fare")]

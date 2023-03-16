@@ -20,7 +20,9 @@
         public string EndLocation { get; set; }
 
         [Required]
-        public string FlightDate { get; set; }
+        [DataType(DataType.Date)]
+        //public string FlightDate { get; set; }
+        public DateTime FlightDate { get; set; }
 
         public TimeSpan FlightDuration { get; set; }
 
@@ -28,6 +30,7 @@
 
         [MaxLength(FlightPriceMinValue)]
         public int Price { get; set; }
+        public int ReservedSeats { get; set; }
 
         [Required]
         public string ImageUrl { get; set; }

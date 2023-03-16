@@ -11,7 +11,7 @@ namespace LimeAirlinesSystem.Models.Api.Flights
         public string TripType { get; init; }
         public string StartLocation { get; init; }
         public string EndLocation { get; init; }
-        public string FlightDate { get; init; } = DateTime.UtcNow.ToString();
+        public DateTime FlightDate { get; set; } = DateTime.UtcNow;
         public TimeSpan FlightDuration { get; init; }
         public int MaxTransfers { get; init; }
         public int MaxPrice { get; init; }

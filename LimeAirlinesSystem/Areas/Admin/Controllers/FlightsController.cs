@@ -1,9 +1,8 @@
-﻿using LimeAirlinesSystem.Services.Flights;
-using LimeAirlinesSystem.Services.Planes;
-using Microsoft.AspNetCore.Mvc;
-
-namespace LimeAirlinesSystem.Areas.Admin.Controllers
+﻿namespace LimeAirlinesSystem.Areas.Admin.Controllers
 {
+    using LimeAirlinesSystem.Services.Flights;
+    using Microsoft.AspNetCore.Mvc;
+
     public class FlightsController : AdminController
     {
         private readonly IFlightService flights;
@@ -13,7 +12,9 @@ namespace LimeAirlinesSystem.Areas.Admin.Controllers
         public IActionResult All()
         {
             var flights = this.flights
-                .All(publicOnly: false)
+                .All(
+                flightDate: System.DateTime.UtcNow,
+                publicOnly: false)
                 .Flights;
 
             return View(flights);

@@ -24,9 +24,9 @@
         public string EndLocation { get; init; }
 
         [Display(Name = "Departure")]
-        public string FlightDate { get; init; } = DateTime.UtcNow.ToString();
-        //[DataType(DataType.Date)]
-        //public DateTime FlightDate { get; set; }
+        //public string FlightDate { get; init; } = DateTime.UtcNow.ToString();
+        [DataType(DataType.Date)]
+        public DateTime FlightDate { get; init; } = DateTime.UtcNow;
 
 
 

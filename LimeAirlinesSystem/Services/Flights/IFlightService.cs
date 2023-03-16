@@ -9,9 +9,9 @@
     public interface IFlightService
     {
         FlightQueryServiceModel All(
+            DateTime flightDate,
             string startLocation = null,
             string endLocation = null,
-            string flightDate = null,
             int passangers = 0,
             string tripType = null,
             int maxPrice = int.MaxValue,
@@ -24,7 +24,7 @@
         int Create(
             string startLocation,
             string endLocation,
-            string flightDate,
+            DateTime flightDate,
             int price,
             string imageUrl,
             int planeId);
@@ -33,7 +33,7 @@
             int flightId,
             string startLocation,
             string endLocation,
-            string flightDate,
+            DateTime flightDate,
             int price,
             string imageUrl,
             int planeId,

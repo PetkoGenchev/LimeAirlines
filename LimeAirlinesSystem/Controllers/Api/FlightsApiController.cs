@@ -18,9 +18,9 @@ namespace LimeAirlinesSystem.Controllers.Api
         [HttpGet]
         public FlightQueryServiceModel All([FromQuery] AllFlightsApiRequestModel query)
             => this.flights.All(
+                query.FlightDate,
                 query.StartLocation,
                 query.EndLocation,
-                query.FlightDate,
                 query.Passangers,
                 query.TripType,
                 query.MaxPrice,

@@ -1,4 +1,6 @@
-﻿namespace LimeAirlinesSystem.Services.Flights.Models
+﻿using System;
+
+namespace LimeAirlinesSystem.Services.Flights.Models
 {
     public class FlightServiceModel : IFlightModel
     {
@@ -19,6 +21,7 @@
         public string ImageUrl { get; init; }
 
         public bool IsPublic { get; init; }
+        public int ReservedSeats { get; init; }
 
 
     }

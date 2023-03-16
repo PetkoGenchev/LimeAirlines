@@ -24,9 +24,9 @@
 
 
         public FlightQueryServiceModel All(
+            DateTime flightDate,
             string startLocation = null,
             string endLocation = null,
-            string flightDate = null,
             int passangers = 0,
             string tripType = null,
             int maxPrice = int.MaxValue,
@@ -54,10 +54,11 @@
                 flightQuery = flightQuery.Where(f => f.StartLocation == endLocation);
             }
 
-            if (!string.IsNullOrEmpty(flightDate))
-            {
-                flightQuery = flightQuery.Where(f => f.FlightDate == flightDate);
-            }
+            flightQuery = flightQuery.Where(f => f.ReservedSeats + passangers <= f.Plane.NumberOfSeats);
+
+
+            flightQuery = flightQuery.Where(f => f.FlightDate == flightDate);
+
 
             if (maxPrice != int.MaxValue)
             {
@@ -93,7 +94,7 @@
         public int Create(
             string startLocation,
             string endLocation,
-            string flightDate,
+            DateTime flightDate,
             int price,
             string imageUrl,
             int planeId)
@@ -106,7 +107,8 @@
                 Price = price,
                 ImageUrl = imageUrl,
                 PlaneId = planeId,
-                IsPublic = true
+                IsPublic = true,
+                ReservedSeats = 0
             };
 
             this.data.Flights.Add(flightData);
@@ -119,7 +121,7 @@
             int flightId,
             string startLocation,
             string endLocation,
-            string flightDate,
+            DateTime flightDate,
             int price,
             string imageUrl,
             int planeId,
