@@ -1,6 +1,5 @@
 ﻿namespace LimeAirlinesSystem.Models.Flights
 {
-    using LimeAirlinesSystem.Data.Models;
     using LimeAirlinesSystem.Services.Flights.Models;
     using System;
     using System.Collections.Generic;
@@ -9,6 +8,10 @@
     public class AllFlightsQueryModel
     {
         public const int FlightsPerPage = 5;
+        //public const int MinimumAmountofTransfers = 0;
+        //public const int MaximumAmountofTransfers = 2;
+        //public const int MinimumPrice = 0;
+        //public const int MaximumPrice = 5000;
 
         [Display(Name = "Trip")]
         public string TripType { get; init; }
@@ -24,11 +27,8 @@
         public string EndLocation { get; init; }
 
         [Display(Name = "Departure")]
-        //public string FlightDate { get; init; } = DateTime.UtcNow.ToString();
         [DataType(DataType.Date)]
         public DateTime FlightDate { get; init; } = DateTime.UtcNow;
-
-
 
         public int MaxTransfers { get; init; }
 

@@ -12,7 +12,7 @@ namespace LimeAirlinesSystem.Controllers.Api
     {
         private readonly IFlightService flights;
 
-        public FlightsApiController(IFlightService flights) 
+        public FlightsApiController(IFlightService flights)
             => this.flights = flights;
 
         [HttpGet]
@@ -24,6 +24,7 @@ namespace LimeAirlinesSystem.Controllers.Api
                 query.Passangers,
                 query.TripType,
                 query.MaxPrice,
+                query.MaxTransfers,
                 query.Sorting,
                 query.CurrentPage,
                 query.FlightsPerPage);

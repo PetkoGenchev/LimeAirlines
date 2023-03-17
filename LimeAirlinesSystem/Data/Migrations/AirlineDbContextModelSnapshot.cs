@@ -53,9 +53,8 @@ namespace LimeAirlinesSystem.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("FlightDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("FlightDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<TimeSpan>("FlightDuration")
                         .HasColumnType("time");
@@ -72,6 +71,9 @@ namespace LimeAirlinesSystem.Data.Migrations
 
                     b.Property<int>("Price")
                         .HasMaxLength(5)
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReservedSeats")
                         .HasColumnType("int");
 
                     b.Property<string>("StartLocation")

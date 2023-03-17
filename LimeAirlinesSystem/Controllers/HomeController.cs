@@ -35,6 +35,7 @@
                 query.EndLocation,
                 query.Passangers,
                 query.TripType,
+                query.MaxTransfers,
                 query.MaxPrice,
                 query.Sorting,
                 query.CurrentPage,

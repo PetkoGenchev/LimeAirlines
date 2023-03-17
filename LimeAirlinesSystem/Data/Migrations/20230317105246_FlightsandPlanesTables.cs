@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LimeAirlinesSystem.Data.Migrations
 {
-    public partial class FlightsPlanesTables : Migration
+    public partial class FlightsandPlanesTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -213,10 +213,11 @@ namespace LimeAirlinesSystem.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StartLocation = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     EndLocation = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    FlightDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FlightDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FlightDuration = table.Column<TimeSpan>(type: "time", nullable: false),
                     Transfer = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<int>(type: "int", maxLength: 5, nullable: false),
+                    ReservedSeats = table.Column<int>(type: "int", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsPublic = table.Column<bool>(type: "bit", nullable: false),
                     PlaneId = table.Column<int>(type: "int", nullable: false)

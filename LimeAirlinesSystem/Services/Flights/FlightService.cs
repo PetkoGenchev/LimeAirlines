@@ -27,8 +27,9 @@
             DateTime flightDate,
             string startLocation = null,
             string endLocation = null,
-            int passangers = 0,
+            int passangers = 1,
             string tripType = null,
+            int maxTransfers = int.MaxValue,
             int maxPrice = int.MaxValue,
             FlightSorting sorting = FlightSorting.Duration,
             int currentPage = 1,
@@ -36,7 +37,7 @@
             bool publicOnly = true)
         {
 
-            if (tripType == "Round Trip")
+            if (tripType != "Round Trip")
             {
                 // ADD HERE FUNCTIONALITITES FOR ONE-WAY AND ROUND TRIPS
             }
@@ -54,10 +55,16 @@
                 flightQuery = flightQuery.Where(f => f.StartLocation == endLocation);
             }
 
-            flightQuery = flightQuery.Where(f => f.ReservedSeats + passangers <= f.Plane.NumberOfSeats);
+            flightQuery = flightQuery.Where(f => (f.ReservedSeats + passangers) <= f.Plane.NumberOfSeats);
 
 
             flightQuery = flightQuery.Where(f => f.FlightDate == flightDate);
+
+
+            if (maxTransfers != int.MaxValue)
+            {
+                flightQuery = flightQuery.Where(f => f.Transfer <= maxTransfers);
+            }
 
 
             if (maxPrice != int.MaxValue)

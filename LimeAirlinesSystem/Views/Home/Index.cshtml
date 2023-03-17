@@ -5,6 +5,8 @@
     ViewBag.Title = "Lime Airlines";
 }*@
 
+<h2 class="h2-center">Book a flight</h2>
+
 <form method="get">
     <div class="row">
         <div class="form-group col-md-4">
@@ -59,9 +61,27 @@
 
         <div class="form-group col-md-4">
             <label asp-for="QueryModel.Passangers"></label>
-            <input asp-for="QueryModel.Passangers" class="form-control" placeholder="1,2,3,10...">
+            <input asp-for="QueryModel.Passangers" class="form-control">
         </div>
 
+        <div class="form-group">
+            <label asp-for="QueryModel.Sorting">Sort By</label>
+            <select asp-for="QueryModel.Sorting" class="form-control">
+                <option value="0" selected>Lowest Price</option>
+                <option value="1">Duration</option>
+                <option value="2">Number of Transfers</option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label asp-for="QueryModel.MaxTransfers">Number of Transfers</label>
+            <input type="range" class="form-range" min="0" max="2">
+        </div>
+
+        <div class="form-group col-md-4">
+            <label asp-for="QueryModel.MaxPrice">Price</label>
+            <input type="range" class="form-range" min="0" max="5000">
+        </div>
 
         <div class="form-group col-md-3">
             <button type="submit" class="btn btn-primary mb-2">Search</button>
@@ -70,14 +90,13 @@
 </form>
 
 
-<h2 class="h2-center">Book a flight</h2>
-
-
-
 @if (!Model.QueryModel.Flights.Any())
 {
     <h2 class="text-center">No Flights found by the given criteria!</h2>
 }
+
+<partial name="_FlightsPartial" model="@Model.QueryModel.Flights" />
+
 
 
 @if (!Model.CheapestFlight.Any())
@@ -112,6 +131,53 @@ else
         }
     </div>
 }
+
+
+@{
+    var previousPage = Model.QueryModel.CurrentPage - 1;
+    if (previousPage < 1)
+    {
+        previousPage = 1;
+    }
+
+    var maxPage = Math.Ceiling((double)Model.QueryModel.TotalFlights / AllFlightsQueryModel.FlightsPerPage);
+}
+
+
+<div class="row mb-5">
+    <div class="col-md-6">
+        <a class="btn btn-primary @(Model.QueryModel.CurrentPage == 1 ? "disabled" : string.Empty)"
+           asp-controller="Flights"
+           asp-action="All"
+           asp-route-currentPage="@previousPage"
+           asp-route-startLocation="@Model.QueryModel.StartLocation"
+           asp-route-endLocation="@Model.QueryModel.EndLocation"
+           asp-route-passangers="@Model.QueryModel.Passangers"
+           asp-route-flightDate="@Model.QueryModel.FlightDate"
+           asp-route-maxTransfers="@Model.QueryModel.MaxTransfers"
+           asp-route-maxPrice="@Model.QueryModel.MaxPrice"
+           asp-route-sorting="@((int)Model.QueryModel.Sorting)"><<</a>
+    </div>
+
+    @{
+        var shouldButtonBeDisabled = Model.QueryModel.CurrentPage == maxPage ||
+        !Model.QueryModel.Flights.Any();
+    }
+
+    <div class="col-md-6">
+        <a class="btn btn-primary float-sm-right @(shouldButtonBeDisabled ? "disabled" : string.Empty)" style="margin-top: 10px"
+           asp-controller="Flights"
+           asp-action="All"
+           asp-route-currentPage="@(Model.QueryModel.CurrentPage + 1)"
+           asp-route-startLocation="@Model.QueryModel.StartLocation"
+           asp-route-endLocation="@Model.QueryModel.EndLocation"
+           asp-route-passangers="@Model.QueryModel.Passangers"
+           asp-route-flightDate="@Model.QueryModel.FlightDate"
+           asp-route-maxTransfers="@Model.QueryModel.MaxTransfers"
+           asp-route-maxPrice="@Model.QueryModel.MaxPrice"
+           asp-route-sorting="@((int)Model.QueryModel.Sorting)">>></a>
+    </div>
+</div>
 
 
 

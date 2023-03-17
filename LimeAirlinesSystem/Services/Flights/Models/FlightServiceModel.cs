@@ -18,10 +18,11 @@ namespace LimeAirlinesSystem.Services.Flights.Models
 
         public int Price { get; init; }
 
+        public int ReservedSeats { get; init; }
+
         public string ImageUrl { get; init; }
 
         public bool IsPublic { get; init; }
-        public int ReservedSeats { get; init; }
 
 
     }
