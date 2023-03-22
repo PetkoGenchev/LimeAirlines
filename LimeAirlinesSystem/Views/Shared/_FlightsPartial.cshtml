@@ -9,8 +9,8 @@
                 <div class="card-body text-center">
                     @if (User.IsAdmin())
                     {
-                        <a asp-controller="Flights" asp-action="Edit" asp-route-id="@flight.Id" class="btn btn-warning">Edit</a>
-                        <a asp-controller="Flights" asp-action="Delete" asp-route-id="@flight.Id" class="btn btn-danger">Delete</a>
+                        <a asp-area ="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@flight.Id" class="btn btn-warning">Edit</a>
+                        <a asp-area="Admin" asp-controller="Flights" asp-action="Delete" asp-route-id="@flight.Id" class="btn btn-danger">Delete</a>
                     }
                 </div>
             </div>

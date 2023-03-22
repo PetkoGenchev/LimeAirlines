@@ -11,5 +11,7 @@
         public int TotalFlights { get; init; }
 
         public IEnumerable<FlightServiceModel> Flights { get; set; }
+
+        public IEnumerable<FlightServiceModel> ReturnFlights { get; set; }
     }
 }

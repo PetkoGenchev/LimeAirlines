@@ -10,8 +10,8 @@
                     <h5 class="card-title text-center">@plane.Year  @plane.Brand @plane.Model (@plane.CategoryName)</h5>
                     @if (User.IsAdmin())
                     {
-                        <a asp-controller="Planes" asp-action="Edit" asp-route-id="@plane.Id" class="btn btn-warning">Edit</a>
-                        <a asp-controller="Planes" asp-action="Delete" asp-route-id="@plane.Id" class="btn btn-danger">Delete</a>
+                        <a asp-area="Admin" asp-controller="Planes" asp-action="Edit" asp-route-id="@plane.Id" class="btn btn-warning">Edit</a>
+                        <a asp-area="Admin" asp-controller="Planes" asp-action="Delete" asp-route-id="@plane.Id" class="btn btn-danger">Delete</a>
                     }
                 </div>
             </div>

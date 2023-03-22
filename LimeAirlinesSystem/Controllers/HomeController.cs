@@ -26,20 +26,21 @@
         }
 
 
-        public IActionResult Index([FromQuery] AllFlightsQueryModel query)
+        public IActionResult Index([FromQuery] HomeServiceModel query)
         {
 
             var queryResult = this.flights.All(
-                query.FlightDate,
-                query.StartLocation,
-                query.EndLocation,
-                query.Passangers,
-                query.TripType,
-                query.MaxTransfers,
-                query.MaxPrice,
-                query.Sorting,
-                query.CurrentPage,
+                query.FlightsQuery.FlightDate,
+                query.FlightsQuery.StartLocation,
+                query.FlightsQuery.EndLocation,
+                query.FlightsQuery.Passangers,
+                query.FlightsQuery.TripType,
+                query.FlightsQuery.MaxTransfers,
+                query.FlightsQuery.MaxPrice,
+                query.FlightsQuery.Sorting,
+                query.FlightsQuery.CurrentPage,
                 AllFlightsQueryModel.FlightsPerPage);
+
 
 
 
@@ -48,13 +49,16 @@
 
             var tripTypes = this.flights.AllTripTypes();
 
-            query.TripTypes = tripTypes;
+            query.FlightsQuery.TripTypes = tripTypes;
 
-            query.StartLocations = flightStartLocations;
-            query.EndLocations = flightEndLocations;
+            query.FlightsQuery.StartLocations = flightStartLocations;
+            query.FlightsQuery.EndLocations = flightEndLocations;
 
-            query.TotalFlights = queryResult.TotalFlights;
-            query.Flights = queryResult.Flights;
+            query.FlightsQuery.TotalFlights = queryResult.TotalFlights;
+
+            query.FlightsQuery.Flights = queryResult.Flights;
+
+            query.FlightsQuery.ReturnFlights = queryResult.ReturnFlights;
 
             var cheapestFlights = this.cache.Get<List<CheapestFlightServiceModel>>(CheapestFlightsCacheKey);
 
@@ -74,7 +78,7 @@
             var homeService = new HomeServiceModel
             {
                 CheapestFlight = cheapestFlights,
-                QueryModel = query
+                FlightsQuery = query.FlightsQuery,
             };
 
             return View(homeService);

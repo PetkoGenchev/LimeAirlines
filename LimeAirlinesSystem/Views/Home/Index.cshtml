@@ -11,25 +11,25 @@
     <div class="row">
         <div class="form-group col-md-4">
             <div class="form-group">
-                <label asp-for="QueryModel.TripType"></label>
-                <select asp-for="QueryModel.TripType" class="form-control">
+                <label asp-for="FlightsQuery.TripType"></label>
+                <select asp-for="FlightsQuery.TripType" class="form-control">
 
-                    @foreach (var triptype in Model.QueryModel.TripTypes)
+                    @foreach (var triptype in Model.FlightsQuery.TripTypes)
                     {
                         <option value=@triptype.Id>@triptype.Name</option>
                     }
                 </select>
-                <span asp-validation-for="QueryModel.TripType" class="small text-danger"></span>
+                <span asp-validation-for="FlightsQuery.TripType" class="small text-danger"></span>
             </div>
         </div>
 
         <div class="form-group col-md-4">
             <div class="form-group">
-                <label asp-for="QueryModel.StartLocation"></label>
-                <select asp-for="QueryModel.StartLocation" class="form-control">
+                <label asp-for="FlightsQuery.StartLocation"></label>
+                <select asp-for="FlightsQuery.StartLocation" class="form-control">
                     <option value="">All</option>
 
-                    @foreach (var startlocation in Model.QueryModel.StartLocations)
+                    @foreach (var startlocation in Model.FlightsQuery.StartLocations)
                     {
                         <option value=@startlocation>@startlocation</option>
                     }
@@ -39,11 +39,11 @@
 
         <div class="form-group col-md-4">
             <div class="form-group">
-                <label asp-for="QueryModel.EndLocation"></label>
-                <select asp-for="QueryModel.EndLocation" class="form-control">
+                <label asp-for="FlightsQuery.EndLocation"></label>
+                <select asp-for="FlightsQuery.EndLocation" class="form-control">
                     <option value="">All</option>
 
-                    @foreach (var endlocation in Model.QueryModel.EndLocations)
+                    @foreach (var endlocation in Model.FlightsQuery.EndLocations)
                     {
                         <option value=@endlocation>@endlocation</option>
                     }
@@ -54,19 +54,19 @@
         </div>
 
         <div class="form-group col-md-4">
-            <label asp-for="QueryModel.FlightDate"></label>
-            <input asp-for="QueryModel.FlightDate" class="form-control" placeholder="Select Date">
-            <span asp-validation-for="QueryModel.FlightDate" class="small text-danger"></span>
+            <label asp-for="FlightsQuery.FlightDate"></label>
+            <input asp-for="FlightsQuery.FlightDate" class="form-control" placeholder="Select Date">
+            <span asp-validation-for="FlightsQuery.FlightDate" class="small text-danger"></span>
         </div>
 
         <div class="form-group col-md-4">
-            <label asp-for="QueryModel.Passangers"></label>
-            <input asp-for="QueryModel.Passangers" class="form-control">
+            <label asp-for="FlightsQuery.Passangers"></label>
+            <input asp-for="FlightsQuery.Passangers" class="form-control">
         </div>
 
         <div class="form-group">
-            <label asp-for="QueryModel.Sorting">Sort By</label>
-            <select asp-for="QueryModel.Sorting" class="form-control">
+            <label asp-for="FlightsQuery.Sorting">Sort By</label>
+            <select asp-for="FlightsQuery.Sorting" class="form-control">
                 <option value="0" selected>Lowest Price</option>
                 <option value="1">Duration</option>
                 <option value="2">Number of Transfers</option>
@@ -74,13 +74,13 @@
         </div>
 
         <div class="form-group col-md-4">
-            <label asp-for="QueryModel.MaxTransfers">Number of Transfers</label>
-            <input type="range" class="form-range" min="0" max="2">
+            <label asp-for="FlightsQuery.MaxTransfers">Number of Transfers</label>
+            <input asp-for="FlightsQuery.MaxTransfers" type="range" class="form-range" min="0" max="2">
         </div>
 
         <div class="form-group col-md-4">
-            <label asp-for="QueryModel.MaxPrice">Price</label>
-            <input type="range" class="form-range" min="0" max="5000">
+            <label asp-for="FlightsQuery.MaxPrice">Price</label>
+            <input asp-for="FlightsQuery.MaxPrice" type="range" class="form-range" min="0" max="5000">
         </div>
 
         <div class="form-group col-md-3">
@@ -90,94 +90,111 @@
 </form>
 
 
-@if (!Model.QueryModel.Flights.Any())
+@if (!Model.FlightsQuery.Flights.Any())
 {
-    <h2 class="text-center">No Flights found by the given criteria!</h2>
-}
+    @if (!Model.CheapestFlight.Any())
+    {
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome to the Lime family!</h1>
+            <p class="lead">There are no flight options currently. Please check again later.</p>
+            <hr class="my-4">
+            <p class="lead">
+                <a asp-controller="Flights" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add Flight</a>
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="row flight-form">
+            @for (int i = 0; i < Model.CheapestFlight.Count; i++)
+            {
+                var flight = Model.CheapestFlight[i];
 
-<partial name="_FlightsPartial" model="@Model.QueryModel.Flights" />
-
-
-
-@if (!Model.CheapestFlight.Any())
-{
-    <div class="jumbotron">
-        <h1 class="display-4">Welcome to the Lime family!</h1>
-        <p class="lead">There are no flight options currently. Please check again later.</p>
-        <hr class="my-4">
-        <p class="lead">
-            <a asp-controller="Flights" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add Flight</a>
-        </p>
-    </div>
+                <div class="col-md-4  flight-promo">
+                    <div class="card mb-3 card-width">
+                        <div class="img-wrapper">
+                            <img class="card-img" src="@flight.ImageUrl" alt="@flight.EndLocation @flight.Price">
+                        </div>
+                        <div class="card-img-overlay">
+                            <h5 class="card-title text-left">@flight.EndLocation</h5>
+                            <p class="card-text text-white font-weight-bold">From @flight.StartLocation starting BGN @flight.Price</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
 }
 else
 {
-    <div class="row flight-form">
-        @for (int i = 0; i < Model.CheapestFlight.Count; i++)
-        {
-            var flight = Model.CheapestFlight[i];
+    <partial name="_FlightsPartial" model="@Model.FlightsQuery.Flights" />
 
-            <div class="col-md-4  flight-promo">
-                <div class="card mb-3 card-width">
-                    <div class="img-wrapper">
-                        <img class="card-img" src="@flight.ImageUrl" alt="@flight.EndLocation @flight.Price">
-                    </div>
-                    <div class="card-img-overlay">
-                        <h5 class="card-title text-left">@flight.EndLocation</h5>
-                        <p class="card-text text-white font-weight-bold">From @flight.StartLocation starting BGN @flight.Price</p>
-                    </div>
-                </div>
+
+    @if (Model.FlightsQuery.TripType == "2")
+    {
+        @if (!Model.FlightsQuery.ReturnFlights.Any())
+        {
+            <div class="text-center">
+                <p class="lead">There are no return flight options currently for the selected dates. Please check again later.</p>
             </div>
         }
-    </div>
-}
+        else
+        {
+            <partial name="_FlightsPartial" model="@Model.FlightsQuery.ReturnFlights" />
+        }
+    }
 
 
-@{
-    var previousPage = Model.QueryModel.CurrentPage - 1;
+
+
+    var previousPage = Model.FlightsQuery.CurrentPage - 1;
     if (previousPage < 1)
     {
         previousPage = 1;
     }
 
-    var maxPage = Math.Ceiling((double)Model.QueryModel.TotalFlights / AllFlightsQueryModel.FlightsPerPage);
-}
+    var maxPage = Math.Ceiling((double)Model.FlightsQuery.TotalFlights / AllFlightsQueryModel.FlightsPerPage);
 
 
-<div class="row mb-5">
-    <div class="col-md-6">
-        <a class="btn btn-primary @(Model.QueryModel.CurrentPage == 1 ? "disabled" : string.Empty)"
+
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <a class="btn btn-primary @(Model.FlightsQuery.CurrentPage == 1 ? "disabled" : string.Empty)"
            asp-controller="Flights"
            asp-action="All"
            asp-route-currentPage="@previousPage"
-           asp-route-startLocation="@Model.QueryModel.StartLocation"
-           asp-route-endLocation="@Model.QueryModel.EndLocation"
-           asp-route-passangers="@Model.QueryModel.Passangers"
-           asp-route-flightDate="@Model.QueryModel.FlightDate"
-           asp-route-maxTransfers="@Model.QueryModel.MaxTransfers"
-           asp-route-maxPrice="@Model.QueryModel.MaxPrice"
-           asp-route-sorting="@((int)Model.QueryModel.Sorting)"><<</a>
-    </div>
+           asp-route-startLocation="@Model.FlightsQuery.StartLocation"
+           asp-route-endLocation="@Model.FlightsQuery.EndLocation"
+           asp-route-passangers="@Model.FlightsQuery.Passangers"
+           asp-route-flightDate="@Model.FlightsQuery.FlightDate"
+           asp-route-maxTransfers="@Model.FlightsQuery.MaxTransfers"
+           asp-route-maxPrice="@Model.FlightsQuery.MaxPrice"
+           asp-route-sorting="@((int)Model.FlightsQuery.Sorting)">@Html.Raw("<<")</a>
+        </div>
 
-    @{
-        var shouldButtonBeDisabled = Model.QueryModel.CurrentPage == maxPage ||
-        !Model.QueryModel.Flights.Any();
-    }
+        @{
+            var shouldButtonBeDisabled = Model.FlightsQuery.CurrentPage == maxPage ||
+            !Model.FlightsQuery.Flights.Any();
+        }
 
-    <div class="col-md-6">
-        <a class="btn btn-primary float-sm-right @(shouldButtonBeDisabled ? "disabled" : string.Empty)" style="margin-top: 10px"
+        <div class="col-md-6">
+            <a class="btn btn-primary float-sm-right @(shouldButtonBeDisabled ? "disabled" : string.Empty)" style="margin-top: 10px"
            asp-controller="Flights"
            asp-action="All"
-           asp-route-currentPage="@(Model.QueryModel.CurrentPage + 1)"
-           asp-route-startLocation="@Model.QueryModel.StartLocation"
-           asp-route-endLocation="@Model.QueryModel.EndLocation"
-           asp-route-passangers="@Model.QueryModel.Passangers"
-           asp-route-flightDate="@Model.QueryModel.FlightDate"
-           asp-route-maxTransfers="@Model.QueryModel.MaxTransfers"
-           asp-route-maxPrice="@Model.QueryModel.MaxPrice"
-           asp-route-sorting="@((int)Model.QueryModel.Sorting)">>></a>
+           asp-route-currentPage="@(Model.FlightsQuery.CurrentPage + 1)"
+           asp-route-startLocation="@Model.FlightsQuery.StartLocation"
+           asp-route-endLocation="@Model.FlightsQuery.EndLocation"
+           asp-route-passangers="@Model.FlightsQuery.Passangers"
+           asp-route-flightDate="@Model.FlightsQuery.FlightDate"
+           asp-route-maxTransfers="@Model.FlightsQuery.MaxTransfers"
+           asp-route-maxPrice="@Model.FlightsQuery.MaxPrice"
+           asp-route-sorting="@((int)Model.FlightsQuery.Sorting)">>></a>
+        </div>
     </div>
-</div>
+
+
+
+}
 
 
 

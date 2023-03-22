@@ -8,10 +8,6 @@
     public class AllFlightsQueryModel
     {
         public const int FlightsPerPage = 5;
-        //public const int MinimumAmountofTransfers = 0;
-        //public const int MaximumAmountofTransfers = 2;
-        //public const int MinimumPrice = 0;
-        //public const int MaximumPrice = 5000;
 
         [Display(Name = "Trip")]
         public string TripType { get; init; }
@@ -43,5 +39,8 @@
         public IEnumerable<FlightTypeServiceModel> TripTypes { get; set; }
 
         public IEnumerable<FlightServiceModel> Flights { get; set; }
+
+        public IEnumerable<FlightServiceModel> ReturnFlights { get; set; }
+
     }
 }

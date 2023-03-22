@@ -11,11 +11,6 @@ namespace LimeAirlinesSystem.Controllers
 }
 
 
-// NEED TO Add Filters to the home menu - they are comments
-
-
-// NEED TO ADD FUNCTIONALITY  FOR DIFFERENT TRIP TYPES in Home View
-// (change the view to show both depart and arrive trips)
 
 
 // NEED TO ADD FUNCTIONALITY FOR PASSANGERS TAKING SEATS

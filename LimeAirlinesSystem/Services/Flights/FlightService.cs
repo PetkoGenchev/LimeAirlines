@@ -16,6 +16,7 @@
         private readonly AirlineDbContext data;
         private readonly IConfigurationProvider mapper;
 
+
         public FlightService(AirlineDbContext data, IMapper mapper)
         {
             this.data = data;
@@ -24,6 +25,28 @@
 
 
         public FlightQueryServiceModel All(
+            int currentPage = 1,
+            int flightsPerPage = int.MaxValue,
+            bool publicOnly = true)
+        {
+            var flightQuery = this.data.Flights;
+
+            var totalFlights = flightQuery.Count();
+
+            var flights = GetFlights(flightQuery
+                .Skip((currentPage - 1) * flightsPerPage)
+                .Take(flightsPerPage));
+
+            return new FlightQueryServiceModel
+            {
+                CurrentPage = currentPage,
+                TotalFlights = totalFlights,
+                FlightsPerPage = flightsPerPage,
+                Flights = flights
+            };
+        }
+
+            public FlightQueryServiceModel All(
             DateTime flightDate,
             string startLocation = null,
             string endLocation = null,
@@ -37,10 +60,14 @@
             bool publicOnly = true)
         {
 
-            if (tripType != "Round Trip")
+            foreach (var flight in this.data.Flights)
             {
-                // ADD HERE FUNCTIONALITITES FOR ONE-WAY AND ROUND TRIPS
+                if (flight.FlightDate < DateTime.UtcNow)
+                {
+                    ChangeVisibility(flight.Id);
+                }
             }
+
 
             var flightQuery = this.data.Flights
                 .Where(f => !publicOnly || f.IsPublic);
@@ -52,13 +79,13 @@
 
             if (!string.IsNullOrEmpty(endLocation))
             {
-                flightQuery = flightQuery.Where(f => f.StartLocation == endLocation);
+                flightQuery = flightQuery.Where(f => f.EndLocation == endLocation);
             }
 
             flightQuery = flightQuery.Where(f => (f.ReservedSeats + passangers) <= f.Plane.NumberOfSeats);
 
 
-            flightQuery = flightQuery.Where(f => f.FlightDate == flightDate);
+            flightQuery = flightQuery.Where(f => f.FlightDate.Date == flightDate.Date);
 
 
             if (maxTransfers != int.MaxValue)
@@ -88,13 +115,57 @@
                 .Skip((currentPage - 1) * flightsPerPage)
                 .Take(flightsPerPage));
 
-            return new FlightQueryServiceModel
+
+            var returnModel = new FlightQueryServiceModel
             {
                 CurrentPage = currentPage,
                 TotalFlights = totalFlights,
                 FlightsPerPage = flightsPerPage,
                 Flights = flights
             };
+
+
+
+            if (tripType == "2")
+            {
+                var returnFlightQuery = this.data.Flights
+                    .Where(f => !publicOnly || f.IsPublic);
+
+                if (!string.IsNullOrEmpty(startLocation))
+                {
+                    returnFlightQuery = returnFlightQuery.Where(f => f.StartLocation == endLocation);
+                }
+
+                if (!string.IsNullOrEmpty(endLocation))
+                {
+                    returnFlightQuery = returnFlightQuery.Where(f => f.EndLocation == startLocation);
+                }
+
+                returnFlightQuery = returnFlightQuery.Where(f => (f.ReservedSeats + passangers) <= f.Plane.NumberOfSeats);
+
+
+                returnFlightQuery = returnFlightQuery.Where(f => f.FlightDate.Date >= flightDate.Date.AddDays(2) && f.FlightDate.Date <= flightDate.AddDays(10));
+
+
+                if (maxTransfers != int.MaxValue)
+                {
+                    returnFlightQuery = returnFlightQuery.Where(f => f.Transfer <= maxTransfers);
+                }
+
+
+                if (maxPrice != int.MaxValue)
+                {
+                    returnFlightQuery = returnFlightQuery.Where(f => f.Price <= maxPrice);
+                }
+
+                var returnFlights = GetFlights(returnFlightQuery
+                    .Skip((currentPage - 1) * flightsPerPage)
+                    .Take(flightsPerPage));
+
+                returnModel.ReturnFlights = returnFlights;
+            }
+
+            return returnModel;
         }
 
 

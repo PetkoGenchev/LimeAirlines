@@ -6,8 +6,8 @@
 
     public class HomeServiceModel
     {
-        public AllFlightsQueryModel QueryModel = new AllFlightsQueryModel();
+        public AllFlightsQueryModel FlightsQuery { get; set; } = new AllFlightsQueryModel();
 
-        public List<CheapestFlightServiceModel> CheapestFlight = new List<CheapestFlightServiceModel>();
+        public List<CheapestFlightServiceModel> CheapestFlight { get; set; }
     }
 }

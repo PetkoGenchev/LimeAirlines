@@ -98,6 +98,7 @@
                 new Flight{StartLocation = "Sofia", EndLocation = "Phuket", FlightDate = new DateTime(2023,04,12), FlightDuration = new TimeSpan(10,30,0), Transfer = 1, Price = 1900, ImageUrl = "https://touringhighlights.com/wp-content/uploads/2020/09/Phang-Nga-Bay-Phuket-Thailand.jpg", IsPublic = true, PlaneId = 11},
                 new Flight{StartLocation = "Sofia", EndLocation = "Burgas", FlightDate = new DateTime(2023,03,25), FlightDuration = new TimeSpan(0,40,0), Transfer = 0, Price = 50, ImageUrl = "https://bulgaria.it/wp-content/uploads/2015/02/burgas-960x389.jpg", IsPublic = true, PlaneId = 3},
                 new Flight{StartLocation = "Burgas", EndLocation = "Sofia", FlightDate = new DateTime(2023,03,24), FlightDuration = new TimeSpan(1,0,0), Transfer = 0, Price = 80, ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Cathedral_Saint_Alexander_Nevsky_%2823997168458%29.jpg/800px-Cathedral_Saint_Alexander_Nevsky_%2823997168458%29.jpg", IsPublic = true, PlaneId = 4},
+                new Flight{StartLocation = "Burgas", EndLocation = "Sofia", FlightDate = new DateTime(2023,03,31), FlightDuration = new TimeSpan(1,10,0), Transfer = 0, Price = 120, ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Cathedral_Saint_Alexander_Nevsky_%2823997168458%29.jpg/800px-Cathedral_Saint_Alexander_Nevsky_%2823997168458%29.jpg", IsPublic = true, PlaneId = 3},
             });
             }
 

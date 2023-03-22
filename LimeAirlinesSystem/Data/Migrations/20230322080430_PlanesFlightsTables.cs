@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LimeAirlinesSystem.Data.Migrations
 {
-    public partial class FlightsandPlanesTables : Migration
+    public partial class PlanesFlightsTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
