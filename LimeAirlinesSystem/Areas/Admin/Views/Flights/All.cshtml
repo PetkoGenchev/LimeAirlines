@@ -16,7 +16,7 @@
             <th scope="col">FlightDuration</th>
             <th scope="col">Transfer</th>
             <th scope="col">Price</th>
-            <th scope="col">IsPublic ? "Yes" : "No")</th>
+            <th scope="col">Is Public?</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -33,7 +33,6 @@
                 <td scope="col">@flight.Price</td>
                 <td scope="col">@(flight.IsPublic ? "Yes" : "No")</td>
                 <td scope="col">
-                    <a asp-area="Admin" asp-controller="Flights" asp-action="Delete" asp-route-id="@flight.Id" class="btn btn-danger float-right ml-3">Delete</a>
                     <a asp-area="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@flight.Id" class="btn btn-warning float-right ml-3">Edit</a>
                     <a asp-area="Admin" asp-controller="Flights" asp-action="ChangeVisibility" asp-route-id="@flight.Id" class="btn btn-info float-right ml-3">@(flight.IsPublic ? "Hide" : "Show")</a>
                 </td>

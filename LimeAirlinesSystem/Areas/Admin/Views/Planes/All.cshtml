@@ -15,6 +15,7 @@
             <th scope="col">NumberOfSeats</th>
             <th scope="col">Year</th>
             <th scope="col">Category</th>
+            <th scope="col">IsPublic</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -28,9 +29,11 @@
                 <td scope="col">@plane.NumberOfSeats</td>
                 <td scope="col">@plane.Year</td>
                 <td scope="col">@plane.CategoryName</td>
+                <td scope="col">@plane.IsPublic</td>
                 <td scope="col">
-                    <a asp-area="Admin" asp-controller="Planes" asp-action="Delete" asp-route-id="@plane.Id" class="btn btn-danger float-right ml-3">Delete</a>
                     <a asp-area="Admin" asp-controller="Planes" asp-action="Edit" asp-route-id="@plane.Id" class="btn btn-warning float-right ml-3">Edit</a>
+                    <a asp-area="Admin" asp-controller="Planes" asp-action="ChangeVisibility" asp-route-id="@plane.Id" class="btn btn-info float-right ml-3">@(plane.IsPublic ? "Hide" : "Show")</a>
+
                 </td>
             </tr>
         }

@@ -23,7 +23,7 @@
         public IActionResult All()
         {
             var planes = this.planes
-                .All()
+                .All(publicOnly: false)
                 .Planes;
 
             return View(planes);
@@ -118,6 +118,14 @@
             {
                 return BadRequest();
             }
+
+            return RedirectToAction(nameof(All));
+        }
+
+        [Authorize]
+        public IActionResult ChangeVisibility(int id)
+        {
+            this.planes.ChangeVisibility(id);
 
             return RedirectToAction(nameof(All));
         }

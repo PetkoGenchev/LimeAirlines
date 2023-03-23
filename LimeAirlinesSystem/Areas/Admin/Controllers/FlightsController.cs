@@ -5,7 +5,9 @@
     using LimeAirlinesSystem.Models.Flights;
     using LimeAirlinesSystem.Services.Flights;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.CodeAnalysis.Differencing;
     using Microsoft.VisualBasic;
     using System;
 
@@ -23,7 +25,7 @@
         public IActionResult All()
         {
             var flights = this.flights
-                .All(publicOnly: false)
+                .All()
                 .Flights;
 
             return View(flights);
@@ -70,7 +72,7 @@
                 flight.ImageUrl,
                 flight.PlaneId);
 
-            return this.RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(All));
         }
 
 
@@ -129,7 +131,7 @@
                 return BadRequest();
             }
 
-            return this.RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(All));
 
         }
     }

@@ -192,7 +192,8 @@ namespace LimeAirlinesSystem.Data.Migrations
                     NumberOfSeats = table.Column<int>(type: "int", maxLength: 1000, nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    IsPublic = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

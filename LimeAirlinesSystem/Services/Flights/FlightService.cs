@@ -7,6 +7,8 @@
     using LimeAirlinesSystem.Models;
     using LimeAirlinesSystem.Services.Flights.Models;
     using LimeAirlinesSystem.Services.Planes.Models;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -26,8 +28,7 @@
 
         public FlightQueryServiceModel All(
             int currentPage = 1,
-            int flightsPerPage = int.MaxValue,
-            bool publicOnly = true)
+            int flightsPerPage = int.MaxValue)
         {
             var flightQuery = this.data.Flights;
 
@@ -64,10 +65,9 @@
             {
                 if (flight.FlightDate < DateTime.UtcNow)
                 {
-                    ChangeVisibility(flight.Id);
+                    flight.IsPublic = false;
                 }
             }
-
 
             var flightQuery = this.data.Flights
                 .Where(f => !publicOnly || f.IsPublic);
@@ -225,6 +225,8 @@
             return true;
         }
 
+
+
         public IEnumerable<string> AllStartingLocations()
             => this.data
             .Flights
@@ -247,17 +249,34 @@
             .ProjectTo<FlightTypeServiceModel>(this.mapper)
             .ToList();
 
+        //public void ChangeVisibility(int flightId)
+        //{
+        //    var flight = this.data.Flights.Find(flightId);
+
+        //    flight.IsPublic = !flight.IsPublic;
+
+        //    this.data.SaveChanges();
+        //}
+
         public void ChangeVisibility(int flightId)
         {
-            var flight = this.data.Flights.Find(flightId);
+            var flight = this.data.Flights
+                .Where(f => f.Id == flightId)
+                .FirstOrDefault();
 
             flight.IsPublic = !flight.IsPublic;
+
+            this.data.SaveChanges();
         }
+
+
+
+
 
         public IEnumerable<CheapestFlightServiceModel> Cheapest()
             => this.data
             .Flights
-            .Where(f => f.IsPublic)
+            .Where(f => f.IsPublic && f.FlightDate >= DateTime.UtcNow)
             .OrderBy(p => p.Price)
             .ProjectTo<CheapestFlightServiceModel>(this.mapper)
             .Take(4)

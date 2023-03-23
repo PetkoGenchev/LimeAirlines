@@ -5,12 +5,12 @@
     {
         <div class="col-md-4 div-planes-partial">
             <div class="card mb-3 planes-partial">
-                <h1 class="card-title text-center"> @flight.StartLocation @flight.EndLocation  @flight.FlightDate</h1>
+                <h1 class="card-title text-center"> @flight.StartLocation @flight.EndLocation  @flight.FlightDate  @flight.IsPublic</h1>
                 <div class="card-body text-center">
                     @if (User.IsAdmin())
                     {
                         <a asp-area ="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@flight.Id" class="btn btn-warning">Edit</a>
-                        <a asp-area="Admin" asp-controller="Flights" asp-action="Delete" asp-route-id="@flight.Id" class="btn btn-danger">Delete</a>
+                        <a asp-area="Admin" asp-controller="Flights" asp-action="ChangeVisibility" asp-route-id="@flight.Id" class="btn btn-info float-right ml-3">@(flight.IsPublic ? "Hide" : "Show")</a>
                     }
                 </div>
             </div>

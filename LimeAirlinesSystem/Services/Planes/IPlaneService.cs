@@ -11,7 +11,9 @@
 
         PlaneQueryServiceModel All(
             int currentPage = 1,
-            int planesPerPage = int.MaxValue);
+            int planesPerPage = int.MaxValue,
+            bool publicOnly = true
+            );
 
 
 
@@ -33,6 +35,8 @@
             int year,
             int categoryId
             );
+
+        void ChangeVisibility(int planeId);
 
         IEnumerable<PlaneCategoryServiceModel> AllCategories();
 

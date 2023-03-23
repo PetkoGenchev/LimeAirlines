@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimeAirlinesSystem.Data.Migrations
 {
     [DbContext(typeof(AirlineDbContext))]
-    [Migration("20230322080430_PlanesFlightsTables")]
+    [Migration("20230323124550_PlanesFlightsTables")]
     partial class PlanesFlightsTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -182,6 +182,9 @@ namespace LimeAirlinesSystem.Data.Migrations
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsPublic")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Model")
                         .IsRequired()

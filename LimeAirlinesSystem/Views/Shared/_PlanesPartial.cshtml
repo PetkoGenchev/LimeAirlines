@@ -5,13 +5,13 @@
     {
         <div class="col-md-4 div-planes-partial">
             <div class="card mb-3 planes-partial">
-                <img class="card-img-top img-planes-partial" src="@plane.ImageUrl" alt="@plane.Brand @plane.Model - @plane.Year (@plane.CategoryName)">
+                <img class="card-img-top img-planes-partial" src="@plane.ImageUrl" alt="@plane.Brand @plane.Model - @plane.Year (@plane.IsPublic @plane.CategoryName)">
                 <div class="card-body text-center">
                     <h5 class="card-title text-center">@plane.Year  @plane.Brand @plane.Model (@plane.CategoryName)</h5>
                     @if (User.IsAdmin())
                     {
                         <a asp-area="Admin" asp-controller="Planes" asp-action="Edit" asp-route-id="@plane.Id" class="btn btn-warning">Edit</a>
-                        <a asp-area="Admin" asp-controller="Planes" asp-action="Delete" asp-route-id="@plane.Id" class="btn btn-danger">Delete</a>
+                        <a asp-area="Admin" asp-controller="Planes" asp-action="ChangeVisibility" asp-route-id="@plane.Id" class="btn btn-info float-right ml-3">@(plane.IsPublic ? "Hide" : "Show")</a>
                     }
                 </div>
             </div>

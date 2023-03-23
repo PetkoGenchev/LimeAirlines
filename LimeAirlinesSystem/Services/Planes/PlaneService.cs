@@ -30,9 +30,11 @@
 
         public PlaneQueryServiceModel All(
             int currentPage = 1,
-            int planesPerPage = int.MaxValue)
+            int planesPerPage = int.MaxValue,
+            bool publicOnly = true)
         {
-            var planesQuery = this.data.Planes;
+            var planesQuery = this.data.Planes
+                .Where(c => !publicOnly || c.IsPublic);
 
             var totalPlanes = planesQuery.Count();
 
@@ -95,6 +97,27 @@
             this.data.SaveChanges();
 
             return true;
+        }
+
+
+
+        //public void ChangeVisibility(int planeId)
+        //{
+        //    var plane = this.data.Planes
+        //        .Where(p => p.Id == planeId)
+        //        .FirstOrDefault();
+
+        //    plane.IsPublic = !plane.IsPublic;
+        //}
+
+
+        public void ChangeVisibility(int planeId)
+        {
+            var plane = this.data.Planes.Find(planeId);
+
+            plane.IsPublic = !plane.IsPublic;
+
+            this.data.SaveChanges();
         }
 
 

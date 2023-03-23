@@ -24,8 +24,7 @@
 
         FlightQueryServiceModel All(
             int currentPage = 1,
-            int flightsPerPage = int.MaxValue,
-            bool publicOnly = true
+            int flightsPerPage = int.MaxValue
             );
 
         int Create(

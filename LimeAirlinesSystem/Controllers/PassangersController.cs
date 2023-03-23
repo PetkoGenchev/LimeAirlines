@@ -35,4 +35,5 @@ namespace LimeAirlinesSystem.Controllers
 
 
 
-
+//Da vidq planes dali izlizat samo visible na normalnite users i dali vijdat vsichki samo admins (ima flights all v 2-ta controllera na flights. 
+//    i za flights da vidq dali samo visible izlizat
