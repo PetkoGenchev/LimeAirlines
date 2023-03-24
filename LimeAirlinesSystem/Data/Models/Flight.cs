@@ -21,7 +21,6 @@
 
         [Required]
         [DataType(DataType.Date)]
-        //public string FlightDate { get; set; }
         public DateTime FlightDate { get; set; }
 
         public TimeSpan FlightDuration { get; set; }

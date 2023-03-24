@@ -8,6 +8,7 @@
     using LimeAirlinesSystem.Services.Flights.Models;
     using LimeAirlinesSystem.Services.Planes.Models;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Components.Forms;
     using Microsoft.AspNetCore.Mvc;
     using System;
     using System.Collections.Generic;
@@ -26,10 +27,12 @@
         }
 
 
+
         public FlightQueryServiceModel All(
             int currentPage = 1,
             int flightsPerPage = int.MaxValue)
         {
+
             var flightQuery = this.data.Flights;
 
             var totalFlights = flightQuery.Count();
@@ -46,6 +49,8 @@
                 Flights = flights
             };
         }
+
+
 
             public FlightQueryServiceModel All(
             DateTime flightDate,
@@ -66,11 +71,15 @@
                 if (flight.FlightDate < DateTime.UtcNow)
                 {
                     flight.IsPublic = false;
+
                 }
             }
+            this.data.SaveChanges();
+
 
             var flightQuery = this.data.Flights
                 .Where(f => !publicOnly || f.IsPublic);
+
 
             if (!string.IsNullOrEmpty(startLocation))
             {
@@ -107,13 +116,12 @@
                 FlightSorting.Transfers or _ => flightQuery.OrderBy(f => f.Transfer)
             };
 
-
-
             var totalFlights = flightQuery.Count();
 
             var flights = GetFlights(flightQuery
                 .Skip((currentPage - 1) * flightsPerPage)
                 .Take(flightsPerPage));
+
 
 
             var returnModel = new FlightQueryServiceModel
@@ -123,7 +131,6 @@
                 FlightsPerPage = flightsPerPage,
                 Flights = flights
             };
-
 
 
             if (tripType == "2")
@@ -175,6 +182,8 @@
             DateTime flightDate,
             int price,
             string imageUrl,
+            TimeSpan flightDuration,
+            int transfer,
             int planeId)
         {
             var flightData = new Flight
@@ -184,6 +193,8 @@
                 FlightDate = flightDate,
                 Price = price,
                 ImageUrl = imageUrl,
+                FlightDuration = flightDuration,
+                Transfer = transfer,
                 PlaneId = planeId,
                 IsPublic = true,
                 ReservedSeats = 0
@@ -202,7 +213,9 @@
             DateTime flightDate,
             int price,
             string imageUrl,
+            TimeSpan flightDuration,
             int planeId,
+            int transfer,
             bool isPublic)
         {
             var flightData = this.data.Flights.Find(flightId);
@@ -219,6 +232,8 @@
             flightData.FlightDate = flightDate;
             flightData.PlaneId = planeId;
             flightData.ImageUrl = imageUrl;
+            flightData.FlightDuration = flightDuration;
+            flightData.Transfer = transfer;
 
             this.data.SaveChanges();
 
@@ -249,28 +264,14 @@
             .ProjectTo<FlightTypeServiceModel>(this.mapper)
             .ToList();
 
-        //public void ChangeVisibility(int flightId)
-        //{
-        //    var flight = this.data.Flights.Find(flightId);
-
-        //    flight.IsPublic = !flight.IsPublic;
-
-        //    this.data.SaveChanges();
-        //}
-
         public void ChangeVisibility(int flightId)
         {
-            var flight = this.data.Flights
-                .Where(f => f.Id == flightId)
-                .FirstOrDefault();
+            var flight = this.data.Flights.Find(flightId);
 
             flight.IsPublic = !flight.IsPublic;
 
             this.data.SaveChanges();
         }
-
-
-
 
 
         public IEnumerable<CheapestFlightServiceModel> Cheapest()

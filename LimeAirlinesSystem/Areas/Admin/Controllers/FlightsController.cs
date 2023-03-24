@@ -70,6 +70,8 @@
                 flight.FlightDate,
                 flight.Price,
                 flight.ImageUrl,
+                flight.FlightDuration,
+                flight.Transfer,
                 flight.PlaneId);
 
             return RedirectToAction(nameof(All));
@@ -123,6 +125,8 @@
                 flight.FlightDate,
                 flight.Price,
                 flight.ImageUrl,
+                flight.FlightDuration,
+                flight.Transfer,
                 flight.PlaneId,
                 this.User.IsAdmin());
 

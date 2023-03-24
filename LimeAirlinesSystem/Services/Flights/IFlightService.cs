@@ -33,6 +33,8 @@
             DateTime flightDate,
             int price,
             string imageUrl,
+            TimeSpan flightDuration,
+            int transfer,
             int planeId);
 
         bool Edit(
@@ -42,6 +44,8 @@
             DateTime flightDate,
             int price,
             string imageUrl,
+            TimeSpan flightDuration,
+            int transfer,
             int planeId,
             bool isPublic);
 

@@ -99,18 +99,6 @@
             return true;
         }
 
-
-
-        //public void ChangeVisibility(int planeId)
-        //{
-        //    var plane = this.data.Planes
-        //        .Where(p => p.Id == planeId)
-        //        .FirstOrDefault();
-
-        //    plane.IsPublic = !plane.IsPublic;
-        //}
-
-
         public void ChangeVisibility(int planeId)
         {
             var plane = this.data.Planes.Find(planeId);
