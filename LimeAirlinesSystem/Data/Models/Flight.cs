@@ -23,12 +23,16 @@
         [DataType(DataType.Date)]
         public DateTime FlightDate { get; set; }
 
+        [Required]
         public TimeSpan FlightDuration { get; set; }
 
+        [Required]
         public int Transfer { get; set; }
 
-        [MaxLength(FlightPriceMinValue)]
+        [Required]
         public int Price { get; set; }
+
+        [Required]
         public int ReservedSeats { get; set; }
 
         [Required]

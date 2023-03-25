@@ -70,7 +70,6 @@ namespace LimeAirlinesSystem.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Price")
-                        .HasMaxLength(5)
                         .HasColumnType("int");
 
                     b.Property<int>("ReservedSeats")

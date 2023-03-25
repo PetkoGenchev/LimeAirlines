@@ -23,18 +23,18 @@
 
         [Required]
         [DataType(DataType.Date)]
-        [Display(Name = "Departure")]
-        public DateTime FlightDate { get; set; } = DateTime.UtcNow;
+        [Display(Name = "Flight Date")]
+        public DateTime FlightDate { get; init; } = DateTime.UtcNow;
 
-        [MaxLength(FlightPriceMinValue)]
-        [Display(Name = "Fare")]
-        public int Price { get; set; }
+        [Required]
+        [Range(FlightPriceMinValue, FlightPriceMaxValue)]
+        [Display(Name = "Price")]
+        public int Price { get; init; }
 
         [Required]
         [Url]
         [Display(Name = "Image URL")]
         public string ImageUrl { get; init; }
-
 
         [Required]
         [DataType(DataType.Time)]
@@ -42,7 +42,8 @@
         public TimeSpan FlightDuration { get; init; }
 
         [Required]
-        [Display(Name = "Transfers")]
+        [Range(TransferCountMinValue, TransferCountMaxValue)]
+        [Display(Name = "Number of Transfers")]
         public int Transfer { get; init; }
 
 

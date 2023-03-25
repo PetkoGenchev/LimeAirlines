@@ -23,14 +23,13 @@
         [Required]
         public string ImageUrl { get; set; }
 
+        [Required]
         public int Year { get; set; }
-
-
-        public IEnumerable<Flight> Flights = new List<Flight>();
-
         public int CategoryId { get; set; }
         public Category Category { get; init; }
         public bool IsPublic { get; set; }
+
+        public IEnumerable<Flight> Flights = new List<Flight>();
 
     }
 }

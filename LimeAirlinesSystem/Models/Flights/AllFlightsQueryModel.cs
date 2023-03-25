@@ -29,6 +29,7 @@
         public int MaxTransfers { get; init; }
 
         public int MaxPrice { get; init; }
+
         public FlightSorting Sorting { get; init; }
 
         public int Passangers { get; init; }

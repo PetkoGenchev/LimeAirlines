@@ -217,7 +217,7 @@ namespace LimeAirlinesSystem.Data.Migrations
                     FlightDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FlightDuration = table.Column<TimeSpan>(type: "time", nullable: false),
                     Transfer = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<int>(type: "int", maxLength: 5, nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
                     ReservedSeats = table.Column<int>(type: "int", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsPublic = table.Column<bool>(type: "bit", nullable: false),

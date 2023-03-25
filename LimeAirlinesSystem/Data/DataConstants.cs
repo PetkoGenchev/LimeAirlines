@@ -27,6 +27,9 @@
             public const int FlightLocationMinLength = 2;
             public const int FlightLocationMaxLength = 50;
             public const int FlightPriceMinValue = 5;
+            public const int FlightPriceMaxValue = 10000;
+            public const int TransferCountMinValue = 0;
+            public const int TransferCountMaxValue = 2;
         }
 
 

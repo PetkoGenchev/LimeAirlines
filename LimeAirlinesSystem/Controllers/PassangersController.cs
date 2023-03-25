@@ -7,6 +7,7 @@ namespace LimeAirlinesSystem.Controllers
 
     public class PassangersController : Controller
     {
+
     }
 }
 
@@ -17,7 +18,7 @@ namespace LimeAirlinesSystem.Controllers
 // (Reserve button on a flight, add flight to passanger flight list,
 // 
 
-//     AND CHANGE VISIBLITY FOR FULL FLIGHTS (have avaiable seats change with reservations)
+//     AND CHANGE VISIBLITY FOR FULL FLIGHTS AFTER RESERVATION (have avaiable seats change with reservations)
 
 
 
@@ -32,8 +33,3 @@ namespace LimeAirlinesSystem.Controllers
 
 //Views - Passangers - Mine and _FlightsPartial  - both views not fixed with proper info in them ... to show mine and have buttons
 // (the buttons are - Cancel Flight, Check In, View Information for flight)
-
-
-
-//Da vidq planes dali izlizat samo visible na normalnite users i dali vijdat vsichki samo admins (ima flights all v 2-ta controllera na flights. 
-//    i za flights da vidq dali samo visible izlizat
