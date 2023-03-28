@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace LimeAirlinesSystem.Services.Flights.Models
+﻿namespace LimeAirlinesSystem.Services.Flights.Models
 {
+    using System;
     public class FlightServiceModel : IFlightModel
     {
         public int Id { get; init; }
@@ -10,7 +9,7 @@ namespace LimeAirlinesSystem.Services.Flights.Models
 
         public string EndLocation { get; init; }
 
-        public string FlightDate { get; init; }
+        public DateTime FlightDate { get; init; }
 
         public string FlightDuration { get; init; }
 

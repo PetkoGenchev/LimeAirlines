@@ -234,6 +234,30 @@ namespace LimeAirlinesSystem.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "FlightPassanger",
+                columns: table => new
+                {
+                    FlightsId = table.Column<int>(type: "int", nullable: false),
+                    PassangersId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FlightPassanger", x => new { x.FlightsId, x.PassangersId });
+                    table.ForeignKey(
+                        name: "FK_FlightPassanger_AspNetUsers_PassangersId",
+                        column: x => x.PassangersId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FlightPassanger_Flights_FlightsId",
+                        column: x => x.FlightsId,
+                        principalTable: "Flights",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -274,6 +298,11 @@ namespace LimeAirlinesSystem.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_FlightPassanger_PassangersId",
+                table: "FlightPassanger",
+                column: "PassangersId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Flights_PlaneId",
                 table: "Flights",
                 column: "PlaneId");
@@ -302,7 +331,7 @@ namespace LimeAirlinesSystem.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Flights");
+                name: "FlightPassanger");
 
             migrationBuilder.DropTable(
                 name: "TripTypes");
@@ -312,6 +341,9 @@ namespace LimeAirlinesSystem.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Flights");
 
             migrationBuilder.DropTable(
                 name: "Planes");

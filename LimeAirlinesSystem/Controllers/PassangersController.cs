@@ -16,7 +16,7 @@ namespace LimeAirlinesSystem.Controllers
 
 // NEED TO ADD FUNCTIONALITY FOR PASSANGERS TAKING SEATS
 // (Reserve button on a flight, add flight to passanger flight list,
-// 
+//  
 
 //     AND CHANGE VISIBLITY FOR FULL FLIGHTS AFTER RESERVATION (have avaiable seats change with reservations)
 

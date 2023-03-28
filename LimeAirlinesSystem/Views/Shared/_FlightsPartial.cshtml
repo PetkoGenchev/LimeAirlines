@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FlightServiceModel>
+﻿@*@model IEnumerable<FlightServiceModel>*@
 
 <div class="row">
     @foreach (var flight in Model)
@@ -11,6 +11,10 @@
                     {
                         <a asp-area ="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@flight.Id" class="btn btn-warning">Edit</a>
                         <a asp-area="Admin" asp-controller="Flights" asp-action="ChangeVisibility" asp-route-id="@flight.Id" class="btn btn-info float-right ml-3">@(flight.IsPublic ? "Hide" : "Show")</a>
+                    }
+                    else
+                    {
+                        <a asp-area="" asp-controller="Flights" asp-action="Book" asp-route-id="@flight.Id" asp-route-passangers="@flight.Passangers" class="btn btn-warning">Edit</a>
                     }
                 </div>
             </div>

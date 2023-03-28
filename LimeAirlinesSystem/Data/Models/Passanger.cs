@@ -11,7 +11,6 @@
         [MaxLength(PassangerMaxLength)]
         public string FullName { get; set; }
 
-
-        public IEnumerable<Flight> Flights = new List<Flight>();
+        public IEnumerable<Flight> Flights { get; init; } = new List<Flight>();
     }
 }

@@ -63,7 +63,8 @@
             FlightSorting sorting = FlightSorting.Duration,
             int currentPage = 1,
             int flightsPerPage = int.MaxValue,
-            bool publicOnly = true)
+            bool publicOnly = true
+/*            int bookingSeats = 1*/)
         {
 
             foreach (var flight in this.data.Flights)
@@ -126,6 +127,7 @@
 
             var returnModel = new FlightQueryServiceModel
             {
+                //BookingSeats = bookingSeats,
                 CurrentPage = currentPage,
                 TotalFlights = totalFlights,
                 FlightsPerPage = flightsPerPage,
@@ -299,10 +301,22 @@
             .ProjectTo<PlaneServiceModel>(this.mapper)
             .ToList();
 
+
+        public void Book(int flightId)
+        {
+
+        }
+
+
+        //public void CancelBooking(int flightId)
+        //{
+        //}
+
         public bool PlaneExists(int planeId)
             => this.data
             .Planes
             .Any(p => p.Id == planeId);
+
 
         public FlightServiceModel Details(int flightId)
             => this.data

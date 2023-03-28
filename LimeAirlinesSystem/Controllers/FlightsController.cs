@@ -21,15 +21,28 @@
 
 
         [Authorize]
-        public IActionResult MyFlights()
+        public IActionResult UserFlights()
         {
             var myFlights = this.flights.UserFlights(this.User.Id());
 
             return View(myFlights);
         }
 
+        [Authorize]
+        public IActionResult Book(int flightId)
+        {
+            this.flights.Book(flightId);
+
+            return RedirectToAction(nameof(UserFlights));
+        }
 
 
+        //[Authorize]
+        //public IActionResult Cancel(int flightId)
+        //{
+        //    this.flights.CancelBooking(id);
 
+        //    return RedirectToAction(nameof(MyFlights));
+        //}
     }
 }

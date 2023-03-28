@@ -28,8 +28,7 @@
         public int CategoryId { get; set; }
         public Category Category { get; init; }
         public bool IsPublic { get; set; }
-
-        public IEnumerable<Flight> Flights = new List<Flight>();
+        public IEnumerable<Flight> Flights { get; init; } = new List<Flight>();
 
     }
 }

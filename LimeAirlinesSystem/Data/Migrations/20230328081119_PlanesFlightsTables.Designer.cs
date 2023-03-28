@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimeAirlinesSystem.Data.Migrations
 {
     [DbContext(typeof(AirlineDbContext))]
-    [Migration("20230325204122_PlanesFlightsTables")]
+    [Migration("20230328081119_PlanesFlightsTables")]
     partial class PlanesFlightsTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,21 @@ namespace LimeAirlinesSystem.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("FlightPassanger", b =>
+                {
+                    b.Property<int>("FlightsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PassangersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("FlightsId", "PassangersId");
+
+                    b.HasIndex("PassangersId");
+
+                    b.ToTable("FlightPassanger");
+                });
 
             modelBuilder.Entity("LimeAirlinesSystem.Data.Models.Category", b =>
                 {
@@ -356,6 +371,21 @@ namespace LimeAirlinesSystem.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("FlightPassanger", b =>
+                {
+                    b.HasOne("LimeAirlinesSystem.Data.Models.Flight", null)
+                        .WithMany()
+                        .HasForeignKey("FlightsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LimeAirlinesSystem.Data.Models.Passanger", null)
+                        .WithMany()
+                        .HasForeignKey("PassangersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("LimeAirlinesSystem.Data.Models.Flight", b =>

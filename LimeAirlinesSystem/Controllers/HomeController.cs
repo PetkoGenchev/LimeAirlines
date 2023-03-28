@@ -39,10 +39,11 @@
                 query.FlightsQuery.MaxPrice,
                 query.FlightsQuery.Sorting,
                 query.FlightsQuery.CurrentPage,
-                AllFlightsQueryModel.FlightsPerPage);
+                AllFlightsQueryModel.FlightsPerPage
+                );
 
 
-
+            
 
             var flightStartLocations = this.flights.AllStartingLocations();
             var flightEndLocations = this.flights.AllFinalLocations();
