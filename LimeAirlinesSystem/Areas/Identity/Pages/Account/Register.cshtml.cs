@@ -18,7 +18,7 @@
     using Microsoft.Extensions.Logging;
 
 
-    using static Data.DataConstants.Passanger;
+    using static Data.DataConstants.PassangerConstants;
 
     [AllowAnonymous]
     public class RegisterModel : PageModel

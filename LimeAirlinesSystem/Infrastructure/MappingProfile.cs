@@ -25,6 +25,12 @@
 
             this.CreateMap<Flight, FlightServiceModel>();
 
+            //this.CreateMap<Flight, FlightBookingServiceModel>();
+
+            //this.CreateMap<FlightServiceModel, FlightBookingServiceModel>();
+
+            //this.CreateMap<FlightBooking, FlightBookingServiceModel>();
+
             this.CreateMap<TripType, FlightTypeServiceModel>();
         }
     }

@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.Passanger;
+    using static DataConstants.PassangerConstants;
     public class Passanger : IdentityUser
     {
         [Required]
@@ -14,3 +14,4 @@
         public IEnumerable<Flight> Flights { get; init; } = new List<Flight>();
     }
 }
+   

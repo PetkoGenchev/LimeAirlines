@@ -97,10 +97,14 @@
         <div class="jumbotron">
             <h1 class="display-4">Welcome to the Lime family!</h1>
             <p class="lead">There are no flight options currently. Please check again later.</p>
-            <hr class="my-4">
-            <p class="lead">
-                <a asp-controller="Flights" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add Flight</a>
-            </p>
+
+            @if (User.IsAdmin())
+            {
+                <hr class="my-4">
+                <p class="lead">
+                    <a asp-controller="Flights" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add Flight</a>
+                </p>
+            }
         </div>
     }
     else
@@ -127,7 +131,7 @@
 }
 else
 {
-    <partial name="_FlightsPartial" model="@Model.FlightsQuery.Flights" />
+        <partial name="_FlightsPartial" model="@Model.FlightsQuery" />
 
 
     @if (Model.FlightsQuery.TripType == "2")

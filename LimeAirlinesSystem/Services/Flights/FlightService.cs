@@ -14,6 +14,8 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using static LimeAirlinesSystem.Data.DataConstants;
+
     public class FlightService : IFlightService
     {
         private readonly AirlineDbContext data;
@@ -51,20 +53,18 @@
         }
 
 
-
-            public FlightQueryServiceModel All(
-            DateTime flightDate,
-            string startLocation = null,
-            string endLocation = null,
-            int passangers = 1,
-            string tripType = null,
-            int maxTransfers = int.MaxValue,
-            int maxPrice = int.MaxValue,
-            FlightSorting sorting = FlightSorting.Duration,
-            int currentPage = 1,
-            int flightsPerPage = int.MaxValue,
-            bool publicOnly = true
-/*            int bookingSeats = 1*/)
+        public FlightQueryServiceModel All(
+        DateTime flightDate,
+        string startLocation = null,
+        string endLocation = null,
+        int passangers = 1,
+        string tripType = null,
+        int maxTransfers = int.MaxValue,
+        int maxPrice = int.MaxValue,
+        FlightSorting sorting = FlightSorting.Duration,
+        int currentPage = 1,
+        int flightsPerPage = int.MaxValue,
+        bool publicOnly = true)
         {
 
             foreach (var flight in this.data.Flights)
@@ -127,7 +127,7 @@
 
             var returnModel = new FlightQueryServiceModel
             {
-                //BookingSeats = bookingSeats,
+                BookingSeats = passangers,
                 CurrentPage = currentPage,
                 TotalFlights = totalFlights,
                 FlightsPerPage = flightsPerPage,
@@ -243,7 +243,6 @@
         }
 
 
-
         public IEnumerable<string> AllStartingLocations()
             => this.data
             .Flights
@@ -275,7 +274,6 @@
             this.data.SaveChanges();
         }
 
-
         public IEnumerable<CheapestFlightServiceModel> Cheapest()
             => this.data
             .Flights
@@ -285,6 +283,13 @@
             .Take(4)
             .ToList();
 
+        public IEnumerable<PlaneServiceModel> AllPlanes()
+            => this.data
+            .Planes
+            .ProjectTo<PlaneServiceModel>(this.mapper)
+            .ToList();
+
+
         private IEnumerable<FlightServiceModel> GetFlights(IQueryable<Flight> flightQuery)
             => flightQuery
                 .ProjectTo<FlightServiceModel>(this.mapper)
@@ -293,24 +298,48 @@
         public IEnumerable<FlightServiceModel> UserFlights(string userId)
             => GetFlights(this.data
                 .Flights
-                .Where(f => f.Passangers.Any(c => c.Id == userId)));
-
-        public IEnumerable<PlaneServiceModel> AllPlanes()
-            => this.data
-            .Planes
-            .ProjectTo<PlaneServiceModel>(this.mapper)
-            .ToList();
+                .Where(f => f.FlightBookings.Select(x => x.UserId == userId).Any()));
 
 
-        public void Book(int flightId)
+
+        //private IEnumerable<FlightBookingServiceModel> GetBookings(IQueryable<Flight> flightQuery)
+        //    => flightQuery
+        //        .ProjectTo<FlightBookingServiceModel>(this.mapper)
+        //        .ToList();
+
+        //public IEnumerable<FlightBookingServiceModel> UserBookings(string userId)
+        //     => GetBookings(this.data
+        //         .Flights
+        //         .Where(f => f.FlightBookings.Select(x => x.UserId == userId).Any()));
+
+
+        public void Book(int flightId, int countOfSeats, string userId)
         {
+            var flight = this.data.Flights.Find(flightId);
 
+            var booking = new FlightBooking
+            {
+                FlightId = flightId,
+                CountOfSeats = countOfSeats,
+                UserId = userId
+            };
+
+            flight.ReservedSeats += countOfSeats;
+
+            this.data.FlightBookings.Add(booking);
+            this.data.SaveChanges();
         }
 
+        public void CancelBooking(int bookingId)
+        {
+            var booking = this.data.FlightBookings.Find(bookingId);
 
-        //public void CancelBooking(int flightId)
-        //{
-        //}
+            booking.Flight.ReservedSeats -= booking.CountOfSeats;
+
+            booking.IsCancelled = true;
+
+            this.data.SaveChanges();
+        }
 
         public bool PlaneExists(int planeId)
             => this.data

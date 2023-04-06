@@ -29,12 +29,27 @@
         }
 
         [Authorize]
-        public IActionResult Book(int flightId)
+        public IActionResult Book(int id, int countOfSeats)
         {
-            this.flights.Book(flightId);
+            this.flights.Book(id, countOfSeats, this.User.Id());
 
             return RedirectToAction(nameof(UserFlights));
+            //return RedirectToAction("Index","Home", new { area = "" });
+
         }
+
+
+
+
+
+        //[Authorize]
+        //public IActionResult UserBookings()
+        //{
+        //    var myFlights = this.flights.UserBookings(this.User.Id());
+
+        //    return View(myFlights);
+        //}
+
 
 
         //[Authorize]

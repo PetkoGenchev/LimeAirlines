@@ -2,7 +2,7 @@
 {
     public class DataConstants
     {
-        public class Passanger
+        public class PassangerConstants
         {
             public const int FullNameMinLength = 2;
             public const int FullNameMaxLength = 50;
@@ -11,7 +11,7 @@
             public const int PassangerMaxLength = 20;
         }
 
-        public class Plane
+        public class PlaneConstants
         {
             public const int PlaneBrandAndModelMinLength = 1;
             public const int PlaneBrandAndModelMaxLength = 30;
@@ -22,7 +22,7 @@
         }
 
 
-        public class Flight
+        public class FlightConstants
         {
             public const int FlightLocationMinLength = 2;
             public const int FlightLocationMaxLength = 50;
@@ -33,7 +33,7 @@
         }
 
 
-        public class Category
+        public class CategoryConstants
         {
             public const int CategoryMaxLength = 20;
         }

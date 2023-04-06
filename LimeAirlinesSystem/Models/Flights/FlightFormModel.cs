@@ -6,7 +6,7 @@
     using LimeAirlinesSystem.Services.Flights.Models;
     using LimeAirlinesSystem.Services.Planes.Models;
 
-    using static Data.DataConstants.Flight;
+    using static Data.DataConstants.FlightConstants;
 
 
     public class FlightFormModel : IFlightModel

@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using LimeAirlinesSystem.Services.Planes.Models;
 
-    using static Data.DataConstants.Plane;
+    using static Data.DataConstants.PlaneConstants;
 
     public class PlaneFormModel
     {

@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.Plane;
+    using static DataConstants.PlaneConstants;
 
     public class Plane
     {

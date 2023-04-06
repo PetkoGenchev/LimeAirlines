@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using LimeAirlinesSystem.Areas.Admin;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace LimeAirlinesSystem.Controllers
 {
@@ -33,3 +35,8 @@ namespace LimeAirlinesSystem.Controllers
 
 //Views - Passangers - Mine and _FlightsPartial  - both views not fixed with proper info in them ... to show mine and have buttons
 // (the buttons are - Cancel Flight, Check In, View Information for flight)
+
+
+
+
+// ADMIN CAN HIDE UPCOMING FLIGHT AND IF PEOPLE HAVE RESERVATIONS ON IT, IT CANCELS ALL RESERVATIONS

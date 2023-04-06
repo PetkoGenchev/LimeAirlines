@@ -1,10 +1,11 @@
 ﻿namespace LimeAirlinesSystem.Data.Models
 {
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.Flight;
+    using static DataConstants.FlightConstants;
 
     public class Flight
     {
@@ -42,8 +43,7 @@
 
         public int PlaneId { get; set; }
         public Plane Plane { get; init; }
-
-        public IEnumerable<Passanger> Passangers { get; init; } = new List<Passanger>();
+        public IEnumerable<FlightBooking> FlightBookings { get; init; } = new List<FlightBooking>();
 
 
     }

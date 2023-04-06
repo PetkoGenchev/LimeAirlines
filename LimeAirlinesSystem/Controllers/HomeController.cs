@@ -28,7 +28,6 @@
 
         public IActionResult Index([FromQuery] HomeServiceModel query)
         {
-
             var queryResult = this.flights.All(
                 query.FlightsQuery.FlightDate,
                 query.FlightsQuery.StartLocation,

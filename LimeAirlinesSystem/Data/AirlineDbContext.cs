@@ -2,6 +2,7 @@
 {
     using LimeAirlinesSystem.Data.Models;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.Data.SqlClient;
     using Microsoft.EntityFrameworkCore;
     using System.Reflection.Emit;
 
@@ -18,6 +19,7 @@
         public DbSet<Category> Categories { get; init; }
         public DbSet<Passanger> Passangers { get; init; }
         public DbSet<TripType> TripTypes { get; init; }
+        public DbSet<FlightBooking> FlightBookings { get; init; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -27,6 +29,13 @@
                 .HasOne(p => p.Plane)
                 .WithMany(f => f.Flights)
                 .HasForeignKey(p => p.PlaneId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<FlightBooking>()
+                .HasOne(p => p.Flight)
+                .WithMany(f => f.FlightBookings)
+                .HasForeignKey(p => p.FlightId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder

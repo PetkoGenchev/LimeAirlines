@@ -1,7 +1,8 @@
-﻿@*@model IEnumerable<FlightServiceModel>*@
+﻿@model AllFlightsQueryModel
+
 
 <div class="row">
-    @foreach (var flight in Model)
+    @foreach (var flight in Model.Flights)
     {
         <div class="col-md-4 div-planes-partial">
             <div class="card mb-3 planes-partial">
@@ -9,12 +10,12 @@
                 <div class="card-body text-center">
                     @if (User.IsAdmin())
                     {
-                        <a asp-area ="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@flight.Id" class="btn btn-warning">Edit</a>
+                        <a asp-area="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@flight.Id" class="btn btn-warning">Edit</a>
                         <a asp-area="Admin" asp-controller="Flights" asp-action="ChangeVisibility" asp-route-id="@flight.Id" class="btn btn-info float-right ml-3">@(flight.IsPublic ? "Hide" : "Show")</a>
                     }
                     else
                     {
-                        <a asp-area="" asp-controller="Flights" asp-action="Book" asp-route-id="@flight.Id" asp-route-passangers="@flight.Passangers" class="btn btn-warning">Edit</a>
+                        <a asp-controller="Flights" asp-action="Book" asp-route-id="@flight.Id" asp-route-countOfSeats="@Model.Passangers" class="btn btn-warning">Book</a>
                     }
                 </div>
             </div>

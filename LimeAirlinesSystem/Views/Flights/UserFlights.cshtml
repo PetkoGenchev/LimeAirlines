@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<FlightServiceModel>
+@*@model IEnumerable<FlightBookingServiceModel>*@
 
 @{
     ViewBag.Title = "My Flights";
@@ -14,17 +15,18 @@
 <div class="row">
     <h2 class="display-4">Upcoming Flights</h2>
 
-     @foreach (var flight in Model.Where(x=> x.FlightDate >= DateTime.UtcNow))
+    @foreach (var flight in Model.Where(x => x.FlightDate >= DateTime.UtcNow @*&& x.IsCancelled == false*@))
     {
         <div class="col-md-4 div-flights-partial">
             <div class="card mb-3 flights-partial">
-                <h1 class="card-title text-center"> @flight.StartLocation @flight.EndLocation  @flight.FlightDate  @flight.IsPublic</h1>
+                <h1 class="card-title text-center"> @flight.StartLocation @flight.EndLocation  @flight.FlightDate  @flight.Price  @*@flight.CountOfSeats*@</h1>
                 <div class="card-body text-center">
-                    <a asp-area="" asp-controller="Flights" asp-action="Cancel" asp-route-id="@flight.Id" class="btn btn-warning">Cancel</a>
+@*                    <a asp-area="" asp-controller="Flights" asp-action="Cancel" asp-route-id="@flight.Id" class="btn btn-warning">Cancel</a>*@
+                    <a asp-area="" asp-controller="Flights" asp-action="Cancel" asp-route-BookingId="@flight.Id" class="btn btn-warning">Cancel</a>
                 </div>
             </div>
         </div>
-        }
+    }
 </div>
 
 
@@ -32,11 +34,11 @@
 <div class="row">
     <h2 class="display-4">Flight History</h2>
 
-    @foreach (var flight in Model.Where(x => x.FlightDate < DateTime.UtcNow))
+    @foreach (var flight in Model.Where(x => x.FlightDate < DateTime.UtcNow @*&& x.IsCancelled == false*@))
     {
         <div class="col-md-4 div-flights-partial">
             <div class="card mb-3 flights-partial">
-                <h1 class="card-title text-center"> @flight.StartLocation @flight.EndLocation  @flight.FlightDate  @flight.Price</h1>
+                <h1 class="card-title text-center"> @flight.StartLocation @flight.EndLocation  @flight.FlightDate  @flight.Price @*@flight.CountOfSeats*@</h1>
                 <div class="card-body text-center">
                     <a asp-area="" asp-controller="Flights" asp-action="Cancel" asp-route-id="@flight.Id" class="btn btn-warning">Cancel</a>
                 </div>
@@ -44,3 +46,16 @@
         </div>
     }
 </div>
+
+@*<div class="row">
+    <h2 class="display-4">Cancelled Flights</h2>
+
+    @foreach (var flight in Model.Where(x => x.IsCancelled == true))
+    {
+        <div class="col-md-4 div-flights-partial">
+            <div class="card mb-3 flights-partial">
+                <h1 class="card-title text-center"> @flight.StartLocation @flight.EndLocation  @flight.FlightDate  @flight.Price</h1>
+            </div>
+        </div>
+    }
+</div>*@

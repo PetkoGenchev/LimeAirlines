@@ -20,7 +20,6 @@
             int currentPage = 1,
             int flightsPerPage = int.MaxValue,
             bool publicOnly = true
-            //int bookingSeats = 1
             );
 
         FlightQueryServiceModel All(
@@ -58,9 +57,11 @@
         IEnumerable<PlaneServiceModel> AllPlanes();
         bool PlaneExists(int planeId);
         IEnumerable<FlightServiceModel> UserFlights(string userId);
-        FlightServiceModel Details(int flightId);
 
-        void Book(int flightId);
+        //IEnumerable<FlightBookingServiceModel> UserBookings(string userId);
+
+        FlightServiceModel Details(int flightId);
+        void Book(int flightId, int passangers, string userId);
 
         //void CancelBooking(int flightId);
 
