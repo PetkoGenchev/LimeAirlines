@@ -330,9 +330,9 @@
             this.data.SaveChanges();
         }
 
-        public void CancelBooking(int bookingId)
+        public void CancelBooking(string flightid)
         {
-            var booking = this.data.FlightBookings.Find(bookingId);
+            var booking = this.data.FlightBookings.Find(flightid);
 
             booking.Flight.ReservedSeats -= booking.CountOfSeats;
 

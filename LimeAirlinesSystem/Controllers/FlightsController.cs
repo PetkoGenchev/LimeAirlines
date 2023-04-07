@@ -38,7 +38,13 @@
 
         }
 
+        [Authorize]
+        public IActionResult Cancel(string id)
+        {
+            this.flights.CancelBooking(id);
 
+            return RedirectToAction(nameof(UserFlights));
+        }
 
 
 
@@ -52,12 +58,6 @@
 
 
 
-        //[Authorize]
-        //public IActionResult Cancel(int flightId)
-        //{
-        //    this.flights.CancelBooking(id);
 
-        //    return RedirectToAction(nameof(MyFlights));
-        //}
     }
 }

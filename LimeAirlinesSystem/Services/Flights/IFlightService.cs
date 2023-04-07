@@ -63,7 +63,7 @@
         FlightServiceModel Details(int flightId);
         void Book(int flightId, int passangers, string userId);
 
-        //void CancelBooking(int flightId);
+        void CancelBooking(string flightId);
 
 
 
