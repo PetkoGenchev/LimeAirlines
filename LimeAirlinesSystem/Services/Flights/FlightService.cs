@@ -300,7 +300,7 @@
                 .Flights
                 .Where(f => f.FlightBookings.Select(x => x.UserId == userId).Any()));
 
-
+        TESTING NEW SERVICE MODEL
 
         //private IEnumerable<FlightBookingServiceModel> GetBookings(IQueryable<Flight> flightQuery)
         //    => flightQuery
