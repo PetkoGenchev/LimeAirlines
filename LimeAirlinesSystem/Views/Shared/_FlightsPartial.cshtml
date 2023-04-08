@@ -22,3 +22,37 @@
         </div>
     }
 </div>
+
+@if (Model.TripType == "2")
+{
+    @if (!Model.ReturnFlights.Any())
+    {
+        <div class="text-center">
+            <p class="lead">There are no return flight options currently for the selected dates. Please check again later.</p>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var flight in Model.ReturnFlights)
+            {
+                <div class="col-md-4 div-planes-partial">
+                    <div class="card mb-3 planes-partial">
+                        <h1 class="card-title text-center"> @flight.StartLocation @flight.EndLocation  @flight.FlightDate  @flight.IsPublic</h1>
+                        <div class="card-body text-center">
+                            @if (User.IsAdmin())
+                            {
+                                <a asp-area="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@flight.Id" class="btn btn-warning">Edit</a>
+                                <a asp-area="Admin" asp-controller="Flights" asp-action="ChangeVisibility" asp-route-id="@flight.Id" class="btn btn-info float-right ml-3">@(flight.IsPublic ? "Hide" : "Show")</a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Flights" asp-action="Book" asp-route-id="@flight.Id" asp-route-countOfSeats="@Model.Passangers" class="btn btn-warning">Book</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}

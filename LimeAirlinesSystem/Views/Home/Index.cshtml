@@ -134,7 +134,7 @@ else
         <partial name="_FlightsPartial" model="@Model.FlightsQuery" />
 
 
-    @if (Model.FlightsQuery.TripType == "2")
+@*    @if (Model.FlightsQuery.TripType == "2")
     {
         @if (!Model.FlightsQuery.ReturnFlights.Any())
         {
@@ -146,7 +146,7 @@ else
         {
             <partial name="_FlightsPartial" model="@Model.FlightsQuery.ReturnFlights" />
         }
-    }
+    }*@
 
 
 
