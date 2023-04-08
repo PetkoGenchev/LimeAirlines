@@ -300,18 +300,6 @@
                 .Flights
                 .Where(f => f.FlightBookings.Select(x => x.UserId == userId).Any()));
 
-        TESTING NEW SERVICE MODEL
-
-        //private IEnumerable<FlightBookingServiceModel> GetBookings(IQueryable<Flight> flightQuery)
-        //    => flightQuery
-        //        .ProjectTo<FlightBookingServiceModel>(this.mapper)
-        //        .ToList();
-
-        //public IEnumerable<FlightBookingServiceModel> UserBookings(string userId)
-        //     => GetBookings(this.data
-        //         .Flights
-        //         .Where(f => f.FlightBookings.Select(x => x.UserId == userId).Any()));
-
 
         public void Book(int flightId, int countOfSeats, string userId)
         {
@@ -330,9 +318,9 @@
             this.data.SaveChanges();
         }
 
-        public void CancelBooking(string flightid)
+        public void CancelBooking(string bookingId)
         {
-            var booking = this.data.FlightBookings.Find(flightid);
+            var booking = this.data.FlightBookings.Find(bookingId);
 
             booking.Flight.ReservedSeats -= booking.CountOfSeats;
 

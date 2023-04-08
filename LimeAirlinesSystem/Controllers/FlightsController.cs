@@ -45,19 +45,5 @@
 
             return RedirectToAction(nameof(UserFlights));
         }
-
-
-
-        //[Authorize]
-        //public IActionResult UserBookings()
-        //{
-        //    var myFlights = this.flights.UserBookings(this.User.Id());
-
-        //    return View(myFlights);
-        //}
-
-
-
-
     }
 }
