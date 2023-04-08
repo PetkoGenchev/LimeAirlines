@@ -56,7 +56,7 @@
         IEnumerable<string> AllFinalLocations();
         IEnumerable<PlaneServiceModel> AllPlanes();
         bool PlaneExists(int planeId);
-        IEnumerable<FlightServiceModel> UserFlights(string userId);
+        IEnumerable<FlightBookingServiceModel> UserBookings(string userId);
 
         FlightServiceModel Details(int flightId);
         void Book(int flightId, int passangers, string userId);

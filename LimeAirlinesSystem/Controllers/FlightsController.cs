@@ -21,9 +21,9 @@
 
 
         [Authorize]
-        public IActionResult UserFlights()
+        public IActionResult UserBookings()
         {
-            var myFlights = this.flights.UserFlights(this.User.Id());
+            var myFlights = this.flights.UserBookings(this.User.Id());
 
             return View(myFlights);
         }
@@ -33,7 +33,7 @@
         {
             this.flights.Book(id, countOfSeats, this.User.Id());
 
-            return RedirectToAction(nameof(UserFlights));
+            return RedirectToAction(nameof(UserBookings));
             //return RedirectToAction("Index","Home", new { area = "" });
 
         }
@@ -43,7 +43,7 @@
         {
             this.flights.CancelBooking(id);
 
-            return RedirectToAction(nameof(UserFlights));
+            return RedirectToAction(nameof(UserBookings));
         }
     }
 }

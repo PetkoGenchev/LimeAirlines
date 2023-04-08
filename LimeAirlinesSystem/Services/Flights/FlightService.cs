@@ -295,10 +295,13 @@
                 .ProjectTo<FlightServiceModel>(this.mapper)
                 .ToList();
 
-        public IEnumerable<FlightServiceModel> UserFlights(string userId)
-            => GetFlights(this.data
-                .Flights
-                .Where(f => f.FlightBookings.Select(x => x.UserId == userId).Any()));
+        public IEnumerable<FlightBookingServiceModel> UserBookings(string userId)
+            => this.data
+                .FlightBookings
+                .Where(u => u.UserId == userId)
+                .ProjectTo<FlightBookingServiceModel>(this.mapper)
+                .ToList();
+
 
 
         public void Book(int flightId, int countOfSeats, string userId)

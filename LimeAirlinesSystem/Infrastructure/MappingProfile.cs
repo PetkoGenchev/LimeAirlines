@@ -20,6 +20,12 @@
 
             this.CreateMap<Flight, CheapestFlightServiceModel>();
 
+            this.CreateMap<FlightBooking, FlightBookingServiceModel>()
+            .ForMember(p => p.StartLocation, cfg => cfg.MapFrom(p => p.Flight.StartLocation))
+            .ForMember(p => p.EndLocation, cfg => cfg.MapFrom(p => p.Flight.EndLocation))
+            .ForMember(p => p.FlightDate, cfg => cfg.MapFrom(p => p.Flight.FlightDate))
+            .ForMember(p => p.Price, cfg => cfg.MapFrom(p => p.Flight.Price));
+
             this.CreateMap<Plane, PlaneServiceModel>()
             .ForMember(p => p.CategoryName, cfg => cfg.MapFrom(p => p.Category.Name));
 
