@@ -39,9 +39,9 @@
         }
 
         [Authorize]
-        public IActionResult Cancel(string id)
+        public IActionResult Cancel(string bookingId)
         {
-            this.flights.CancelBooking(id);
+            this.flights.CancelBooking(bookingId);
 
             return RedirectToAction(nameof(UserBookings));
         }

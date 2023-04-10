@@ -20,7 +20,9 @@
             <div class="card mb-3 flights-partial">
                 <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate  @booking.Price  @booking.CountOfSeats</h1>
                 <div class="card-body text-center">
-                    <a asp-area="" asp-controller="Flights" asp-action="Cancel" asp-route-id="@booking.Id" class="btn btn-warning">Cancel</a>
+@*                    <h5 class="card-title text-center">@car.Year  @car.Brand @car.Model (@car.CategoryName)</h5>
+                    <a asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id" asp-route-information="@car.GetInformation()" class="btn btn-primary">View</a>*@
+                    <a asp-area="" asp-controller="Flights" asp-action="Cancel" asp-route-bookingId="@booking.Id" class="btn btn-warning">Cancel</a>
                 </div>
             </div>
         </div>

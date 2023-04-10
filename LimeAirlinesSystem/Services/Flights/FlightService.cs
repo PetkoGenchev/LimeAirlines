@@ -323,9 +323,11 @@
 
         public void CancelBooking(string bookingId)
         {
-            var booking = this.data.FlightBookings.Find(bookingId);
+            var booking = this.data.FlightBookings.Where(x => x.Id == bookingId).FirstOrDefault();
 
-            booking.Flight.ReservedSeats -= booking.CountOfSeats;
+            var removeSeatsFlight = this.data.Flights.Where(x => x.Id == booking.FlightId).FirstOrDefault();
+
+            removeSeatsFlight.ReservedSeats -= booking.CountOfSeats;
 
             booking.IsCancelled = true;
 
