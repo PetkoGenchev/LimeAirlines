@@ -38,6 +38,12 @@
             return RedirectToAction(nameof(All));
         }
 
+        public IActionResult Cancel(int flightId)
+        {
+            this.flights.CancelFlight(flightId);
+
+            return RedirectToAction(nameof(All));
+        }
 
 
         public IActionResult Add()

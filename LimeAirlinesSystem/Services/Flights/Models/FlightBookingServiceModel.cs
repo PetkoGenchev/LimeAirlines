@@ -10,7 +10,7 @@ namespace LimeAirlinesSystem.Services.Flights.Models
         public int FlightId { get; init; }
         public string StartLocation { get; init; }
         public string EndLocation { get; init; }
-        public DateTime FlightDate { get; init; }
+        public DateTime? FlightDate { get; init; }
         public int Price { get; init; }
         public bool IsCancelled { get; init; }
     }

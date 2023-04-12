@@ -18,10 +18,8 @@
     {
         <div class="col-md-4 div-flights-partial">
             <div class="card mb-3 flights-partial">
-                <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate  @booking.Price  @booking.CountOfSeats</h1>
+                <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate?.ToShortDateString()  @booking.Price  @booking.CountOfSeats</h1>
                 <div class="card-body text-center">
-@*                    <h5 class="card-title text-center">@car.Year  @car.Brand @car.Model (@car.CategoryName)</h5>
-                    <a asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id" asp-route-information="@car.GetInformation()" class="btn btn-primary">View</a>*@
                     <a asp-area="" asp-controller="Flights" asp-action="Cancel" asp-route-bookingId="@booking.Id" class="btn btn-warning">Cancel</a>
                 </div>
             </div>
@@ -38,7 +36,7 @@
     {
         <div class="col-md-4 div-flights-partial">
             <div class="card mb-3 flights-partial">
-                <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate  @booking.Price @booking.CountOfSeats</h1>
+                <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate?.ToShortDateString()  @booking.Price @booking.CountOfSeats</h1>
             </div>
         </div>
     }
@@ -51,7 +49,7 @@
     {
         <div class="col-md-4 div-flights-partial">
             <div class="card mb-3 flights-partial">
-                <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate  @booking.Price</h1>
+                <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate?.ToShortDateString()  @booking.Price</h1>
             </div>
         </div>
     }

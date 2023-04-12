@@ -54,7 +54,7 @@
 
 
         public FlightQueryServiceModel All(
-        DateTime flightDate,
+        DateTime? flightDate,
         string startLocation = null,
         string endLocation = null,
         int passangers = 1,
@@ -95,7 +95,10 @@
             flightQuery = flightQuery.Where(f => (f.ReservedSeats + passangers) <= f.Plane.NumberOfSeats);
 
 
-            flightQuery = flightQuery.Where(f => f.FlightDate.Date == flightDate.Date);
+            if (flightDate.HasValue)
+            {
+                flightQuery = flightQuery.Where(f => f.FlightDate == flightDate);
+            }
 
 
             if (maxTransfers != int.MaxValue)
@@ -153,7 +156,11 @@
                 returnFlightQuery = returnFlightQuery.Where(f => (f.ReservedSeats + passangers) <= f.Plane.NumberOfSeats);
 
 
-                returnFlightQuery = returnFlightQuery.Where(f => f.FlightDate.Date >= flightDate.Date.AddDays(2) && f.FlightDate.Date <= flightDate.AddDays(10));
+                if (flightDate.HasValue)
+                {
+                    returnFlightQuery = returnFlightQuery.Where(f => f.FlightDate >= flightDate.Date.AddDays(1) && f.FlightDate <= flightDate.Date.AddDays(10));
+                }
+
 
 
                 if (maxTransfers != int.MaxValue)
@@ -289,7 +296,6 @@
             .ProjectTo<PlaneServiceModel>(this.mapper)
             .ToList();
 
-
         private IEnumerable<FlightServiceModel> GetFlights(IQueryable<Flight> flightQuery)
             => flightQuery
                 .ProjectTo<FlightServiceModel>(this.mapper)
@@ -301,8 +307,6 @@
                 .Where(u => u.UserId == userId)
                 .ProjectTo<FlightBookingServiceModel>(this.mapper)
                 .ToList();
-
-
 
         public void Book(int flightId, int countOfSeats, string userId)
         {
@@ -317,6 +321,11 @@
 
             flight.ReservedSeats += countOfSeats;
 
+            if (flight.ReservedSeats == flight.Plane.NumberOfSeats)
+            {
+                flight.IsPublic = false;
+            }
+
             this.data.FlightBookings.Add(booking);
             this.data.SaveChanges();
         }
@@ -329,7 +338,23 @@
 
             removeSeatsFlight.ReservedSeats -= booking.CountOfSeats;
 
+            removeSeatsFlight.IsPublic = true;
+
             booking.IsCancelled = true;
+
+            this.data.SaveChanges();
+        }
+
+        public void CancelFlight(int flightId)
+        {
+            var flight = this.data.Flights.Find(flightId);
+            flight.IsPublic = false;
+            flight.ReservedSeats = 0;
+
+            foreach (var booking in this.data.FlightBookings.Where(x => x.FlightId == flightId))
+            {
+                booking.IsCancelled = true;
+            }
 
             this.data.SaveChanges();
         }
@@ -338,7 +363,6 @@
             => this.data
             .Planes
             .Any(p => p.Id == planeId);
-
 
         public FlightServiceModel Details(int flightId)
             => this.data

@@ -24,7 +24,7 @@
 
         [Display(Name = "Departure")]
         [DataType(DataType.Date)]
-        public DateTime FlightDate { get; init; } = DateTime.UtcNow;
+        public DateTime? FlightDate { get; init; } /*= DateTime.UtcNow;*/
 
         public int MaxTransfers { get; init; }
 

@@ -6,7 +6,7 @@
     {
         <div class="col-md-4 div-planes-partial">
             <div class="card mb-3 planes-partial">
-                <h1 class="card-title text-center"> @flight.StartLocation @flight.EndLocation  @flight.FlightDate  @flight.IsPublic</h1>
+                <h1 class="card-title text-center"> @flight.StartLocation @flight.EndLocation  @flight.FlightDate?.ToShortDateString() @flight.Price</h1>
                 <div class="card-body text-center">
                     @if (User.IsAdmin())
                     {
@@ -34,11 +34,12 @@
     else
     {
         <div class="row">
+            <h1 class="display-4">Return Flights!</h1>
             @foreach (var flight in Model.ReturnFlights)
             {
                 <div class="col-md-4 div-planes-partial">
                     <div class="card mb-3 planes-partial">
-                        <h1 class="card-title text-center"> @flight.StartLocation @flight.EndLocation  @flight.FlightDate  @flight.IsPublic</h1>
+                        <h1 class="card-title text-center"> @flight.StartLocation @flight.EndLocation  @flight.FlightDate?.ToShortDateString()</h1>
                         <div class="card-body text-center">
                             @if (User.IsAdmin())
                             {

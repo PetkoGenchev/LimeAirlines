@@ -35,6 +35,7 @@
                 <td scope="col">
                     <a asp-area="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@flight.Id" class="btn btn-warning float-right ml-3">Edit</a>
                     <a asp-area="Admin" asp-controller="Flights" asp-action="ChangeVisibility" asp-route-id="@flight.Id" class="btn btn-info float-right ml-3">@(flight.IsPublic ? "Hide" : "Show")</a>
+                    <a asp-area="Admin" asp-controller="Flights" asp-action="Cancel" asp-route-flightId="@flight.Id" class="btn btn-warning">Cancel</a>
                 </td>
             </tr>
         }

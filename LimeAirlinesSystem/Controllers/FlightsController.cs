@@ -34,7 +34,6 @@
             this.flights.Book(id, countOfSeats, this.User.Id());
 
             return RedirectToAction(nameof(UserBookings));
-            //return RedirectToAction("Index","Home", new { area = "" });
 
         }
 

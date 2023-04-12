@@ -22,7 +22,7 @@
 
         [Required]
         [DataType(DataType.Date)]
-        public DateTime FlightDate { get; set; }
+        public DateTime? FlightDate { get; set; }
 
         [Required]
         public TimeSpan FlightDuration { get; set; }

@@ -9,7 +9,7 @@
 
         public string EndLocation { get; init; }
 
-        public DateTime FlightDate { get; init; }
+        public DateTime? FlightDate { get; init; }
 
         public string FlightDuration { get; init; }
 

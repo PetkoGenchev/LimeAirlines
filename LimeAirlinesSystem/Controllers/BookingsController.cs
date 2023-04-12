@@ -7,36 +7,23 @@ namespace LimeAirlinesSystem.Controllers
     using Microsoft.AspNetCore.Mvc;
 
 
-    public class PassangersController : Controller
+    public class BookingsController : Controller
     {
 
     }
 }
 
 
-
-
-// NEED TO ADD FUNCTIONALITY FOR PASSANGERS TAKING SEATS
-// (Reserve button on a flight, add flight to passanger flight list,
-//  
-
-//     AND CHANGE VISIBLITY FOR FULL FLIGHTS AFTER RESERVATION (have avaiable seats change with reservations)
-
-
-
-
-
-
-
-//    location of my flights data :
-
-//in flights controller - mine
-//in flight service  - UserFlights
-
 //Views - Passangers - Mine and _FlightsPartial  - both views not fixed with proper info in them ... to show mine and have buttons
 // (the buttons are - Cancel Flight, Check In, View Information for flight)
 
 
 
+//TO DO LIST - MAKE SURE START AND END LOCATIONS ARE DIFERENT
+// FIX BOOKING ROUND TRIP STAY ON PAGE
+// IF NO BOOKING IS AVAILABLE FOR THE DATE GIVE NEARBY OPTIONS (ALSO INCREASE RANGE FOR RETURN TRIP)
+// FIX WHAT IS SEEN ON MY FLIGHTS PAGE
 
-// ADMIN CAN HIDE UPCOMING FLIGHT AND IF PEOPLE HAVE RESERVATIONS ON IT, IT CANCELS ALL RESERVATIONS
+
+
+// maybe make FAQ page with number of positive raitings for the article (1 person cannot click multiple times)

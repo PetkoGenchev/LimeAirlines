@@ -9,7 +9,7 @@
     public interface IFlightService
     {
         FlightQueryServiceModel All(
-            DateTime flightDate,
+            DateTime? flightDate,
             string startLocation = null,
             string endLocation = null,
             int passangers = 1,
@@ -62,6 +62,8 @@
         void Book(int flightId, int passangers, string userId);
 
         void CancelBooking(string bookingId);
+
+        void CancelFlight(int flightId);
 
 
 
