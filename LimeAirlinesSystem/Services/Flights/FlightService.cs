@@ -101,15 +101,20 @@
 
             if (flightDate.HasValue)
             {
-                flightQuery = flightQuery.Where(f => f.FlightDate == flightDate);
+                var checkFlightsOnDate = flightQuery.Where(f => f.FlightDate == flightDate);
 
-                if (!flightQuery.Any())
+                if (!checkFlightsOnDate.Any())
                 {
                     startDate = flightDate?.Date.AddDays(-10);
                     endDate = flightDate?.Date.AddDays(10);
 
                     flightQuery = flightQuery.Where(f => f.FlightDate >= startDate && f.FlightDate <= endDate);
                 }
+                else
+                {
+                    flightQuery = checkFlightsOnDate;
+                }
+
             }
 
 
@@ -168,9 +173,6 @@
                 returnFlightQuery = returnFlightQuery.Where(f => (f.ReservedSeats + passangers) <= f.Plane.NumberOfSeats);
 
 
-
-
-
                 if (flightDate.HasValue)
                 {
                     DateTime? returnStartDate = null;
@@ -181,7 +183,7 @@
                         returnStartDate = flightDate?.Date.AddDays(1);
                         returnEndDate = flightDate?.Date.AddDays(10);
                     }
-                    else 
+                    else
                     {
                         returnStartDate = startDate?.Date.AddDays(1);
                         returnEndDate = endDate?.Date.AddDays(10);
@@ -190,7 +192,6 @@
 
                     returnFlightQuery = returnFlightQuery.Where(f => f.FlightDate >= returnStartDate && f.FlightDate <= returnEndDate);
                 }
-
 
 
                 if (maxTransfers != int.MaxValue)

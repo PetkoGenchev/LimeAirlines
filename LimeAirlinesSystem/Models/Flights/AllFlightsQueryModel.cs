@@ -50,7 +50,11 @@
         {
             if (this.StartLocation == this.EndLocation)
             {
-                yield return new ValidationResult(LocationError);
+                if (this.StartLocation != null)
+                {
+                    yield return new ValidationResult(LocationError);
+                }
+
             }
         }
     }

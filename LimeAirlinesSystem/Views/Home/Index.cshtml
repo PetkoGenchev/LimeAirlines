@@ -34,6 +34,7 @@
                         <option value=@startlocation>@startlocation</option>
                     }
                 </select>
+                <span asp-validation-for="FlightsQuery.StartLocation" class="small text-danger"></span>
             </div>
         </div>
 
@@ -47,9 +48,8 @@
                     {
                         <option value=@endlocation>@endlocation</option>
                     }
-
-                    @*STARTING AND ENDING LOCATIONS CANNOT BE THE SAME ERROR*@
                 </select>
+                <span asp-validation-for="FlightsQuery.EndLocation" class="small text-danger"></span>
             </div>
         </div>
 
@@ -61,7 +61,7 @@
 
         <div class="form-group col-md-4">
             <label asp-for="FlightsQuery.Passangers"></label>
-            <input asp-for="FlightsQuery.Passangers" class="form-control" min="1" oninput="this.value =
+            <input asp-for="FlightsQuery.Passangers" class="form-control" min="1" value="1" oninput="this.value =
                    !!this.value && Math.abs(this.value)>= 0 ? Math.abs(this.value) : null">
         </div>
 
@@ -87,6 +87,7 @@
 
         <div class="form-group col-md-3">
             <button type="submit" class="btn btn-primary mb-2">Search</button>
+            <div asp-validation-summary="All" class="text-danger"></div>
         </div>
     </div>
 </form>
