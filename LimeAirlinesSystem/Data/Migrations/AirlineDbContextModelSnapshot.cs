@@ -53,7 +53,8 @@ namespace LimeAirlinesSystem.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("FlightDate")
+                    b.Property<DateTime?>("FlightDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<TimeSpan>("FlightDuration")

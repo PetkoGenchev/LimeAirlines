@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimeAirlinesSystem.Data.Migrations
 {
     [DbContext(typeof(AirlineDbContext))]
-    [Migration("20230408070425_PlanesFlightsTables")]
-    partial class PlanesFlightsTables
+    [Migration("20230413140109_PlanesFlights")]
+    partial class PlanesFlights
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,7 +55,8 @@ namespace LimeAirlinesSystem.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("FlightDate")
+                    b.Property<DateTime?>("FlightDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<TimeSpan>("FlightDuration")
