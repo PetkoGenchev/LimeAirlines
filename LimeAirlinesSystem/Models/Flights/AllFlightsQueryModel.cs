@@ -1,11 +1,14 @@
 ﻿namespace LimeAirlinesSystem.Models.Flights
 {
+    using LimeAirlinesSystem.Infrastructure.Extensions;
     using LimeAirlinesSystem.Services.Flights.Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class AllFlightsQueryModel
+    using static LimeAirlinesSystem.Infrastructure.Extensions.ExceptionMessages.FlightQueryMessages;
+
+    public class AllFlightsQueryModel : IValidatableObject
     {
         public const int FlightsPerPage = 5;
 
@@ -24,7 +27,7 @@
 
         [Display(Name = "Departure")]
         [DataType(DataType.Date)]
-        public DateTime? FlightDate { get; init; } /*= DateTime.UtcNow;*/
+        public DateTime? FlightDate { get; init; }
 
         public int MaxTransfers { get; init; }
 
@@ -43,5 +46,12 @@
 
         public IEnumerable<FlightServiceModel> ReturnFlights { get; set; }
 
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (this.StartLocation == this.EndLocation)
+            {
+                yield return new ValidationResult(LocationError);
+            }
+        }
     }
 }

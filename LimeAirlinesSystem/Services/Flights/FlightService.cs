@@ -66,6 +66,9 @@
         int flightsPerPage = int.MaxValue,
         bool publicOnly = true)
         {
+            DateTime? startDate = null;
+            DateTime? endDate = null;
+
 
             foreach (var flight in this.data.Flights)
             {
@@ -92,12 +95,21 @@
                 flightQuery = flightQuery.Where(f => f.EndLocation == endLocation);
             }
 
+
             flightQuery = flightQuery.Where(f => (f.ReservedSeats + passangers) <= f.Plane.NumberOfSeats);
 
 
             if (flightDate.HasValue)
             {
                 flightQuery = flightQuery.Where(f => f.FlightDate == flightDate);
+
+                if (!flightQuery.Any())
+                {
+                    startDate = flightDate?.Date.AddDays(-10);
+                    endDate = flightDate?.Date.AddDays(10);
+
+                    flightQuery = flightQuery.Where(f => f.FlightDate >= startDate && f.FlightDate <= endDate);
+                }
             }
 
 
@@ -156,9 +168,27 @@
                 returnFlightQuery = returnFlightQuery.Where(f => (f.ReservedSeats + passangers) <= f.Plane.NumberOfSeats);
 
 
+
+
+
                 if (flightDate.HasValue)
                 {
-                    returnFlightQuery = returnFlightQuery.Where(f => f.FlightDate >= flightDate.Date.AddDays(1) && f.FlightDate <= flightDate.Date.AddDays(10));
+                    DateTime? returnStartDate = null;
+                    DateTime? returnEndDate = null;
+
+                    if (startDate == null)
+                    {
+                        returnStartDate = flightDate?.Date.AddDays(1);
+                        returnEndDate = flightDate?.Date.AddDays(10);
+                    }
+                    else 
+                    {
+                        returnStartDate = startDate?.Date.AddDays(1);
+                        returnEndDate = endDate?.Date.AddDays(10);
+                    }
+
+
+                    returnFlightQuery = returnFlightQuery.Where(f => f.FlightDate >= returnStartDate && f.FlightDate <= returnEndDate);
                 }
 
 
