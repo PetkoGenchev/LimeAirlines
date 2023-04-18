@@ -134,7 +134,7 @@
 }
 else
 {
-        <partial name="_FlightsPartial" model="@Model.FlightsQuery" />
+    <partial name="_FlightsPartial" model="@Model.FlightsQuery" />
 
 
 
@@ -151,18 +151,20 @@ else
 
     <div class="row mb-5">
         <div class="col-md-6">
-            <a class="btn btn-primary @(Model.FlightsQuery.CurrentPage == 1 ? "disabled" : string.Empty)"
-           asp-controller="Home"
-           asp-action="Index"
-           asp-route-tripType="@Model.FlightsQuery.TripType"
-           asp-route-currentPage="@previousPage"
-           asp-route-startLocation="@Model.FlightsQuery.StartLocation"
-           asp-route-endLocation="@Model.FlightsQuery.EndLocation"
-           asp-route-passangers="@Model.FlightsQuery.Passangers"
-           asp-route-flightDate="@Model.FlightsQuery.FlightDate"
-           asp-route-maxTransfers="@Model.FlightsQuery.MaxTransfers"
-           asp-route-maxPrice="@Model.FlightsQuery.MaxPrice"
-           asp-route-sorting="@((int)Model.FlightsQuery.Sorting)">@Html.Raw("<<")</a>
+            <a
+                class="btn btn-primary 
+                @(Model.FlightsQuery.CurrentPage == 1 ? "disabled" : string.Empty)"
+               asp-controller="Home"
+               asp-action="Index"
+               asp-route-currentPage="@previousPage"
+               asp-route-tripType="@Model.FlightsQuery.TripType"
+               asp-route-startLocation="@Model.FlightsQuery.StartLocation"
+               asp-route-endLocation="@Model.FlightsQuery.EndLocation"
+               asp-route-flightDate="@Model.FlightsQuery.FlightDate"
+               asp-route-passangers="@Model.FlightsQuery.Passangers"
+               asp-route-maxTransfers="@Model.FlightsQuery.MaxTransfers"
+               asp-route-maxPrice="@Model.FlightsQuery.MaxPrice"
+               asp-route-sorting="@((int)Model.FlightsQuery.Sorting)">@Html.Raw("<<")</a>
         </div>
 
         @{
@@ -171,18 +173,20 @@ else
         }
 
         <div class="col-md-6">
-            <a class="btn btn-primary float-sm-right @(shouldButtonBeDisabled ? "disabled" : string.Empty)" style="margin-top: 10px"
-           asp-controller="Home"
-           asp-action="Index"
-           asp-route-tripType="@Model.FlightsQuery.TripType"
-           asp-route-currentPage="@(Model.FlightsQuery.CurrentPage + 1)"
-           asp-route-startLocation="@Model.FlightsQuery.StartLocation"
-           asp-route-endLocation="@Model.FlightsQuery.EndLocation"
-           asp-route-passangers="@Model.FlightsQuery.Passangers"
-           asp-route-flightDate="@Model.FlightsQuery.FlightDate"
-           asp-route-maxTransfers="@Model.FlightsQuery.MaxTransfers"
-           asp-route-maxPrice="@Model.FlightsQuery.MaxPrice"
-           asp-route-sorting="@((int)Model.FlightsQuery.Sorting)">>></a>
+            <a 
+                class="btn btn-primary float-sm-right 
+                @(shouldButtonBeDisabled ? "disabled" : string.Empty)" style="margin-top: 10px"
+               asp-controller="Home"
+               asp-action="Index"
+               asp-route-currentPage="@(Model.FlightsQuery.CurrentPage + 1)"
+               asp-route-tripType="@Model.FlightsQuery.TripType"
+               asp-route-startLocation="@Model.FlightsQuery.StartLocation"
+               asp-route-endLocation="@Model.FlightsQuery.EndLocation"
+               asp-route-flightDate="@Model.FlightsQuery.FlightDate"
+               asp-route-passangers="@Model.FlightsQuery.Passangers"
+               asp-route-maxTransfers="@Model.FlightsQuery.MaxTransfers"
+               asp-route-maxPrice="@Model.FlightsQuery.MaxPrice"
+               asp-route-sorting="@((int)Model.FlightsQuery.Sorting)">>></a>
         </div>
     </div>
 

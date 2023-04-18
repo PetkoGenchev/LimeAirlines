@@ -12,12 +12,10 @@
     {
         public const int FlightsPerPage = 5;
 
-        [Display(Name = "Trip")]
-        public string TripType { get; init; }
-
         public int CurrentPage { get; init; } = 1;
 
-        public int TotalFlights { get; set; }
+        [Display(Name = "Trip")]
+        public string TripType { get; init; }
 
         [Display(Name = "Departing From")]
         public string StartLocation { get; init; }
@@ -28,6 +26,7 @@
         [Display(Name = "Departure")]
         [DataType(DataType.Date)]
         public DateTime? FlightDate { get; init; }
+        public int Passangers { get; init; }
 
         public int MaxTransfers { get; init; }
 
@@ -35,7 +34,7 @@
 
         public FlightSorting Sorting { get; init; }
 
-        public int Passangers { get; init; }
+        public int TotalFlights { get; set; }
 
         public IEnumerable<string> StartLocations { get; set; }
         public IEnumerable<string> EndLocations { get; set; }
