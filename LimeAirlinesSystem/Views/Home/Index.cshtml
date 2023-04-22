@@ -12,7 +12,7 @@
         <div class="form-group col-md-4">
             <div class="form-group">
                 <label asp-for="FlightsQuery.TripType"></label>
-                <select asp-for="FlightsQuery.TripType" class="form-control">
+                <select asp-for="FlightsQuery.TripType" required class="form-control">
 
                     @foreach (var triptype in Model.FlightsQuery.TripTypes)
                     {
@@ -26,7 +26,7 @@
         <div class="form-group col-md-4">
             <div class="form-group">
                 <label asp-for="FlightsQuery.StartLocation"></label>
-                <select asp-for="FlightsQuery.StartLocation" class="form-control">
+                <select asp-for="FlightsQuery.StartLocation" required class="form-control">
                     <option value="">All</option>
 
                     @foreach (var startlocation in Model.FlightsQuery.StartLocations)
@@ -41,7 +41,7 @@
         <div class="form-group col-md-4">
             <div class="form-group">
                 <label asp-for="FlightsQuery.EndLocation"></label>
-                <select asp-for="FlightsQuery.EndLocation" class="form-control">
+                <select asp-for="FlightsQuery.EndLocation" required class="form-control">
                     <option value="">All</option>
 
                     @foreach (var endlocation in Model.FlightsQuery.EndLocations)
@@ -61,7 +61,7 @@
 
         <div class="form-group col-md-4">
             <label asp-for="FlightsQuery.Passangers"></label>
-            <input asp-for="FlightsQuery.Passangers" class="form-control" min="1" value="1" oninput="this.value =
+            <input asp-for="FlightsQuery.Passangers" class="form-control" min="1" max="100" value="1" oninput="this.value =
                    !!this.value && Math.abs(this.value)>= 0 ? Math.abs(this.value) : null">
         </div>
 
@@ -82,7 +82,7 @@
 
         <div class="form-group col-md-4">
             <label asp-for="FlightsQuery.MaxPrice">Price</label>
-            <input asp-for="FlightsQuery.MaxPrice" type="range" class="form-range" min="0" max="2000" value="2000" step="100">
+            <input asp-for="FlightsQuery.MaxPrice" type="range" class="form-range" min="0" max="2000" value="2000" step="200" id="customRange">
         </div>
 
         <div class="form-group col-md-3">
@@ -189,10 +189,21 @@ else
                asp-route-sorting="@((int)Model.FlightsQuery.Sorting)">>></a>
         </div>
     </div>
-
-
-
 }
 
 
 
+@*    @section Scripts {
+    <script>
+        $('#statistics-button').on('click', ev => {
+            $.get('/api/statistics', (data) => {
+                $('#total-cars').text(data.totalCars + " Cars");
+                $('#total-users').text(data.totalUsers + " Users");
+                $('#total-rents').text(data.totalRents + " Rents");
+
+                $('#statistics').removeClass('d-none');
+                $('#statistics-button').hide();
+            });
+        });
+    </script>
+}*@

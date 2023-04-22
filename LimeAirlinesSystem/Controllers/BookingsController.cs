@@ -18,11 +18,11 @@ namespace LimeAirlinesSystem.Controllers
 // (the buttons are - Cancel Flight, Check In, View Information for flight)
 
 
-
-//TO DO LIST - MAKE SURE START AND END LOCATIONS ARE DIFERENT
 // FIX BOOKING ROUND TRIP STAY ON PAGE
 // FIX WHAT IS SEEN ON MY FLIGHTS PAGE
 
 
 
 // maybe make FAQ page with number of positive raitings for the article (1 person cannot click multiple times)
+
+// Create a page for gifting bookings when booking
