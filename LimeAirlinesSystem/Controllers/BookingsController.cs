@@ -1,28 +1,80 @@
-﻿using LimeAirlinesSystem.Areas.Admin;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace LimeAirlinesSystem.Controllers
+﻿namespace LimeAirlinesSystem.Controllers
 {
+    using AutoMapper;
+    using LimeAirlinesSystem.Data.Models;
+    using LimeAirlinesSystem.Infrastructure.Extensions;
+    using LimeAirlinesSystem.Models.Bookings;
+    using LimeAirlinesSystem.Models.Flights;
+    using LimeAirlinesSystem.Services.Bookings;
+    using LimeAirlinesSystem.Services.Flights;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-
 
     public class BookingsController : Controller
     {
+        private readonly IBookingService bookings;
+        private readonly IMapper mapper;
 
+        public BookingsController(IBookingService bookings, IMapper mapper)
+        {
+            this.bookings = bookings;
+            this.mapper = mapper;
+        }
+
+        [Authorize]
+        public IActionResult UserBookings()
+        {
+            var myFlights = this.bookings.UserBookings(this.User.Id());
+
+            return View(myFlights);
+        }
+
+        [Authorize]
+        public IActionResult Book(int id, int countOfSeats)
+        {
+            this.bookings.Book(id, countOfSeats, this.User.Id());
+
+            return RedirectToAction(nameof(UserBookings));
+
+        }
+
+        [Authorize]
+        public IActionResult Cancel(string bookingId)
+        {
+            this.bookings.CancelBooking(bookingId);
+
+            return RedirectToAction(nameof(UserBookings));
+        }
+
+
+
+        [Authorize]
+        public IActionResult AddLuggage(string bookingId)
+        {
+            var booking = this.bookings.BookingDetails(bookingId);
+
+            var bookingForm = this.mapper.Map<BookingFormModel>(bookings);
+
+            return View(bookingForm);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult AddLuggage(string bookingId, BookingFormModel booking)
+        {
+            var edited = this.bookings.AddLuggage(
+                bookingId,
+                booking.SmallLuggage,
+                booking.MediumLuggage,
+                booking.LargeLuggage);
+
+            if (!edited)
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction(nameof(UserBookings));
+
+        }
     }
 }
-
-
-//Views - Passangers - Mine and _FlightsPartial  - both views not fixed with proper info in them ... to show mine and have buttons
-// (the buttons are - Cancel Flight, Check In, View Information for flight)
-
-
-// FIX BOOKING ROUND TRIP STAY ON PAGE
-// FIX WHAT IS SEEN ON MY FLIGHTS PAGE
-
-
-
-// maybe make FAQ page with number of positive raitings for the article (1 person cannot click multiple times)
-
-// Create a page for gifting bookings when booking

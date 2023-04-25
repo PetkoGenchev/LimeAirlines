@@ -1,0 +1,65 @@
+﻿@model BookingFormModel
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+            <h2 class-"heading-margin text-center">@ViewBag.Title</h2>
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="StartLocation"></label>
+                    <input asp-for="StartLocation" class="form-control">
+                    <span asp-validation-for="StartLocation" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EndLocation"></label>
+                    <input asp-for="EndLocation" class="form-control">
+                    <span asp-validation-for="EndLocation" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FlightDate"></label>
+                    <input asp-for="FlightDate" class="form-control" placeholder="Select Date">
+                    <span asp-validation-for="FlightDate" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FlightDuration"></label>
+                    <input asp-for="FlightDuration" class="form-control" placeholder="Enter flight duration">
+                    <span asp-validation-for="FlightDuration" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Transfer"></label>
+                    <input asp-for="Transfer" class="form-control" placeholder="Enter transfers count">
+                    <span asp-validation-for="Transfer" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" placeholder="Enter flight price">
+                    <span asp-validation-for="Price" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ImageUrl"></label>
+                    <input asp-for="ImageUrl" class="form-control" placeholder="Place flightdestination URL here...">
+                    <span asp-validation-for="ImageUrl" class="small text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="PlaneId"></label>
+                    <select asp-for="PlaneId" class="form-control">
+                        @foreach (var plane in Model.Planes)
+                        {
+                            <option value="@plane.Id">@plane.Year @plane.Brand @plane.Model</option>
+                        }
+                    </select>
+                </div>
+                <input class="btn btn-primary" type="submit" value="Save" />
+            </form>
+        </div>
+    </div>
+</div>

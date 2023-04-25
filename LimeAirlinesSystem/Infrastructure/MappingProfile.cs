@@ -4,6 +4,7 @@
     using LimeAirlinesSystem.Data.Models;
     using LimeAirlinesSystem.Models.Flights;
     using LimeAirlinesSystem.Models.Planes;
+    using LimeAirlinesSystem.Services.Bookings.Models;
     using LimeAirlinesSystem.Services.Flights.Models;
     using LimeAirlinesSystem.Services.Home;
     using LimeAirlinesSystem.Services.Planes.Models;

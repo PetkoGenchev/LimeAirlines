@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LimeAirlinesSystem.Services.Flights.Models
+namespace LimeAirlinesSystem.Services.Bookings.Models
 {
     public class FlightBookingServiceModel
     {
@@ -13,6 +13,10 @@ namespace LimeAirlinesSystem.Services.Flights.Models
         public DateTime? FlightDate { get; init; }
         public int Price { get; init; }
         public bool IsCancelled { get; init; }
+        public int SmallLuggage { get; init; }
+        public int MediumLuggage { get; init; }
+        public int LargeLuggage { get; init; }
+        public int LuggagePrice { get; init; }
     }
 
 }

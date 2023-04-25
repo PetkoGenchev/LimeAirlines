@@ -37,5 +37,14 @@
         {
             public const int CategoryMaxLength = 20;
         }
+
+        public class LuggageConstants
+        {
+            public const int SmallLuggagePrice = 20;
+            public const int MediumLuggagePrice = 50;
+            public const int LargeLuggagePrice = 60;
+            public const int LuggageMinCount = 0;
+            public const int LuggageMaxCount = 5;
+        }
     }
 }

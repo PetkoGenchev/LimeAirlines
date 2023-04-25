@@ -93,7 +93,7 @@
                 return Unauthorized();
             }
 
-            var flight = this.flights.Details(id);
+            var flight = this.flights.FlightDetails(id);
 
             var flightForm = this.mapper.Map<FlightFormModel>(flight);
 

@@ -1,6 +1,5 @@
 ﻿namespace LimeAirlinesSystem.Controllers
 {
-
     using AutoMapper;
     using LimeAirlinesSystem.Infrastructure.Extensions;
     using LimeAirlinesSystem.Models.Flights;
@@ -20,29 +19,6 @@
         }
 
 
-        [Authorize]
-        public IActionResult UserBookings()
-        {
-            var myFlights = this.flights.UserBookings(this.User.Id());
-
-            return View(myFlights);
-        }
-
-        [Authorize]
-        public IActionResult Book(int id, int countOfSeats)
-        {
-            this.flights.Book(id, countOfSeats, this.User.Id());
-
-            return RedirectToAction(nameof(UserBookings));
-
-        }
-
-        [Authorize]
-        public IActionResult Cancel(string bookingId)
-        {
-            this.flights.CancelBooking(bookingId);
-
-            return RedirectToAction(nameof(UserBookings));
-        }
+ 
     }
 }

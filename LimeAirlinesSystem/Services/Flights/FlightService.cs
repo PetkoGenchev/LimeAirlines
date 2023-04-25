@@ -5,6 +5,7 @@
     using LimeAirlinesSystem.Data;
     using LimeAirlinesSystem.Data.Models;
     using LimeAirlinesSystem.Models;
+    using LimeAirlinesSystem.Services.Bookings.Models;
     using LimeAirlinesSystem.Services.Flights.Models;
     using LimeAirlinesSystem.Services.Planes.Models;
     using Microsoft.AspNetCore.Authorization;
@@ -13,7 +14,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
     using static LimeAirlinesSystem.Data.DataConstants;
 
     public class FlightService : IFlightService
@@ -332,49 +332,17 @@
                 .ProjectTo<FlightServiceModel>(this.mapper)
                 .ToList();
 
-        public IEnumerable<FlightBookingServiceModel> UserBookings(string userId)
+        public bool PlaneExists(int planeId)
             => this.data
-                .FlightBookings
-                .Where(u => u.UserId == userId)
-                .ProjectTo<FlightBookingServiceModel>(this.mapper)
-                .ToList();
+            .Planes
+            .Any(p => p.Id == planeId);
 
-        public void Book(int flightId, int countOfSeats, string userId)
-        {
-            var flight = this.data.Flights.Find(flightId);
-
-            var booking = new FlightBooking
-            {
-                FlightId = flightId,
-                CountOfSeats = countOfSeats,
-                UserId = userId
-            };
-
-            flight.ReservedSeats += countOfSeats;
-
-            if (flight.ReservedSeats == flight.Plane.NumberOfSeats)
-            {
-                flight.IsPublic = false;
-            }
-
-            this.data.FlightBookings.Add(booking);
-            this.data.SaveChanges();
-        }
-
-        public void CancelBooking(string bookingId)
-        {
-            var booking = this.data.FlightBookings.Where(x => x.Id == bookingId).FirstOrDefault();
-
-            var removeSeatsFlight = this.data.Flights.Where(x => x.Id == booking.FlightId).FirstOrDefault();
-
-            removeSeatsFlight.ReservedSeats -= booking.CountOfSeats;
-
-            removeSeatsFlight.IsPublic = true;
-
-            booking.IsCancelled = true;
-
-            this.data.SaveChanges();
-        }
+        public FlightServiceModel FlightDetails(int flightId)
+            => this.data
+            .Flights
+            .Where(f => f.Id == flightId)
+            .ProjectTo<FlightServiceModel>(this.mapper)
+            .FirstOrDefault();
 
         public void CancelFlight(int flightId)
         {
@@ -389,17 +357,5 @@
 
             this.data.SaveChanges();
         }
-
-        public bool PlaneExists(int planeId)
-            => this.data
-            .Planes
-            .Any(p => p.Id == planeId);
-
-        public FlightServiceModel Details(int flightId)
-            => this.data
-            .Flights
-            .Where(f => f.Id == flightId)
-            .ProjectTo<FlightServiceModel>(this.mapper)
-            .FirstOrDefault();
     }
 }

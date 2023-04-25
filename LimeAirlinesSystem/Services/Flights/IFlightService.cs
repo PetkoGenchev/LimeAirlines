@@ -1,6 +1,7 @@
 ﻿namespace LimeAirlinesSystem.Services.Flights
 {
     using LimeAirlinesSystem.Models;
+    using LimeAirlinesSystem.Services.Bookings.Models;
     using LimeAirlinesSystem.Services.Flights.Models;
     using LimeAirlinesSystem.Services.Planes.Models;
     using System;
@@ -56,16 +57,9 @@
         IEnumerable<string> AllFinalLocations();
         IEnumerable<PlaneServiceModel> AllPlanes();
         bool PlaneExists(int planeId);
-        IEnumerable<FlightBookingServiceModel> UserBookings(string userId);
-
-        FlightServiceModel Details(int flightId);
-        void Book(int flightId, int passangers, string userId);
-
-        void CancelBooking(string bookingId);
+        FlightServiceModel FlightDetails(int flightId);
 
         void CancelFlight(int flightId);
-
-
 
     }
 }
