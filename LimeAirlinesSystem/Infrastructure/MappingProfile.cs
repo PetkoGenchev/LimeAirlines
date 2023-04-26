@@ -2,6 +2,7 @@
 {
     using AutoMapper;
     using LimeAirlinesSystem.Data.Models;
+    using LimeAirlinesSystem.Models.Bookings;
     using LimeAirlinesSystem.Models.Flights;
     using LimeAirlinesSystem.Models.Planes;
     using LimeAirlinesSystem.Services.Bookings.Models;
@@ -20,6 +21,8 @@
             this.CreateMap<FlightServiceModel, FlightFormModel>();
 
             this.CreateMap<Flight, CheapestFlightServiceModel>();
+
+            this.CreateMap<FlightBookingServiceModel, BookingFormModel>();
 
             this.CreateMap<FlightBooking, FlightBookingServiceModel>()
             .ForMember(p => p.StartLocation, cfg => cfg.MapFrom(p => p.Flight.StartLocation))

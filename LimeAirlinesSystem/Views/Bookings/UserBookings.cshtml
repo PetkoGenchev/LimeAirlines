@@ -14,13 +14,23 @@
 <div class="row">
     <h2 class="display-4">Upcoming Flights</h2>
 
-    @foreach (var booking in Model.Where(x => x.FlightDate >= DateTime.UtcNow && x.IsCancelled == false))
+    @foreach (var booking in Model.Where(x => x.FlightDate >= DateTime.UtcNow && x.IsCancelled == false).OrderBy(x => x.IsCheckedIn))
     {
         <div class="col-md-4 div-flights-partial">
             <div class="card mb-3 flights-partial">
-                <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate?.ToShortDateString()  @booking.Price  @booking.CountOfSeats</h1>
+                <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate?.ToShortDateString()  @booking.TotalPrice @booking.Price @booking.CountOfSeats</h1>
                 <div class="card-body text-center">
-                    <a asp-area="" asp-controller="Flights" asp-action="Cancel" asp-route-bookingId="@booking.Id" class="btn btn-warning">Cancel</a>
+                        <a asp-area="" asp-controller="Bookings" asp-action="AddLuggage" asp-route-bookingId="@booking.Id" class="btn btn-warning">Add Luggage</a>
+
+                    @if(booking.FlightDate <= DateTime.UtcNow.AddDays(30) && booking.IsCheckedIn == false)
+                    {
+                        <a asp-area="" asp-controller="Bookings" asp-action="CheckIn" asp-route-bookingId="@booking.Id" class="btn btn-warning">Check In</a>
+                    }
+
+                    @if (booking.IsCheckedIn == false)
+                    {
+                        <a asp-area="" asp-controller="Bookings" asp-action="Cancel" asp-route-bookingId="@booking.Id" class="btn btn-warning">Cancel</a>
+                    }
                 </div>
             </div>
         </div>
@@ -36,7 +46,7 @@
     {
         <div class="col-md-4 div-flights-partial">
             <div class="card mb-3 flights-partial">
-                <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate?.ToShortDateString()  @booking.Price @booking.CountOfSeats</h1>
+                <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate?.ToShortDateString()  @booking.TotalPrice @booking.CountOfSeats</h1>
             </div>
         </div>
     }
@@ -49,7 +59,7 @@
     {
         <div class="col-md-4 div-flights-partial">
             <div class="card mb-3 flights-partial">
-                <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate?.ToShortDateString()  @booking.Price</h1>
+                <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate?.ToShortDateString()  @booking.TotalPrice</h1>
             </div>
         </div>
     }

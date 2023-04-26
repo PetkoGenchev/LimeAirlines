@@ -110,6 +110,21 @@ namespace LimeAirlinesSystem.Data.Migrations
                     b.Property<bool>("IsCancelled")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsCheckedIn")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LargeLuggage")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MediumLuggage")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SmallLuggage")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalPrice")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
@@ -166,6 +181,9 @@ namespace LimeAirlinesSystem.Data.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

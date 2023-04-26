@@ -53,7 +53,7 @@
         {
             var booking = this.bookings.BookingDetails(bookingId);
 
-            var bookingForm = this.mapper.Map<BookingFormModel>(bookings);
+            var bookingForm = this.mapper.Map<BookingFormModel>(booking);
 
             return View(bookingForm);
         }
@@ -75,6 +75,19 @@
 
             return RedirectToAction(nameof(UserBookings));
 
+        }
+
+        public IActionResult CancelAddLuggage()
+        {
+            return RedirectToAction(nameof(UserBookings));
+        }
+
+
+        public IActionResult CheckIn(string bookingId)
+        {
+            this.bookings.CheckIn(bookingId);
+
+            return RedirectToAction(nameof(UserBookings));
         }
     }
 }

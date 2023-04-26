@@ -13,6 +13,8 @@
 
         void CancelBooking(string bookingId);
 
+        void CheckIn(string bookingId);
+
         bool AddLuggage(
             string bookingId,
             int smallLuggage,

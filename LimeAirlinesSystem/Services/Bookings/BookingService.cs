@@ -22,17 +22,19 @@
         public void Book(int flightId, int countOfSeats, string userId)
         {
             var flight = this.data.Flights.Find(flightId);
+            var planeSeats = this.data.Planes.Where(x => x.Id == flight.PlaneId).Select(x => x.NumberOfSeats).FirstOrDefault();
 
             var booking = new FlightBooking
             {
                 FlightId = flightId,
                 CountOfSeats = countOfSeats,
-                UserId = userId
+                UserId = userId,
+                TotalPrice = flight.Price
             };
 
             flight.ReservedSeats += countOfSeats;
 
-            if (flight.ReservedSeats == flight.Plane.NumberOfSeats)
+            if (flight.ReservedSeats == planeSeats)
             {
                 flight.IsPublic = false;
             }
@@ -83,10 +85,12 @@
                 return false;
             }
 
+            var flightInitialPrice = this.data.Flights.Where(x => x.Id == bookingData.FlightId).Select(p => p.Price).FirstOrDefault();
+
             bookingData.SmallLuggage = smallLuggage;
             bookingData.MediumLuggage = mediumLuggage;
             bookingData.LargeLuggage = largeLuggage;
-            bookingData.LuggagePrice =
+            bookingData.TotalPrice = flightInitialPrice +
                 smallLuggage * LuggageConstants.SmallLuggagePrice +
                 mediumLuggage * LuggageConstants.MediumLuggagePrice +
                 largeLuggage * LuggageConstants.LargeLuggagePrice;
@@ -95,6 +99,15 @@
             this.data.SaveChanges();
 
             return true;
+        }
+
+        public void CheckIn(string bookingId)
+        {
+            var booking = this.data.FlightBookings.Find(bookingId);
+
+            booking.IsCheckedIn = true;
+
+            this.data.SaveChanges();
         }
     }
 }

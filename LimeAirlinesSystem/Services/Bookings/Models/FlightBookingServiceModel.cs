@@ -13,10 +13,11 @@ namespace LimeAirlinesSystem.Services.Bookings.Models
         public DateTime? FlightDate { get; init; }
         public int Price { get; init; }
         public bool IsCancelled { get; init; }
+        public bool IsCheckedIn { get; init; }
         public int SmallLuggage { get; init; }
         public int MediumLuggage { get; init; }
         public int LargeLuggage { get; init; }
-        public int LuggagePrice { get; init; }
+        public int TotalPrice { get; init; }
     }
 
 }

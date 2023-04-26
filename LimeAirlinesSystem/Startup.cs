@@ -3,6 +3,7 @@ namespace LimeAirlinesSystem
     using LimeAirlinesSystem.Data;
     using LimeAirlinesSystem.Data.Models;
     using LimeAirlinesSystem.Infrastructure.Extensions;
+    using LimeAirlinesSystem.Services.Bookings;
     using LimeAirlinesSystem.Services.Flights;
     using LimeAirlinesSystem.Services.Planes;
     using Microsoft.AspNetCore.Builder;
@@ -54,6 +55,7 @@ namespace LimeAirlinesSystem
 
             services.AddTransient<IPlaneService, PlaneService>();
             services.AddTransient<IFlightService,FlightService>();
+            services.AddTransient<IBookingService,BookingService>();
         }
 
 
