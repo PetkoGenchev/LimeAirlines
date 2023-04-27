@@ -7,8 +7,10 @@
     using LimeAirlinesSystem.Models.Flights;
     using LimeAirlinesSystem.Services.Bookings;
     using LimeAirlinesSystem.Services.Flights;
+    using LimeAirlinesSystem.Services.Home;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
     public class BookingsController : Controller
     {
@@ -30,9 +32,16 @@
         }
 
         [Authorize]
-        public IActionResult Book(int id, int countOfSeats)
+        public IActionResult Book(int id, int countOfSeats/*, AllFlightsQueryModel queryModel*/)
         {
             this.bookings.Book(id, countOfSeats, this.User.Id());
+
+            //var query = new HomeServiceModel
+            //{
+            //    FlightsQuery = queryModel
+            //};
+
+            //return RedirectToAction("Index", "Home",query);
 
             return RedirectToAction(nameof(UserBookings));
 

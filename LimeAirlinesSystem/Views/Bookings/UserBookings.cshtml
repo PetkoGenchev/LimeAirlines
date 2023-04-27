@@ -42,7 +42,7 @@
 <div class="row">
     <h2 class="display-4">Flight History</h2>
 
-    @foreach (var booking in Model.Where(x => x.FlightDate < DateTime.UtcNow && x.IsCancelled == false))
+    @foreach (var booking in Model.Where(x => x.FlightDate < DateTime.UtcNow && x.IsCancelled == false).OrderByDescending(x=>x.FlightDate).Take(5))
     {
         <div class="col-md-4 div-flights-partial">
             <div class="card mb-3 flights-partial">
@@ -55,7 +55,7 @@
 <div class="row">
     <h2 class="display-4">Cancelled Flights</h2>
 
-    @foreach (var booking in Model.Where(x => x.IsCancelled == true))
+    @foreach (var booking in Model.Where(x => x.IsCancelled == true).OrderByDescending(x => x.FlightDate).Take(5))
     {
         <div class="col-md-4 div-flights-partial">
             <div class="card mb-3 flights-partial">

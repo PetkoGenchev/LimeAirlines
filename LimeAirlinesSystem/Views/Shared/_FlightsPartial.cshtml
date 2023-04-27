@@ -49,7 +49,7 @@
                             }
                             else
                             {
-                                <a asp-controller="Bookings" asp-action="Book" asp-route-id="@flight.Id" asp-route-countOfSeats="@Model.Passangers" class="btn btn-warning">Book</a>
+                                <a asp-controller="Bookings" asp-action="Book" asp-route-id="@flight.Id" asp-route-countOfSeats="@Model.Passangers" asp-route-queryModel="@Model" class="btn btn-warning">Book</a>
                             }
                         </div>
                     </div>
