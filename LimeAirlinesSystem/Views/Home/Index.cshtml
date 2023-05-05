@@ -1,9 +1,9 @@
 ﻿@model HomeServiceModel
 
 
-@*@{
+@{
     ViewBag.Title = "Lime Airlines";
-}*@
+}
 
 <h2 class="h2-center">Book a flight</h2>
 
@@ -61,7 +61,7 @@
 
         <div class="form-group col-md-4">
             <label asp-for="FlightsQuery.Passangers"></label>
-            <input asp-for="FlightsQuery.Passangers" class="form-control" min="1" max="100" value="1" oninput="this.value =
+            <input asp-for="FlightsQuery.Passangers" class="form-control" min="1" max="100"  oninput="this.value =
                    !!this.value && Math.abs(this.value)>= 0 ? Math.abs(this.value) : null">
         </div>
 
@@ -76,13 +76,13 @@
 
         <div class="form-group col-md-4">
             <label asp-for="FlightsQuery.MaxTransfers">Number of Transfers</label>
-            <input asp-for="FlightsQuery.MaxTransfers" type="range" class="form-range" min="0" max="2" value="2" step="1">
+            <input asp-for="FlightsQuery.MaxTransfers" type="range" class="form-range"  value=2 min="0" max="2" step="1">
         </div>
 
 
         <div class="form-group col-md-4">
             <label asp-for="FlightsQuery.MaxPrice">Price</label>
-            <input asp-for="FlightsQuery.MaxPrice" type="range" class="form-range" min="0" max="2000" value="2000" step="200" id="customRange">
+            <input asp-for="FlightsQuery.MaxPrice" type="range" class="form-range" value=2000 min ="0" max="2000" step="200" id="customRange">
         </div>
 
         <div class="form-group col-md-3">

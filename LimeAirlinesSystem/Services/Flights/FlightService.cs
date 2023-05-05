@@ -57,7 +57,7 @@
         DateTime? flightDate,
         string startLocation = null,
         string endLocation = null,
-        int passangers = 1,
+        int passangers = int.MaxValue,
         string tripType = null,
         int maxTransfers = int.MaxValue,
         int maxPrice = int.MaxValue,

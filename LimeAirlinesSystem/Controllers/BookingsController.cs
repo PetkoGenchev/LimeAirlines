@@ -3,6 +3,7 @@
     using AutoMapper;
     using LimeAirlinesSystem.Data.Models;
     using LimeAirlinesSystem.Infrastructure.Extensions;
+    using LimeAirlinesSystem.Models;
     using LimeAirlinesSystem.Models.Bookings;
     using LimeAirlinesSystem.Models.Flights;
     using LimeAirlinesSystem.Services.Bookings;
@@ -10,7 +11,9 @@
     using LimeAirlinesSystem.Services.Home;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using System;
     using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+    using static WebConstants;
 
     public class BookingsController : Controller
     {
@@ -32,19 +35,39 @@
         }
 
         [Authorize]
-        public IActionResult Book(int id, int countOfSeats/*, AllFlightsQueryModel queryModel*/)
+        public IActionResult Book(
+            int id, 
+            int countOfSeats, 
+            string tripType,
+            string startLocation,
+            string endLocation,
+            DateTime? flightDate,
+            int maxTransfers,
+            int maxPrice,
+            FlightSorting sorting)
         {
             this.bookings.Book(id, countOfSeats, this.User.Id());
 
+            TempData[GlobalMessageKey] = "Flight has been added to your bookings!";
+
             //var query = new HomeServiceModel
             //{
-            //    FlightsQuery = queryModel
+            //    FlightsQuery = new AllFlightsQueryModel
+            //    {
+            //        TripType = tripType,
+            //        StartLocation = startLocation,
+            //        EndLocation = endLocation,
+            //        FlightDate = flightDate,
+            //        MaxTransfers = maxTransfers,
+            //        MaxPrice = maxPrice,
+            //        Sorting = sorting,
+            //        Passangers = countOfSeats
+            //    }
             //};
 
-            //return RedirectToAction("Index", "Home",query);
-
-            return RedirectToAction(nameof(UserBookings));
-
+            //return RedirectToAction(nameof(UserBookings));
+            return RedirectToAction("Index","Home");
+             
         }
 
         [Authorize]

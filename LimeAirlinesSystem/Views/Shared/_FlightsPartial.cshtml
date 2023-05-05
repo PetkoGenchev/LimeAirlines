@@ -16,7 +16,18 @@
                     }
                     else
                     {
-                        <a asp-controller="Bookings" asp-action="Book" asp-route-id="@flight.Id" asp-route-countOfSeats="@Model.Passangers" class="btn btn-warning">Book</a>
+                        <a asp-controller="Bookings" asp-action="Book"
+                           asp-route-id="@flight.Id"
+                           asp-route-countOfSeats="@Model.Passangers"
+                           asp-route-tripType="@Model.TripType"
+                           asp-route-startLocation="@flight.StartLocation"
+                           asp-route-endLocation="@flight.EndLocation"
+                           asp-route-flightDate="@flight.FlightDate"
+                           asp-route-maxTransfers="@Model.MaxTransfers"
+                           asp-route-maxPrice="@Model.MaxPrice"
+                           asp-route-sorting="@Model.Sorting"
+                           class="btn btn-warning">Book
+                       </a>
                     }
                 </div>
             </div>
