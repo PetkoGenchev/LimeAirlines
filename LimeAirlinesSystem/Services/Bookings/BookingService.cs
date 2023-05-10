@@ -19,7 +19,7 @@
             this.mapper = mapper.ConfigurationProvider;
         }
 
-        public void Book(int flightId, int countOfSeats, string userId)
+        public string Book(int flightId, int countOfSeats, string userId)
         {
             var flight = this.data.Flights.Find(flightId);
             var planeSeats = this.data.Planes.Where(x => x.Id == flight.PlaneId).Select(x => x.NumberOfSeats).FirstOrDefault();
@@ -41,6 +41,8 @@
 
             this.data.FlightBookings.Add(booking);
             this.data.SaveChanges();
+
+            return flight.EndLocation;
         }
 
         public FlightBookingServiceModel BookingDetails(string bookingId)

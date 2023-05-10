@@ -34,41 +34,51 @@
             return View(myFlights);
         }
 
+
         [Authorize]
-        public IActionResult Book(
-            int id, 
-            int countOfSeats, 
-            string tripType,
-            string startLocation,
-            string endLocation,
-            DateTime? flightDate,
-            int maxTransfers,
-            int maxPrice,
-            FlightSorting sorting)
+        public JsonResult Book(int id, int countOfSeats)
         {
-            this.bookings.Book(id, countOfSeats, this.User.Id());
+            var endLocation = this.bookings.Book(id, countOfSeats, this.User.Id());
 
-            TempData[GlobalMessageKey] = "Flight has been added to your bookings!";
-
-            //var query = new HomeServiceModel
-            //{
-            //    FlightsQuery = new AllFlightsQueryModel
-            //    {
-            //        TripType = tripType,
-            //        StartLocation = startLocation,
-            //        EndLocation = endLocation,
-            //        FlightDate = flightDate,
-            //        MaxTransfers = maxTransfers,
-            //        MaxPrice = maxPrice,
-            //        Sorting = sorting,
-            //        Passangers = countOfSeats
-            //    }
-            //};
-
-            //return RedirectToAction(nameof(UserBookings));
-            return RedirectToAction("Index","Home");
-             
+            return Json(endLocation);
         }
+
+
+        //[Authorize]
+        //public IActionResult Book(
+        //    int id, 
+        //    int countOfSeats, 
+        //    string tripType,
+        //    string startLocation,
+        //    string endLocation,
+        //    DateTime? flightDate,
+        //    int maxTransfers,
+        //    int maxPrice,
+        //    FlightSorting sorting)
+        //{
+        //    this.bookings.Book(id, countOfSeats, this.User.Id());
+
+        //    TempData[GlobalMessageKey] = "Flight has been added to your bookings!";
+
+        //    //var query = new HomeServiceModel
+        //    //{
+        //    //    FlightsQuery = new AllFlightsQueryModel
+        //    //    {
+        //    //        TripType = tripType,
+        //    //        StartLocation = startLocation,
+        //    //        EndLocation = endLocation,
+        //    //        FlightDate = flightDate,
+        //    //        MaxTransfers = maxTransfers,
+        //    //        MaxPrice = maxPrice,
+        //    //        Sorting = sorting,
+        //    //        Passangers = countOfSeats
+        //    //    }
+        //    //};
+
+        //    //return RedirectToAction(nameof(UserBookings));
+        //    return RedirectToAction("Index","Home");
+
+        //}
 
         [Authorize]
         public IActionResult Cancel(string bookingId)

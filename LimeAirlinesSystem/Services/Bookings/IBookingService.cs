@@ -9,7 +9,7 @@
 
         FlightBookingServiceModel BookingDetails(string bookingId);
 
-        void Book(int flightId, int passangers, string userId);
+        string Book(int flightId, int passangers, string userId);
 
         void CancelBooking(string bookingId);
 

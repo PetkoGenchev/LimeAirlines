@@ -1,6 +1,5 @@
 ﻿@model AllFlightsQueryModel
 
-
 <div class="row">
     <h1 class="display-4">Outgoing Flights!</h1>
     @foreach (var flight in Model.Flights)
@@ -16,18 +15,9 @@
                     }
                     else
                     {
-                        <a asp-controller="Bookings" asp-action="Book"
-                           asp-route-id="@flight.Id"
-                           asp-route-countOfSeats="@Model.Passangers"
-                           asp-route-tripType="@Model.TripType"
-                           asp-route-startLocation="@flight.StartLocation"
-                           asp-route-endLocation="@flight.EndLocation"
-                           asp-route-flightDate="@flight.FlightDate"
-                           asp-route-maxTransfers="@Model.MaxTransfers"
-                           asp-route-maxPrice="@Model.MaxPrice"
-                           asp-route-sorting="@Model.Sorting"
-                           class="btn btn-warning">Book
-                       </a>
+                        @*                        <a asp-controller="Bookings" asp-action="Book" asp-route-id="@flight.Id" asp-route-countOfSeats="@Model.Passangers" class="btn btn-warning">Book</a>*@
+                        <input type="button" id="btnAddToBookings" value="Book" class="btn btn-primary btn-block" />
+                        @*                        <button class="btn btn-primary" id="statistics-button">Book</button>*@
                     }
                 </div>
             </div>
@@ -60,7 +50,8 @@
                             }
                             else
                             {
-                                <a asp-controller="Bookings" asp-action="Book" asp-route-id="@flight.Id" asp-route-countOfSeats="@Model.Passangers" asp-route-queryModel="@Model" class="btn btn-warning">Book</a>
+                                @*                                <a asp-controller="Bookings" asp-action="Book" asp-route-id="@flight.Id" asp-route-countOfSeats="@Model.Passangers" class="btn btn-warning">Book</a>*@
+                                <input type="button" id="btnAddToBookings" value="Book" class="btn btn-primary btn-block" onclick="(@flight.Id,@Model.Passangers)=>bookFlight(@flight.Id,@Model.Passangers)" />
                             }
                         </div>
                     </div>
@@ -69,3 +60,77 @@
         </div>
     }
 }
+
+@section Scripts{
+    <script>
+
+    </script>
+    }
+
+
+
+
+
+
+
+    @*                $(document).ready(function () {
+                $('#btnAddToBookings').click(function () {
+                    var flightId = document.getElementById("uname").value;
+                    var passangers = document.getElementById("pwd").value;
+                    var JSONObject = {
+                        "uname": uname,
+                        "password": password
+                    };
+
+                    $.ajax({
+                        url: "/Bookings/Book",
+                        type: 'post',
+                        data: JSONObject,
+                        dataType: 'JSON',
+                        success: function (data) {
+                            var jsonData = $.parseJSON(data); //if data is not json
+                            $('#name').val(jsonData.name);
+                            $('#email').val(jsonData.email);
+                        }
+                    });
+                });
+            });
+*@
+
+
+
+
+
+@*
+                $('#btnAddToBookings').on('click', ev => {
+            let passangers = @Html.Raw(Json.Serialize(Model.Passangers));
+                console.log(passangers);
+
+                $.ajax({
+                   type: "POST",
+                    url: "/Bookings/Book",
+                    data: JSON.stringify(id, countOfSeats),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (r) {
+                        Notification("Booked flight to " + r.endLocation);
+                   }
+                });
+            });*@
+
+
+
+    @*    @section Scripts {
+    <script>
+        $('#statistics-button').on('click', ev => {
+            $.get('/api/statistics', (data) => {
+                $('#total-cars').text(data.totalCars + " Cars");
+                $('#total-users').text(data.totalUsers + " Users");
+                $('#total-rents').text(data.totalRents + " Rents");
+
+                $('#statistics').removeClass('d-none');
+                $('#statistics-button').hide();
+            });
+        });
+    </script>
+}*@
