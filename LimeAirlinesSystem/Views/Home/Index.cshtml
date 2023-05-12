@@ -75,14 +75,14 @@
         </div>
 
         <div class="form-group col-md-4">
-            <label asp-for="FlightsQuery.MaxTransfers">Number of Transfers</label>
-            <input asp-for="FlightsQuery.MaxTransfers" type="range" class="form-range" value=2 min="0" max="2" step="1">
+            <input asp-for="FlightsQuery.MaxTransfers" id="transfer_input" type="range" class="form-range" value=2 min="0" max="2" step="1">
+            <label asp-for="FlightsQuery.MaxTransfers">Max Transfers: <output id="transfer_value"></output></label>
         </div>
 
 
         <div class="form-group col-md-4">
-            <label asp-for="FlightsQuery.MaxPrice">Price</label>
-            <input asp-for="FlightsQuery.MaxPrice" type="range" class="form-range" value=2000 min="0" max="2000" step="200" id="customRange">
+            <input asp-for="FlightsQuery.MaxPrice" id="price_input" type="range" class="form-range" value=2000 min="0" max="2000" step="200">
+            <label asp-for="FlightsQuery.MaxPrice">Max Price: $<output id="price_value"></output></label>
         </div>
 
         <div class="form-group col-md-3">
@@ -138,5 +138,25 @@ else
 
 }
 
+@section Scripts{
+    <script>
+        const transfer_value = document.querySelector("#transfer_value")
+        const transfer_input = document.querySelector("#transfer_input")
+        transfer_value.textContent = transfer_input.value
+        transfer_input.addEventListener("input", (event) => {
+            transfer_value.textContent = event.target.value
+        })
 
+
+        const price_value = document.querySelector("#price_value")
+        const price_input = document.querySelector("#price_input")
+        price_value.textContent = price_input.value
+        price_input.addEventListener("input", (event) => {
+            price_value.textContent = event.target.value
+        })
+
+
+    </script>
+
+}
 

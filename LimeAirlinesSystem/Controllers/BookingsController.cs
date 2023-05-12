@@ -36,7 +36,9 @@
 
 
         [Authorize]
-        public JsonResult Book(int id, int countOfSeats)
+        [HttpPost]
+        [IgnoreAntiforgeryToken]
+        public JsonResult Book([FromBody] int id, int countOfSeats)
         {
             var endLocation = this.bookings.Book(id, countOfSeats, this.User.Id());
 
@@ -89,7 +91,6 @@
         }
 
 
-
         [Authorize]
         public IActionResult AddLuggage(string bookingId)
         {
@@ -99,6 +100,7 @@
 
             return View(bookingForm);
         }
+
 
         [HttpPost]
         [Authorize]

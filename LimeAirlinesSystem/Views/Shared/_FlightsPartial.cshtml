@@ -15,9 +15,8 @@
                     }
                     else
                     {
-                        @*                        <a asp-controller="Bookings" asp-action="Book" asp-route-id="@flight.Id" asp-route-countOfSeats="@Model.Passangers" class="btn btn-warning">Book</a>*@
-                        <input type="button" id="btnAddToBookings" value="Book" class="btn btn-primary btn-block" />
-                        @*                        <button class="btn btn-primary" id="statistics-button">Book</button>*@
+                        <input type="button" id="btnAddToBookings" value="Book" class="btn btn-primary btn-block"/>
+                        <input type="hidden" id="flightId" value=@flight.Id />
                     }
                 </div>
             </div>
@@ -64,11 +63,38 @@
 
 <script>
     const buttons = document.querySelectorAll('#btnAddToBookings');
-    var test = @Html.Raw(Json.Serialize(Model.Passangers));
-    
-    buttons.forEach(btn=> btn.addEventListener('click', ()=> {
-    console.log('clicked');
-    console.log(test);
+    //const flightId = document.querySelectorAll('#flightId');
+    var countOfSeats = @Html.Raw(Json.Serialize(Model.Passangers));
+
+    buttons.forEach(btn => btn.addEventListener('click', (e) => {
+        console.log(e.target.parentElement.children[1].value)
+        console.log(countOfSeats);
+
     }));
+
+
+    fetch(`/Bookings/Book`, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+            id: id,
+            countOfSeats: countOfSeats
+        })
+    }).then(function (response) {
+        if (response.ok) {
+            alert("Booked flight for " + countOfSeats + "passangers");
+            return response.json();
+        }
+        return Promise.reject(response);
+    }).then(data => {
+        console.log('Success:'+ countOfSeats);
+        //DATA SHOULD be JSON.stringify(data)
+    }).catch(function (error) {
+        console.warn('BLAH BLAH BLAH', error);
+    });
+
+
 </script>
 
