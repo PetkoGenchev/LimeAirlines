@@ -38,9 +38,10 @@
         [Authorize]
         [HttpPost]
         [IgnoreAntiforgeryToken]
-        public JsonResult Book([FromBody] int id, int countOfSeats)
+        //public JsonResult Book(int id, int countOfSeats)
+        public JsonResult Book([FromBody] BookData bookData)
         {
-            var endLocation = this.bookings.Book(id, countOfSeats, this.User.Id());
+            var endLocation = this.bookings.Book(bookData.flightId, bookData.countOfFlightSeats, this.User.Id());
 
             return Json(endLocation);
         }
