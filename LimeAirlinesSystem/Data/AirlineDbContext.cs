@@ -20,6 +20,7 @@
         public DbSet<Passanger> Passangers { get; init; }
         public DbSet<TripType> TripTypes { get; init; }
         public DbSet<FlightBooking> FlightBookings { get; init; }
+        public DbSet<FAQ> FAQs { get; init; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

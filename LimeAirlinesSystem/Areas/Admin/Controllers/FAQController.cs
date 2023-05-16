@@ -7,7 +7,7 @@
     using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 
-    public class InformationController : Controller
+    public class FAQController : Controller
     {
         public IActionResult General()
         {

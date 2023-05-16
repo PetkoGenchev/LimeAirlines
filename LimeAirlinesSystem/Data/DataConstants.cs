@@ -46,5 +46,13 @@
             public const int LuggageMinCount = 0;
             public const int LuggageMaxCount = 5;
         }
+
+        public class FAQConstants
+        {
+            public const int InformationDescriptionMinLength = 10;
+            public const int InformationDescriptionMaxLength = 1000;
+            public const int InformationTitleMaxLength = 50;
+            public const int InformationTitleMinLength = 5;
+        }
     }
 }
