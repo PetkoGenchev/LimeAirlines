@@ -4,12 +4,15 @@ using LimeAirlinesSystem.Data;
 using LimeAirlinesSystem.Data.Models;
 using LimeAirlinesSystem.Services.FAQs.Models;
 using LimeAirlinesSystem.Services.Flights.Models;
-using LimeAirlinesSystem.Services.Information.Models;
+using LimeAirlinesSystem.Services.Planes.Models;
 using Microsoft.Extensions.Primitives;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography.Xml;
 
-namespace LimeAirlinesSystem.Services.Information
+namespace LimeAirlinesSystem.Services.FAQs
 {
     public class FAQService : IFAQService
     {
@@ -35,7 +38,7 @@ namespace LimeAirlinesSystem.Services.Information
 
         }
 
-        public int Create(string imageUrl, string description, string title)
+        public void Create(string imageUrl, string description, string title)
         {
             var faqData = new FAQ
             {
@@ -47,18 +50,29 @@ namespace LimeAirlinesSystem.Services.Information
 
             this.data.FAQs.Add(faqData);
             this.data.SaveChanges();
-
-            return 
         }
 
         public bool Edit(
-            int informationId, 
+            int faqId, 
             string imageUrl, 
             string description,
-            string title,
-            bool isPublic)
+            string title)
         {
-            throw new System.NotImplementedException();
+            var faqData = this.data.FAQs.Find(faqId);
+
+            if (faqData == null)
+            {
+                return false;
+            }
+
+            faqData.Description = description;
+            faqData.Title = title;
+            faqData.ImageUrl = imageUrl;
+
+
+            this.data.SaveChanges();
+
+            return true;
         }
 
         public void ChangeVisibility(int faqId)
@@ -74,5 +88,23 @@ namespace LimeAirlinesSystem.Services.Information
         => faqQuery
         .ProjectTo<FAQServiceModel>(this.mapper)
         .ToList();
+
+        public IEnumerable<FAQServiceModel> AllFAQs()
+            => this.data
+            .FAQs
+            .ProjectTo<FAQServiceModel>(this.mapper)
+            .ToList();
+
+        public bool FAQExists(string faqTitle)
+        => this.data
+        .FAQs
+        .Any(f => f.Title == faqTitle);
+
+        public FAQServiceModel FAQDetails(int faqId)
+            => this.data
+            .FAQs
+            .Where(f => f.Id == faqId)
+            .ProjectTo<FAQServiceModel>(this.mapper)
+            .FirstOrDefault();
     }
 }

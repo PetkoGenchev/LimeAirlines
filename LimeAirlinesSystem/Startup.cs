@@ -5,7 +5,7 @@ namespace LimeAirlinesSystem
     using LimeAirlinesSystem.Infrastructure.Extensions;
     using LimeAirlinesSystem.Services.Bookings;
     using LimeAirlinesSystem.Services.Flights;
-    using LimeAirlinesSystem.Services.Information;
+    using LimeAirlinesSystem.Services.FAQs;
     using LimeAirlinesSystem.Services.Planes;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

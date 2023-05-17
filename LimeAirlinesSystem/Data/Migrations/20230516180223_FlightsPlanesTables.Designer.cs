@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimeAirlinesSystem.Data.Migrations
 {
     [DbContext(typeof(AirlineDbContext))]
-    [Migration("20230426174531_PlanesFlightsBookingsTables")]
-    partial class PlanesFlightsBookingsTables
+    [Migration("20230516180223_FlightsPlanesTables")]
+    partial class FlightsPlanesTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,6 +40,35 @@ namespace LimeAirlinesSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("LimeAirlinesSystem.Data.Models.FAQ", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsPublic")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FAQs");
                 });
 
             modelBuilder.Entity("LimeAirlinesSystem.Data.Models.Flight", b =>

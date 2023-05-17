@@ -216,7 +216,7 @@
         }
 
 
-        public int Create(
+        public void Create(
             string startLocation,
             string endLocation,
             DateTime flightDate,
@@ -242,8 +242,6 @@
 
             this.data.Flights.Add(flightData);
             this.data.SaveChanges();
-
-            return flightData.Id;
         }
 
         public bool Edit(

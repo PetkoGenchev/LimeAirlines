@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LimeAirlinesSystem.Data.Migrations
 {
-    public partial class PlanesFlightsBookingsTables : Migration
+    public partial class FlightsPlanesTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -61,6 +61,22 @@ namespace LimeAirlinesSystem.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FAQs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsPublic = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FAQs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -343,6 +359,9 @@ namespace LimeAirlinesSystem.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "FAQs");
 
             migrationBuilder.DropTable(
                 name: "FlightBookings");

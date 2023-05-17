@@ -1,5 +1,11 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model FAQFormModel
+
 @{
+    ViewBag.Title = "Add FAQ";
+}
+
+<partial name="_FAQFormPartial" model="@Model" />
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
 }

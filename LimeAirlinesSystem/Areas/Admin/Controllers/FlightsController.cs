@@ -70,7 +70,7 @@
                 return View(flight);
             }
 
-            var flightId = this.flights.Create(
+            this.flights.Create(
                 flight.StartLocation,
                 flight.EndLocation,
                 flight.FlightDate,

@@ -1,9 +1,7 @@
-﻿using LimeAirlinesSystem.Services.Flights.Models;
-using LimeAirlinesSystem.Services.Information.Models;
-using System.Collections.Generic;
-
-namespace LimeAirlinesSystem.Services.FAQs.Models
+﻿namespace LimeAirlinesSystem.Services.FAQs.Models
 {
+    using System.Collections.Generic;
+
     public class FAQQueryServiceModel
     {
         public IEnumerable<FAQServiceModel> FAQs { get; set; }

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<FAQServiceModel>
+
+
+@if (!Model.Any())
+{
+    <div class="jumbotron">
+        <h1 class="display-4">Information</h1>
+        <p class="lead">There are no FAQ Information currently.Please contact support for assistance.</p>
+    </div>
+
+}
+else
+{
+    <div class="row">
+        @foreach (var faq in Model)
+        {
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top img-planes-partial" src="@faq.ImageUrl">
+
+
+                <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                        @faq.Title
+                    </button>
+                </p>
+                <div style="min-height: 120px;">
+                    <div class="collapse width" id="collapseWidthExample">
+                        <div class="card card-body" style="width: 320px;">
+                            <p class="card-text">@faq.Description</p>
+                        </div>
+                        @if (User.IsAdmin())
+                        {
+                            <a asp-area="Admin" asp-controller="FAQ" asp-action="Edit" asp-route-id="@faq.Id" class="btn btn-warning">Edit</a>
+                            <a asp-area="Admin" asp-controller="FAQ" asp-action="ChangeVisibility" asp-route-id="@faq.Id" class="btn btn-info float-right ml-3">@(faq.IsPublic ? "Hide" : "Show")</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+

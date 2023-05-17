@@ -28,7 +28,7 @@
             int flightsPerPage = int.MaxValue
             );
 
-        int Create(
+        void Create(
             string startLocation,
             string endLocation,
             DateTime flightDate,
