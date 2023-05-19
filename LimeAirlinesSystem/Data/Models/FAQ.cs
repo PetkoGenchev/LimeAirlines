@@ -1,5 +1,7 @@
 ﻿namespace LimeAirlinesSystem.Data.Models
 {
+    using System.Collections;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using static DataConstants.FAQConstants;
@@ -19,5 +21,7 @@
         public string Description { get; set; }
 
         public bool IsPublic { get; set; }
+
+        public List<string> Likes = new List<string>();
     }
 }

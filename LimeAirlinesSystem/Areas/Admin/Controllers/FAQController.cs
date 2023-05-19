@@ -13,7 +13,7 @@
     using LimeAirlinesSystem.Data.Models;
     using LimeAirlinesSystem.Infrastructure.Extensions;
 
-    public class FAQController : Controller
+    public class FAQController : AdminController
     {
         private readonly IFAQService faqs;
         private readonly IMapper mapper;
@@ -63,14 +63,14 @@
 
 
         [Authorize]
-        public IActionResult Edit(int faqid)
+        public IActionResult Edit(int Id)
         {
             if (!User.IsAdmin())
             {
                 return Unauthorized();
             }
 
-            var faq = this.faqs.FAQDetails(faqid);
+            var faq = this.faqs.FAQDetails(Id);
 
             var faqForm = this.mapper.Map<FAQFormModel>(faq);
 
@@ -80,7 +80,7 @@
 
         [HttpPost]
         [Authorize]
-        public IActionResult Edit(int faqId, FAQFormModel faq)
+        public IActionResult Edit(int Id, FAQFormModel faq)
         {
             if (!User.IsAdmin())
             {
@@ -93,7 +93,7 @@
             }
 
             var edited = this.faqs.Edit(
-                faqId,
+                Id,
                 faq.Title,
                 faq.Description,
                 faq.ImageUrl);
@@ -109,9 +109,9 @@
 
 
 
-        public IActionResult ChangeVisibility(int faqId)
+        public IActionResult ChangeVisibility(int Id)
         {
-            this.faqs.ChangeVisibility(faqId);
+            this.faqs.ChangeVisibility(Id);
 
             return RedirectToAction(nameof(All));
         }

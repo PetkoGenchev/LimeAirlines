@@ -1,6 +1,4 @@
-﻿@using LimeAirlinesSystem.Data.Models
-@using Microsoft.AspNetCore.Identity
-@inject SignInManager<Passanger> SignInManager
+﻿@inject SignInManager<Passanger> SignInManager
 @inject UserManager<Passanger> UserManager
 
 <ul class="navbar-nav">
@@ -15,14 +13,13 @@
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="UserBookings">My Flights</a>
             </li>
-
-
-@*ADD ADDITIONAL FUNCTIONALITIES FOR NON-ADMINS*@
-
-
         }
         else
         {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Admin" asp-controller="FAQ" asp-action="All">Information</a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="Admin" asp-controller="Planes" asp-action="All">Plane Administration</a>
             </li>

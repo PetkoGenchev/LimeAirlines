@@ -9,6 +9,7 @@
     public interface IFAQService
     {
         FAQQueryServiceModel All();
+        FAQQueryServiceModel AllShow();
 
         void Create(
             string imageUrl,
@@ -16,16 +17,18 @@
             string title);
 
         bool Edit(
-            int faqId,
+            int Id,
             string imageUrl,
             string description,
             string title);
 
-        void ChangeVisibility(int faqId);
+        void ChangeVisibility(int Id);
 
         IEnumerable<FAQServiceModel> AllFAQs();
 
         bool FAQExists(string faqTitle);
-        FAQServiceModel FAQDetails(int faqId);
+        FAQServiceModel FAQDetails(int Id);
+
+        int LikeFAQ(int Id, string userId);
     }
 }

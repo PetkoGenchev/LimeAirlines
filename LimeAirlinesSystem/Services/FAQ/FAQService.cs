@@ -1,19 +1,19 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using LimeAirlinesSystem.Data;
-using LimeAirlinesSystem.Data.Models;
-using LimeAirlinesSystem.Services.FAQs.Models;
-using LimeAirlinesSystem.Services.Flights.Models;
-using LimeAirlinesSystem.Services.Planes.Models;
-using Microsoft.Extensions.Primitives;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Cryptography.Xml;
-
-namespace LimeAirlinesSystem.Services.FAQs
+﻿namespace LimeAirlinesSystem.Services.FAQs
 {
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
+    using LimeAirlinesSystem.Data;
+    using LimeAirlinesSystem.Data.Models;
+    using LimeAirlinesSystem.Services.FAQs.Models;
+    using LimeAirlinesSystem.Services.Flights.Models;
+    using LimeAirlinesSystem.Services.Planes.Models;
+    using Microsoft.Extensions.Primitives;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Numerics;
+    using System.Security.Cryptography.X509Certificates;
+    using System.Security.Cryptography.Xml;
+
     public class FAQService : IFAQService
     {
         private readonly AirlineDbContext data;
@@ -37,6 +37,19 @@ namespace LimeAirlinesSystem.Services.FAQs
             };
 
         }
+        public FAQQueryServiceModel AllShow()
+        {
+            var faqQuery = this.data.FAQs;
+            var allfaqs = GetFAQs(faqQuery);
+            var faqs = allfaqs.Where(x => x.IsPublic);
+
+            return new FAQQueryServiceModel
+            {
+                FAQs = faqs
+            };
+
+        }
+
 
         public void Create(string imageUrl, string description, string title)
         {
@@ -53,12 +66,12 @@ namespace LimeAirlinesSystem.Services.FAQs
         }
 
         public bool Edit(
-            int faqId, 
+            int Id, 
             string imageUrl, 
             string description,
             string title)
         {
-            var faqData = this.data.FAQs.Find(faqId);
+            var faqData = this.data.FAQs.Find(Id);
 
             if (faqData == null)
             {
@@ -75,9 +88,9 @@ namespace LimeAirlinesSystem.Services.FAQs
             return true;
         }
 
-        public void ChangeVisibility(int faqId)
+        public void ChangeVisibility(int Id)
         {
-            var faq = this.data.FAQs.Find(faqId);
+            var faq = this.data.FAQs.Find(Id);
 
             faq.IsPublic = !faq.IsPublic;
 
@@ -100,11 +113,31 @@ namespace LimeAirlinesSystem.Services.FAQs
         .FAQs
         .Any(f => f.Title == faqTitle);
 
-        public FAQServiceModel FAQDetails(int faqId)
+        public FAQServiceModel FAQDetails(int Id)
             => this.data
             .FAQs
-            .Where(f => f.Id == faqId)
+            .Where(f => f.Id == Id)
             .ProjectTo<FAQServiceModel>(this.mapper)
             .FirstOrDefault();
+
+        public int LikeFAQ(int Id, string userId)
+        {
+            var faqToLike = this.data.FAQs.Find(Id);
+
+
+            if (faqToLike.Likes.Contains(userId))
+            {
+                faqToLike.Likes.Remove(userId);
+            }
+
+            else
+            {
+                faqToLike.Likes.Add(userId);
+            }
+
+            this.data.SaveChanges();
+
+            return faqToLike.Likes.Count();
+        }
     }
 }
