@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace LimeAirlinesSystem.Data.Migrations
+namespace LimeAirlinesSystem.Migrations
 {
     [DbContext(typeof(AirlineDbContext))]
     partial class AirlineDbContextModelSnapshot : ModelSnapshot

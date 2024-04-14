@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace LimeAirlinesSystem.Data.Migrations
+namespace LimeAirlinesSystem.Migrations
 {
     [DbContext(typeof(AirlineDbContext))]
-    [Migration("20230516180223_FlightsPlanesTables")]
-    partial class FlightsPlanesTables
+    [Migration("20240414205535_FlightsBookingsTables")]
+    partial class FlightsBookingsTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

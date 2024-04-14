@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace LimeAirlinesSystem.Data.Migrations
+namespace LimeAirlinesSystem.Migrations
 {
-    public partial class FlightsPlanesTables : Migration
+    public partial class FlightsBookingsTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
