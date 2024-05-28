@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimeAirlinesSystem.Migrations
 {
     [DbContext(typeof(AirlineDbContext))]
-    [Migration("20240415182405_FlighstBookingsTables")]
-    partial class FlighstBookingsTables
+    [Migration("20240528180315_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

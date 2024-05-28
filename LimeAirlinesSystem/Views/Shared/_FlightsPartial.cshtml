@@ -1,4 +1,5 @@
 ﻿@model AllFlightsQueryModel
+@inject SignInManager<Passanger> SignInManager
 
 <div class="row">
     <h1 class="display-4">Outgoing Flights!</h1>
@@ -15,11 +16,14 @@
                     }
                     else
                     {
-                        <input type="button" id="btnAddToBookings" value="Book" class="btn btn-primary btn-block" />
-                        <input type="hidden" id="flightId" value=@flight.Id />
-                        var passangerCount = (@Model.Passangers == 1) ? "passanger" : "passangers";
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <input type="button" id="btnAddToBookings" value="Book" class="btn btn-primary btn-block" />
+                            <input type="hidden" id="flightId" value=@flight.Id />
+                            var passangerCount = (@Model.Passangers == 1) ? "passanger" : "passangers";
 
-                        <div id="snackbar">Flight to @flight.EndLocation has been booked for @Model.Passangers @passangerCount.</div>
+                            <div id="snackbar">Flight to @flight.EndLocation has been booked for @Model.Passangers @passangerCount.</div>
+                        }
                     }
                 </div>
             </div>
