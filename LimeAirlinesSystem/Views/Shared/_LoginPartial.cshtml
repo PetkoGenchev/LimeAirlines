@@ -17,44 +17,44 @@
         else
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Admin" asp-controller="FAQ" asp-action="All">Info</a>
+                <a class="nav-link text-light" asp-area="Admin" asp-controller="FAQ" asp-action="All">Info</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Planes" asp-action="All">Plane Admin</a>
+                <a class="nav-link text-light" asp-area="Admin" asp-controller="Planes" asp-action="All">Plane Admin</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Flights" asp-action="All">Flight Admin</a>
+                <a class="nav-link text-light" asp-area="Admin" asp-controller="Flights" asp-action="All">Flight Admin</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Planes" asp-action="Add">Add Aircraft</a>
+                <a class="nav-link text-light" asp-area="Admin" asp-controller="Planes" asp-action="Add">Add Aircraft</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Flights" asp-action="Add">Add Flight</a>
+                <a class="nav-link text-light" asp-area="Admin" asp-controller="Flights" asp-action="Add">Add Flight</a>
             </li>
         }
 
 
 
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account</a>
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account</a>
         </li>
         <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            <form class="form-inline " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-light">Logout</button>
             </form>
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </li>
     }
 </ul>

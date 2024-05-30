@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <None Include="wwwroot\Images\AirbusA220.jpg" />
-    <None Include="wwwroot\Images\AirbusA320.jpeg" />
+    <None Include="wwwroot\Images\AirbusA320.jpg" />
     <None Include="wwwroot\Images\AirbusA380.jpg" />
     <None Include="wwwroot\Images\AirbusACH160.jpg" />
     <None Include="wwwroot\Images\Bell206B.jpg" />
