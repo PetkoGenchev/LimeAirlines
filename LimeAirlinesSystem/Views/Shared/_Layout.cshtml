@@ -10,21 +10,20 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 homepage-heading">
-            <div class="container ">
+            <div class="container">
                 <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">Lime Airlines</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-
+                    <ul class="navbar-nav flex-home">
+                        <li class="nav-item image-test">
+                            <i class="fa-solid fa-plane"></i>
                             <a class="nav-link text-light" asp-area="" asp-controller="Planes" asp-action="All">Our Fleet</a>
                         </li>
 
-                        <li class="nav-item">
-
+                        <li class="nav-item image-test">
                             <i class="fa-solid fa-info"></i>
                             <a class="nav-link text-light" asp-area="" asp-controller="FAQ" asp-action="All">Info</a>
                         </li>

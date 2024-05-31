@@ -1,5 +1,6 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+@import url("https://use.fontawesome.com/releases/v6.5.2/css/all.css");
 
 a.navbar-brand {
     white-space: normal;
@@ -126,7 +127,7 @@ body {
 }
 
 .card-img-top.img-planes-partial {
-    height: 70%;
+    height: 60%;
 }
 
 .planes-partial {
@@ -134,8 +135,8 @@ body {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.card-body.text-center {
-   
+.card-title.text-center {
+    margin-top: 12px;
 }
 
 .div-planes-partial {
@@ -158,8 +159,35 @@ body {
     background-color: #1438FE;
 }
 
-.fa-solid fa-info{
+li.image-test i {
     color: coral;
+    font-size: 25px;
+    align-content: center;
+}
+
+.nav-item.image-test{
+    display:inline-flex;
+}
+
+.image-enhance{
+    display:flex;
+    margin-left:25px;
+}
+
+
+.flex-home {
+    flex-grow: 1 !important;
+    gap: 12px;
+    margin-left: 6px;
+}
+
+.row-planes {
+    margin-top: 30px;
+}
+
+
+.flex-flights{
+    display:block;
 }
 
 
@@ -170,7 +198,12 @@ body {
     justify-content: space-evenly;
     align-items: center;
     align-content: flex-start;
-    padding-bottom: 12px;
+    /*    padding-bottom: 12px;*/
+    gap: 50px;
+    bottom: 0;
+    position: absolute;
+    margin-left: 20%;
+    margin-bottom: 5px;
 }
 
 

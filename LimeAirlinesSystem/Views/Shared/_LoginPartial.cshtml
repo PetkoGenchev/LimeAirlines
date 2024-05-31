@@ -17,10 +17,6 @@
         else
         {
             <li class="nav-item">
-                <a class="nav-link text-light" asp-area="Admin" asp-controller="FAQ" asp-action="All">Info</a>
-            </li>
-
-            <li class="nav-item">
                 <a class="nav-link text-light" asp-area="Admin" asp-controller="Planes" asp-action="All">Plane Admin</a>
             </li>
 
@@ -51,10 +47,11 @@
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Sign Up</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <li class="nav-item image-test image-enhance">
+            <i class="fa-regular fa-user"></i>
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Sign In</a>
         </li>
     }
 </ul>

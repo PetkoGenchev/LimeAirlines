@@ -1,35 +1,53 @@
 ﻿@model AllFlightsQueryModel
 @inject SignInManager<Passanger> SignInManager
 
-<div class="row">
-    <h1 class="display-4">Outgoing Flights!</h1>
+<h2 class="display-4">Outgoing Flights!</h2>
+<div class="row flex-flights">
     @foreach (var flight in Model.Flights)
     {
-        <div class="col-md-4 div-planes-partial">
-            <div class="card mb-3 planes-partial">
-                <h1 class="card-title text-center"> @flight.StartLocation @flight.EndLocation  @flight.FlightDate?.ToShortDateString() @flight.Price</h1>
-                <div class="card-body text-center">
-                    @if (User.IsAdmin())
-                    {
-                        <a asp-area="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@flight.Id" class="btn btn-warning">Edit</a>
-                        <a asp-area="Admin" asp-controller="Flights" asp-action="ChangeVisibility" asp-route-id="@flight.Id" class="btn btn-info float-right ml-3">@(flight.IsPublic ? "Hide" : "Show")</a>
-                    }
-                    else
-                    {
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            <input type="button" id="btnAddToBookings" value="Book" class="btn btn-primary btn-block" />
-                            <input type="hidden" id="flightId" value=@flight.Id />
-                            var passangerCount = (@Model.Passangers == 1) ? "passanger" : "passangers";
+        <section class="div-planes-partial flex-flights">
+            <h3 class="card-title text-center"> @flight.StartLocation @flight.EndLocation   </h3>
+            <div> @flight.FlightDate?.ToShortDateString()</div>
+            <div> @flight.Price</div>
 
-                            <div id="snackbar">Flight to @flight.EndLocation has been booked for @Model.Passangers @passangerCount.</div>
-                        }
+            <div class="card-body text-center">
+                @if (User.IsAdmin())
+                {
+                    <a asp-area="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@flight.Id" class="btn btn-warning">Edit</a>
+                    <a asp-area="Admin" asp-controller="Flights" asp-action="ChangeVisibility" asp-route-id="@flight.Id" class="btn btn-info float-right ml-3">@(flight.IsPublic ? "Hide" : "Show")</a>
+                }
+                else
+                {
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <input type="button" id="btnAddToBookings" value="Book" class="btn btn-primary btn-block" />
+                        <input type="hidden" id="flightId" value=@flight.Id />
+                        var passangerCount = (@Model.Passangers == 1) ? "passanger" : "passangers";
+
+                        <div id="snackbar">Flight to @flight.EndLocation has been booked for @Model.Passangers @passangerCount.</div>
                     }
-                </div>
+                }
             </div>
-        </div>
+        </section>
     }
 </div>
+
+@* col-md-4
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+
+div-planes-partial
+    margin-bottom: 20px;
+
+    .planes-partial {
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+ *@
+
+
 
 @if (Model.TripType == "2")
 {
@@ -41,11 +59,12 @@
     }
     else
     {
-        <div class="row">
-            <h1 class="display-4">Return Flights!</h1>
+        <h2 class="display-4">Return Flights!</h2>
+        <div class="row flex-flights">
+
             @foreach (var returnflight in Model.ReturnFlights)
             {
-                <div class="col-md-4 div-planes-partial">
+                <div class="col-md-4 div-planes-partial flex-flights">
                     <div class="card mb-3 planes-partial">
                         <h1 class="card-title text-center"> @returnflight.StartLocation @returnflight.EndLocation  @returnflight.FlightDate?.ToShortDateString()</h1>
                         <div class="card-body text-center">
