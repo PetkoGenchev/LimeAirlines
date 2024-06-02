@@ -2,15 +2,11 @@
 @inject SignInManager<Passanger> SignInManager
 
 <h2 class="display-4">Outgoing Flights!</h2>
-<div class="row flex-flights">
+<div class="flight-block">
     @foreach (var flight in Model.Flights)
     {
-        <section class="div-planes-partial flex-flights">
-            <h3 class="card-title text-center"> @flight.StartLocation @flight.EndLocation   </h3>
-            <div> @flight.FlightDate?.ToShortDateString()</div>
-            <div> @flight.Price</div>
-
-            <div class="card-body text-center">
+        <section class="div-planes-partial card mb-3 flex-flights">
+            <div class="text-center">
                 @if (User.IsAdmin())
                 {
                     <a asp-area="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@flight.Id" class="btn btn-warning">Edit</a>
@@ -28,26 +24,25 @@
                     }
                 }
             </div>
+            <section class="flight-item">
+                <h5 class="card-title text-center"> Travel Path</h5>
+                <div class="flight-info"> @flight.StartLocation --> @flight.EndLocation </div>
+            </section>
+            <section class="flight-item">
+                <h5 class="flight-info"> Flight Date</h5>
+                <div> @flight.FlightDate?.ToShortDateString()</div>
+            </section>
+            <section class="flight-item">
+                <h5 class="flight-info"> Price</h5>
+                <div> BGN @flight.Price</div>
+            </section>
+
+
+
+
         </section>
     }
 </div>
-
-@* col-md-4
-  position: relative;
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-
-div-planes-partial
-    margin-bottom: 20px;
-
-    .planes-partial {
-    height: 100%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
- *@
-
-
 
 @if (Model.TripType == "2")
 {

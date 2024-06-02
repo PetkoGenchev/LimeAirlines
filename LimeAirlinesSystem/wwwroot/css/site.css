@@ -186,8 +186,28 @@ li.image-test i {
 }
 
 
-.flex-flights{
-    display:block;
+.flex-flights {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: flex-start;
+    gap: 50px;
+    width: 80%;
+}
+
+.flight-item {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 12px;
+    background-color: #fff;
+    border: 1px solid #dbdee8;
+    margin: 12px;
+}
+
+.flight-info {
+    color: #6d7682;
 }
 
 
