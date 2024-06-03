@@ -25,15 +25,15 @@
                 }
             </div>
             <section class="flight-item">
-                <h5 class="card-title text-center"> Travel Path</h5>
+                <h4 class="card-title text-center"> Travel Path</h4>
                 <div class="flight-info"> @flight.StartLocation --> @flight.EndLocation </div>
             </section>
-            <section class="flight-item">
-                <h5 class="flight-info"> Flight Date</h5>
+            <section class="flight-item max-info">
+                <h4 class="flight-info"> Flight Date</h4>
                 <div> @flight.FlightDate?.ToShortDateString()</div>
             </section>
-            <section class="flight-item">
-                <h5 class="flight-info"> Price</h5>
+            <section class="flight-item max-info">
+                <h4 class="flight-info"> Price</h4>
                 <div> BGN @flight.Price</div>
             </section>
 

@@ -578,6 +578,8 @@ pre code {
   }
 }
 
+
+
 .container-fluid {
   width: 100%;
   padding-right: 15px;
@@ -2995,7 +2997,7 @@ fieldset:disabled a.btn {
 input[type="submit"].btn-block,
 input[type="reset"].btn-block,
 input[type="button"].btn-block {
-  width: 100%;
+  width: 150%;
 }
 
 .fade {
