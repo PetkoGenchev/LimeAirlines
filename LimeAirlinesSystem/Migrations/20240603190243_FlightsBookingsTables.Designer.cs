@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimeAirlinesSystem.Migrations
 {
     [DbContext(typeof(AirlineDbContext))]
-    [Migration("20240603184210_FlightsBookingsTables")]
+    [Migration("20240603190243_FlightsBookingsTables")]
     partial class FlightsBookingsTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

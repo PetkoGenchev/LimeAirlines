@@ -7,21 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\Images\AirbusA220.jpg" />
-    <None Include="wwwroot\Images\AirbusA320.jpg" />
-    <None Include="wwwroot\Images\AirbusA380.jpg" />
-    <None Include="wwwroot\Images\AirbusACH160.jpg" />
-    <None Include="wwwroot\Images\Bell206B.jpg" />
-    <None Include="wwwroot\Images\Boeing737.jpg" />
-    <None Include="wwwroot\Images\Boeing747.jpg" />
-    <None Include="wwwroot\Images\Boeing777.jpg" />
-    <None Include="wwwroot\Images\EmbraerPhenom300.jpg" />
-    <None Include="wwwroot\Images\GulfstreamG280.jpg" />
-    <None Include="wwwroot\Images\PilatusPC12.jpg" />
-    <None Include="wwwroot\Images\TBM940.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.9" />

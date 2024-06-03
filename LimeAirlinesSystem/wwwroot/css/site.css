@@ -130,6 +130,10 @@ body {
     height: 60%;
 }
 
+.card-img-top.img-faq-partial {
+    height: 80%;
+}
+
 .planes-partial {
     height: 100%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
