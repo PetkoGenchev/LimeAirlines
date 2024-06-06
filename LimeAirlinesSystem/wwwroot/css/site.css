@@ -131,7 +131,7 @@ body {
 }
 
 .card-img-top.img-faq-partial {
-    height: 80%;
+    height: 250px;
 }
 
 .planes-partial {
@@ -216,6 +216,16 @@ li.image-test i {
 
 .flight-info {
     color: #6d7682;
+}
+
+.overflow-scroll{
+    height: 200px;
+    overflow: auto;
+}
+
+.flex-faq {
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 @media screen (max-width: 1200px) {

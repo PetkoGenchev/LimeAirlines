@@ -15,7 +15,7 @@
 }
 else
 {
-    <div class="row">
+    <div class="row flex-faq">
         @foreach (var faq in Model)
         {
             <div class="col-md-4 div-planes-partial">
@@ -24,7 +24,7 @@ else
                     <div class="accordion" id="accordionExample">
                         <div class="card-header" id="heading_@j">
                             <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-sm-center" type="button" data-toggle="collapse" data-target="#collapse_@j" aria-expanded="true" aria-controls="collapse_@j">
+                                <button class="btn btn-link btn-block text-sm-center" type="button" data-toggle="collapse" data-target="#collapse_@j" aria-expanded="false" aria-controls="collapse_@j">
                                     @faq.Title
                                 </button>
                                 @if (User.IsAdmin())
@@ -36,14 +36,16 @@ else
                         </div>
 
                         <div id="collapse_@j" class="collapse" aria-labelledby="heading_@j" data-parent="#accordionExample">
-                            <div class="card-body">
+                            <div class="card-body overflow-scroll">
                                 @faq.Description
 
-                                <input type="button" id="btnLikeFAQ" value="Like" class="btn btn-primary btn-block" />
-                                <div class="row">
-                                    <h2 class="col-md-4 text-center" id="totalLikes"></h2>
-                                </div>
-                                <input type="hidden" id="faqId" value=@faq.Id />
+                        @*
+                        <input type="button" id="btnLikeFAQ" value="Like" class="btn btn-primary btn-block" />
+                        <div class="row">
+                        <h2 class="col-md-4 text-center" id="totalLikes"></h2>
+                        </div>
+                        <input type="hidden" id="faqId" value=@faq.Id />
+                        *@
                             </div>
                         </div>
 
@@ -56,7 +58,9 @@ else
     </div>
 }
 
-<script>
+
+
+@* <script>
     const buttons = document.querySelectorAll('#btnLikeFAQ');
 
     buttons.forEach(btn => btn.addEventListener('click', (e) => {
@@ -83,4 +87,4 @@ else
             console.warn('Please Contact Support', error);
         });
     }));
-</script>
+</script> *@

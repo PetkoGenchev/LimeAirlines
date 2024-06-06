@@ -1,51 +1,59 @@
 ﻿@model AllFlightsQueryModel
 @inject SignInManager<Passanger> SignInManager
 
+
 <h2 class="display-4">Outgoing Flights!</h2>
-<div class="flight-block">
-    @foreach (var flight in Model.Flights)
-    {
-        <section class="div-planes-partial card mb-3 flex-flights">
-            <div class="text-center">
-                @if (User.IsAdmin())
-                {
-                    <a asp-area="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@flight.Id" class="btn btn-warning">Edit</a>
-                    <a asp-area="Admin" asp-controller="Flights" asp-action="ChangeVisibility" asp-route-id="@flight.Id" class="btn btn-info float-right ml-3">@(flight.IsPublic ? "Hide" : "Show")</a>
-                }
-                else
-                {
-                    @if (SignInManager.IsSignedIn(User))
+@if (!Model.Flights.Any())
+{
+    <div class="text-center">
+        <p class="lead">There are no return flight options currently for the selected dates. Please check again later.</p>
+    </div>
+}
+else
+{
+    <div class="flight-block">
+        @foreach (var flight in Model.Flights)
+        {
+            <section class="div-planes-partial card mb-3 flex-flights">
+                <div class="text-center">
+                    @if (User.IsAdmin())
                     {
-                        <input type="button" id="btnAddToBookings" value="Book" class="btn btn-primary btn-block" />
-                        <input type="hidden" id="flightId" value=@flight.Id />
-                        var passangerCount = (@Model.Passangers == 1) ? "passanger" : "passangers";
-
-                        <div id="snackbar">Flight to @flight.EndLocation has been booked for @Model.Passangers @passangerCount.</div>
+                        <a asp-area="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@flight.Id" class="btn btn-warning">Edit</a>
+                        <a asp-area="Admin" asp-controller="Flights" asp-action="ChangeVisibility" asp-route-id="@flight.Id" class="btn btn-info float-right ml-3">@(flight.IsPublic ? "Hide" : "Show")</a>
                     }
-                }
-            </div>
-            <section class="flight-item">
-                <h4 class="card-title text-center"> Travel Path</h4>
-                <div class="flight-info"> @flight.StartLocation --> @flight.EndLocation </div>
+                    else
+                    {
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <input type="button" id="btnAddToBookings" value="Book" class="btn btn-primary btn-block" />
+                            <input type="hidden" id="flightId" value=@flight.Id />
+                            var passangerCount = (@Model.Passangers == 1) ? "passanger" : "passangers";
+
+                            <div id="snackbar">Flight to @flight.EndLocation has been booked for @Model.Passangers @passangerCount.</div>
+                        }
+                    }
+                </div>
+                <section class="flight-item">
+                    <h4 class="card-title text-center"> Travel Path</h4>
+                    <div class="flight-info"> @flight.StartLocation --> @flight.EndLocation </div>
+                </section>
+                <section class="flight-item max-info">
+                    <h4 class="flight-info"> Flight Date</h4>
+                    <div> @flight.FlightDate?.ToShortDateString()</div>
+                </section>
+                <section class="flight-item max-info">
+                    <h4 class="flight-info"> Price</h4>
+                    <div> BGN @flight.Price</div>
+                </section>
             </section>
-            <section class="flight-item max-info">
-                <h4 class="flight-info"> Flight Date</h4>
-                <div> @flight.FlightDate?.ToShortDateString()</div>
-            </section>
-            <section class="flight-item max-info">
-                <h4 class="flight-info"> Price</h4>
-                <div> BGN @flight.Price</div>
-            </section>
-
-
-
-
-        </section>
-    }
-</div>
+        }
+    </div>
+}
 
 @if (Model.TripType == "2")
 {
+    <h2 class="display-4">Return Flights!</h2>
+
     @if (!Model.ReturnFlights.Any())
     {
         <div class="text-center">
@@ -54,21 +62,20 @@
     }
     else
     {
-        <h2 class="display-4">Return Flights!</h2>
-        <div class="row flex-flights">
+        <div class="flight-block">
 
             @foreach (var returnflight in Model.ReturnFlights)
             {
-                <div class="col-md-4 div-planes-partial flex-flights">
-                    <div class="card mb-3 planes-partial">
-                        <h1 class="card-title text-center"> @returnflight.StartLocation @returnflight.EndLocation  @returnflight.FlightDate?.ToShortDateString()</h1>
-                        <div class="card-body text-center">
-                            @if (User.IsAdmin())
-                            {
-                                <a asp-area="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@returnflight.Id" class="btn btn-warning">Edit</a>
-                                <a asp-area="Admin" asp-controller="Flights" asp-action="ChangeVisibility" asp-route-id="@returnflight.Id" class="btn btn-info float-right ml-3">@(returnflight.IsPublic ? "Hide" : "Show")</a>
-                            }
-                            else
+                <section class="div-planes-partial card mb-3 flex-flights">
+                    <div class="text-center">
+                        @if (User.IsAdmin())
+                        {
+                            <a asp-area="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@returnflight.Id" class="btn btn-warning">Edit</a>
+                            <a asp-area="Admin" asp-controller="Flights" asp-action="ChangeVisibility" asp-route-id="@returnflight.Id" class="btn btn-info float-right ml-3">@(returnflight.IsPublic ? "Hide" : "Show")</a>
+                        }
+                        else
+                        {
+                            @if (SignInManager.IsSignedIn(User))
                             {
                                 <input type="button" id="btnAddToBookingsReturn" value="Book" class="btn btn-primary btn-block" />
                                 <input type="hidden" id="flightIdReturn" value=@returnflight.Id />
@@ -76,12 +83,25 @@
 
                                 <div id="snackbarReturn">Flight to @returnflight.EndLocation has been booked for @Model.Passangers @passangerCount.</div>
                             }
-                        </div>
+                        }
                     </div>
-                </div>
+                    <section class="flight-item">
+                        <h4 class="card-title text-center"> Travel Path</h4>
+                        <div class="flight-info"> @returnflight.StartLocation --> @returnflight.EndLocation </div>
+                    </section>
+                    <section class="flight-item max-info">
+                        <h4 class="flight-info"> Flight Date</h4>
+                        <div> @returnflight.FlightDate?.ToShortDateString()</div>
+                    </section>
+                    <section class="flight-item max-info">
+                        <h4 class="flight-info"> Price</h4>
+                        <div> BGN @returnflight.Price</div>
+                    </section>
+                </section>
             }
         </div>
     }
+
 }
 
 
