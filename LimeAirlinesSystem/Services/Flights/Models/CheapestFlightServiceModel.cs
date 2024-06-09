@@ -7,6 +7,7 @@
         public string EndLocation { get; init; }
         public int Price { get; init; }
         public string ImageUrl { get; init; }
+        public string FlightDate { get; init; }
 
     }
 }

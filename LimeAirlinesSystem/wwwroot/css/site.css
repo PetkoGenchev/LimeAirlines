@@ -102,11 +102,6 @@ body {
     max-width: unset;
 }
 
-.flight-form {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
-
 .card-img-overlay {
     width: 248px;
     height: 200px;
@@ -142,6 +137,11 @@ body {
 .card-title.text-center {
     margin-top: 12px;
     color: #6d7682;
+}
+
+.card-title.text-top {
+    color: #6d7682;
+    text-align: center;
 }
 
 .div-planes-partial {
@@ -227,6 +227,58 @@ li.image-test i {
     align-items: center;
     justify-content: space-evenly;
 }
+
+.lower-opacity{
+    opacity: 1;
+}
+
+.cheap-flight-header {
+    margin-top: 20px;
+    color: #6d7682;
+
+}
+
+.cheap-flight-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: flex-start;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.col-md-4-25{
+    flex: 0 0 0.25%;
+}
+
+.low-text{
+    position:absolute;
+    text-align:end;
+    bottom:0;
+}
+
+.low-left{
+    left:0;
+    margin-left: 12px;
+}
+
+.low-right{
+    right:0;
+    margin-right: 12px;
+}
+
+.top-left{
+    top:0;
+    left:0;
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+}
+
 
 @media screen (max-width: 1200px) {
     .max-info {

@@ -117,19 +117,25 @@
     }
     else
     {
-                <div class="row flight-form">
+        <h3 class="cheap-flight-header div-planes-partial">Find great deals</h3>
+        <div class="cheap-flight-flex">
             @for (int i = 0; i < Model.CheapestFlight.Count; i++)
             {
                 var flight = Model.CheapestFlight[i];
 
-                <div class="col-md-4  flight-promo">
+                <div class="col-md-4-25  flight-promo">
                     <div class="card mb-3 card-width">
                         <div class="img-wrapper">
-                            <img class="card-img" src="@flight.ImageUrl" alt="@flight.EndLocation @flight.Price">
+                            <img class="card-img lower-opacity" src="@flight.ImageUrl" alt="@flight.EndLocation @flight.Price">
                         </div>
                         <div class="card-img-overlay">
-                            <h5 class="card-title text-left">@flight.EndLocation</h5>
-                            <p class="card-text text-white font-weight-bold">From @flight.StartLocation starting BGN @flight.Price</p>
+                            <div class="cheap-flight-flex">
+                                <div class="card-text top-left">@flight.EndLocation</div>
+                                <div class="card-text top-right">@flight.FlightDate</div>
+                                <div class="card-text low-text low-left">From @flight.StartLocation</div>
+                                <div class="card-text low-text low-right">@flight.Price BGN</div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
