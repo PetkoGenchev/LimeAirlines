@@ -139,11 +139,14 @@
 
             var totalFlights = flightQuery.Count();
 
+            if (totalFlights == 0 && startLocation != null)
+            {
+                totalFlights = 1000;
+            }
+
             var flights = GetFlights(flightQuery
                 .Skip((currentPage - 1) * flightsPerPage)
                 .Take(flightsPerPage));
-
-
 
             var returnModel = new FlightQueryServiceModel
             {

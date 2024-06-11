@@ -259,24 +259,32 @@ li.image-test i {
     bottom:0;
 }
 
-.low-left{
-    left:0;
-    margin-left: 12px;
+.low-left {
+    position: absolute;
+    left: 0;
+    margin: 8px;
 }
 
-.low-right{
-    right:0;
-    margin-right: 12px;
+.low-right {
+    position: absolute;
+    right: 0;
+    margin: 8px;
 }
 
-.top-left{
-    top:0;
-    left:0;
+.top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 8px;
+    font-size: 30px;
+    margin-left: 25px;
 }
 
 .top-right {
+    position: absolute;
     top: 0;
     right: 0;
+    margin: 8px;
 }
 
 

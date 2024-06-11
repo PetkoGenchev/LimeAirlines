@@ -22,6 +22,7 @@
             this.mapper = mapper;
         }
 
+
         public IActionResult All()
         {
             var flights = this.flights

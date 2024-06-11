@@ -115,7 +115,7 @@
             }
         </div>
     }
-    else
+    else if (Model.FlightsQuery.TotalFlights == 0)
     {
         <h3 class="cheap-flight-header div-planes-partial">Find great deals</h3>
         <div class="cheap-flight-flex">
@@ -130,10 +130,10 @@
                         </div>
                         <div class="card-img-overlay">
                             <div class="cheap-flight-flex">
-                                <div class="card-text top-left">@flight.EndLocation</div>
-                                <div class="card-text top-right">@flight.FlightDate</div>
-                                <div class="card-text low-text low-left">From @flight.StartLocation</div>
-                                <div class="card-text low-text low-right">@flight.Price BGN</div>
+                                <div class=" font-weight-bold text-white top-left">@flight.EndLocation</div>
+                                <div class="dateDisplay font-weight-bold text-white top-right">@flight.FlightDate</div>
+                                <div class="font-weight-bold text-white low-text low-left">From @flight.StartLocation</div>
+                                <div class="font-weight-bold text-white low-text low-right">@flight.Price BGN</div>
                             </div>
 
                         </div>
@@ -141,6 +141,10 @@
                 </div>
             }
         </div>
+    }
+    else
+    {
+        <h2> Damn</h2>
     }
 }
 else
@@ -166,6 +170,19 @@ else
             price_value.textContent = event.target.value
         })
 
+
+
+
+        const dateElements = document.querySelectorAll('.dateDisplay');
+        dateElements.forEach(dateElement => {
+            const originalDateString = dateElement.textContent.trim();
+            const dateObject = new Date(originalDateString);
+            const day = String(dateObject.getDate()).padStart(2, '0');
+            const month = String(dateObject.getMonth() + 1).padStart(2, '0');
+            const year = dateObject.getFullYear();
+            const formattedDate = `${day}-${month}-${year}`;
+            dateElement.textContent = formattedDate;
+        });
 
     </script>
 }

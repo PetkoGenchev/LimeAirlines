@@ -2,7 +2,7 @@
 @inject SignInManager<Passanger> SignInManager
 
 
-<h2 class="display-4">Outgoing Flights!</h2>
+<h3 class="display-4">Outgoing Flights!</h3>
 @if (!Model.Flights.Any())
 {
     <div class="text-center">
@@ -52,7 +52,7 @@ else
 
 @if (Model.TripType == "2")
 {
-    <h2 class="display-4">Return Flights!</h2>
+    <h3 class="display-4">Return Flights!</h3>
 
     @if (!Model.ReturnFlights.Any())
     {
