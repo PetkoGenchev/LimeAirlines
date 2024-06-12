@@ -19,9 +19,9 @@ else
 
             <section class="div-planes-partial card mb-3 flex-flights percent100width">
                 <img id="bookingImage" class="card-img-top img-planes-partial width-20" src="@booking.ImageUrl" alt="@booking.EndLocation @booking.FlightDate?.ToShortDateString() @booking.CountOfSeats">
-                <section id="bookingInfo" class="flight-item max-info">
+                <section id="bookingInfo" class="flight-item max-info flex-flights">
                     <div class="flight-info"> @booking.StartLocation to @booking.EndLocation </div>
-                    <section>
+                    <section class="">
                         <div>@booking.FlightDate?.ToShortDateString()</div>
                         <i class="fa-regular fa-lemon"></i>
                         <div>Reservation number: @booking.Id.Substring(0, 6).ToUpper()</div>

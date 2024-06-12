@@ -326,11 +326,11 @@ li.image-test i {
 }
 
 #bookingInfo {
-    flex: 0 1 300px;
+    flex: 0 1 600px;
 }
 
 #bookingButtons {
-    flex: 0 1 100px;
+    flex: 0 1 200px;
 }
 
 @media screen (max-width: 1200px) {
