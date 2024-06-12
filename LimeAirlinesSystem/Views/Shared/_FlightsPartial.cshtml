@@ -2,7 +2,7 @@
 @inject SignInManager<Passanger> SignInManager
 
 
-<h3 class="display-4">Outgoing Flights!</h3>
+<h4 class="display-4">Outgoing Flights!</h4>
 @if (!Model.Flights.Any())
 {
     <div class="text-center">
@@ -14,7 +14,7 @@ else
     <div class="flight-block">
         @foreach (var flight in Model.Flights)
         {
-            <section class="div-planes-partial card mb-3 flex-flights">
+            <section class="div-planes-partial card mb-3 flex-flights percent80width">
                 <div class="text-center">
                     @if (User.IsAdmin())
                     {
@@ -35,7 +35,7 @@ else
                 </div>
                 <section class="flight-item">
                     <h4 class="card-title text-center"> Travel Path</h4>
-                    <div class="flight-info"> @flight.StartLocation --> @flight.EndLocation </div>
+                    <div class="flight-info"> @flight.StartLocation <i class="fa-solid fa-arrow-right-long"></i> @flight.EndLocation </div>
                 </section>
                 <section class="flight-item max-info">
                     <h4 class="flight-info"> Flight Date</h4>
@@ -52,7 +52,7 @@ else
 
 @if (Model.TripType == "2")
 {
-    <h3 class="display-4">Return Flights!</h3>
+    <h4 class="display-4">Return Flights!</h4>
 
     @if (!Model.ReturnFlights.Any())
     {
@@ -66,7 +66,7 @@ else
 
             @foreach (var returnflight in Model.ReturnFlights)
             {
-                <section class="div-planes-partial card mb-3 flex-flights">
+                <section class="div-planes-partial card mb-3 flex-flights percent80width">
                     <div class="text-center">
                         @if (User.IsAdmin())
                         {
@@ -87,7 +87,7 @@ else
                     </div>
                     <section class="flight-item">
                         <h4 class="card-title text-center"> Travel Path</h4>
-                        <div class="flight-info"> @returnflight.StartLocation --> @returnflight.EndLocation </div>
+                        <div class="flight-info"> @returnflight.StartLocation <i class="fa-solid fa-arrow-right-long"></i> @returnflight.EndLocation </div>
                     </section>
                     <section class="flight-item max-info">
                         <h4 class="flight-info"> Flight Date</h4>

@@ -14,5 +14,6 @@
         public int MediumLuggage { get; set; }
         public int LargeLuggage { get; set; }
         public int TotalPrice { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

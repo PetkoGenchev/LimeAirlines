@@ -105,10 +105,10 @@
 
                 if (!checkFlightsOnDate.Any())
                 {
-                    startDate = flightDate?.Date.AddDays(-10);
-                    endDate = flightDate?.Date.AddDays(10);
+                    startDate = flightDate?.Date.AddDays(-30);
+                    endDate = flightDate?.Date.AddDays(30);
 
-                    flightQuery = flightQuery.Where(f => f.FlightDate >= startDate && f.FlightDate <= endDate);
+                    flightQuery = flightQuery.Where(f => f.FlightDate >= startDate && f.FlightDate <= endDate && f.FlightDate > DateTime.UtcNow);
                 }
                 else
                 {
@@ -139,10 +139,12 @@
 
             var totalFlights = flightQuery.Count();
 
+
             if (totalFlights == 0 && startLocation != null)
             {
                 totalFlights = 1000;
             }
+
 
             var flights = GetFlights(flightQuery
                 .Skip((currentPage - 1) * flightsPerPage)

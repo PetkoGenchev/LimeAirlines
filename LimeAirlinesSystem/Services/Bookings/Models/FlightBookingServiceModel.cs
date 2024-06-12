@@ -18,6 +18,7 @@ namespace LimeAirlinesSystem.Services.Bookings.Models
         public int MediumLuggage { get; init; }
         public int LargeLuggage { get; init; }
         public int TotalPrice { get; init; }
+        public string ImageUrl { get; init; }
     }
 
 }

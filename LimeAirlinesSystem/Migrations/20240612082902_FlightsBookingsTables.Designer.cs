@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimeAirlinesSystem.Migrations
 {
     [DbContext(typeof(AirlineDbContext))]
-    [Migration("20240611120443_FlightsBookingsTables")]
+    [Migration("20240612082902_FlightsBookingsTables")]
     partial class FlightsBookingsTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,6 +137,9 @@ namespace LimeAirlinesSystem.Migrations
 
                     b.Property<int>("FlightId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsCancelled")
                         .HasColumnType("bit");

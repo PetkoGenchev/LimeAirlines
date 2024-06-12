@@ -270,7 +270,8 @@ namespace LimeAirlinesSystem.Migrations
                     SmallLuggage = table.Column<int>(type: "int", nullable: false),
                     MediumLuggage = table.Column<int>(type: "int", nullable: false),
                     LargeLuggage = table.Column<int>(type: "int", nullable: false),
-                    TotalPrice = table.Column<int>(type: "int", nullable: false)
+                    TotalPrice = table.Column<int>(type: "int", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

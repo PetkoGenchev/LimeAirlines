@@ -29,7 +29,8 @@
                 FlightId = flightId,
                 CountOfSeats = countOfSeats,
                 UserId = userId,
-                TotalPrice = flight.Price
+                TotalPrice = flight.Price,
+                ImageUrl = flight.ImageUrl               
             };
 
             flight.ReservedSeats += countOfSeats;
