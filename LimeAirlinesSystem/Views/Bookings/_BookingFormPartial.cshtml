@@ -4,11 +4,12 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
-            <h2 class-"heading-margin text-center">@ViewBag.Title</h2>
-            <form method="post">
-                <div class="form-group">
-                    <label asp-for="SmallLuggage"></label>
-                    <select asp-for="SmallLuggage" class="form-control">
+            <h2 class-"heading-margin text-center">Additional Luggage</h2>
+            <form method="post" class="flex-flights">
+                <div class="form-group luggage-flex">
+                    <i class="fa-solid fa-briefcase image-size-30"></i>
+                    <label class="label-luggage" asp-for="SmallLuggage"></label>
+                    <select asp-for="SmallLuggage" class="form-control-lime">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -19,9 +20,10 @@
                     <span asp-validation-for="SmallLuggage" class="small text-danger"></span>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="MediumLuggage"></label>
-                    <select asp-for="MediumLuggage" class="form-control">
+                <div class="form-group luggage-flex">
+                    <i class="fa-solid fa-suitcase image-size-30"></i>
+                    <label class="label-luggage" asp-for="MediumLuggage"></label>
+                    <select asp-for="MediumLuggage" class="form-control-lime">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -32,9 +34,10 @@
                     <span asp-validation-for="MediumLuggage" class="small text-danger"></span>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="LargeLuggage"></label>
-                    <select asp-for="LargeLuggage" class="form-control">
+                <div class="form-group luggage-flex">
+                    <i class="fa-solid fa-suitcase-rolling image-size-30"></i>
+                    <label class="label-luggage" asp-for="LargeLuggage"></label>
+                    <select asp-for="LargeLuggage" class="form-control-lime">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>

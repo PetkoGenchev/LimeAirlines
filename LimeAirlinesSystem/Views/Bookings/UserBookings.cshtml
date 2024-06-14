@@ -12,30 +12,30 @@
 else
 {
 
-    <h4 class="display-4">Upcoming Flights</h4>
-    <div class="flight-block">
+    <h3>Upcoming Flights</h3>
+    <div class="flex-booking">
         @foreach (var booking in Model.Where(x => x.FlightDate >= DateTime.UtcNow && x.IsCancelled == false).OrderBy(x => x.IsCheckedIn))
         {
 
             <section class="div-planes-partial card mb-3 flex-flights percent100width">
-                <img id="bookingImage" class="card-img-top img-planes-partial width-20" src="@booking.ImageUrl" alt="@booking.EndLocation @booking.FlightDate?.ToShortDateString() @booking.CountOfSeats">
-                <section id="bookingInfo" class="flight-item max-info flex-flights">
-                    <div class="flight-info"> @booking.StartLocation to @booking.EndLocation </div>
-                    <section class="">
+                <img class="card-img-top img-planes-partial width-15" src="@booking.ImageUrl" alt="@booking.EndLocation @booking.FlightDate?.ToShortDateString() @booking.CountOfSeats">
+                <section id="bookingInfo" class="flight-item max-info flex-booking">
+                    <h4 class="flight-info"> @booking.StartLocation to @booking.EndLocation </h4>
+                    <section class="flex-flights">
                         <div>@booking.FlightDate?.ToShortDateString()</div>
-                        <i class="fa-regular fa-lemon"></i>
+                        <i class="fa-regular fa-lemon margin-12"></i>
                         <div>Reservation number: @booking.Id.Substring(0, 6).ToUpper()</div>
-                        <i class="fa-regular fa-lemon"></i>
+                        <i class="fa-regular fa-lemon margin-12"></i>
                         <div>@booking.CountOfSeats <i class="fa-solid fa-user"></i></div>
                     </section>
                 </section>
-                <div id="bookingButtons" class="card-body text-center flex-2">
-                    <a asp-area="" asp-controller="Bookings" asp-action="AddLuggage" asp-route-bookingId="@booking.Id" class="btn btn-warning">Add Luggage</a>
-
+                <div id="bookingButtons" class="card-body-small text-center flex-2">
                     @if (booking.FlightDate <= DateTime.UtcNow.AddDays(30) && booking.IsCheckedIn == false)
                     {
                         <a asp-area="" asp-controller="Bookings" asp-action="CheckIn" asp-route-bookingId="@booking.Id" class="btn btn-warning">Check In</a>
                     }
+
+                    <a asp-area="" asp-controller="Bookings" asp-action="AddLuggage" asp-route-bookingId="@booking.Id" class="btn btn-warning">Add Luggage</a>
 
                     @if (booking.IsCheckedIn == false)
                     {
@@ -48,30 +48,55 @@ else
 
 
 
-    <div class="row">
-        <h4 class="display-4">Flight History</h4>
+    <div class="flex-2">
+        <h3 class="hr">Flight History</h3>
+        @{
+            var flightHistoryList = Model.Where(x => x.FlightDate < DateTime.UtcNow && x.IsCancelled == false).OrderByDescending(x => x.FlightDate).Take(5);
 
-        @foreach (var booking in Model.Where(x => x.FlightDate < DateTime.UtcNow && x.IsCancelled == false).OrderByDescending(x => x.FlightDate).Take(5))
-        {
-            <div class="col-md-4 div-flights-partial">
-                <div class="card mb-3 flights-partial">
-                    <img class="card-title text-center" @booking.StartLocation @booking.EndLocation @booking.FlightDate?.ToShortDateString() @booking.TotalPrice @booking.CountOfSeats>
-                </div>
-            </div>
+            if (flightHistoryList.Any())
+            {
+                foreach (var booking in flightHistoryList)
+                {
+                    <div class="col-md-4 div-flights-partial">
+                        <div class="card mb-3 flights-partial">
+                            <img class="card-title text-center" @booking.StartLocation @booking.EndLocation @booking.FlightDate?.ToShortDateString() @booking.TotalPrice @booking.CountOfSeats>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <h4 class="text-center row-planes">You have not have any previous flight records.</h4>
+            }
         }
+
     </div>
 
-    <div class="row">
-        <h4 class="display-4">Cancelled Flights</h4>
+    <div class="flex-2">
+        <h3 class="hr">Cancelled Flights</h3>
 
-        @foreach (var booking in Model.Where(x => x.IsCancelled == true).OrderByDescending(x => x.FlightDate).Take(5))
-        {
-            <div class="col-md-4 div-flights-partial">
-                <div class="card mb-3 flights-partial">
-                    <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate?.ToShortDateString()  @booking.TotalPrice</h1>
-                </div>
-            </div>
+        @{
+            var cancelledFlightList = Model.Where(x => x.IsCancelled == true).OrderByDescending(x => x.FlightDate).Take(5);
+
+            if (cancelledFlightList.Any())
+            {
+                foreach (var booking in cancelledFlightList)
+                {
+                    <div class="col-md-4 div-flights-partial">
+                        <div class="card mb-3 flights-partial">
+                            <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate?.ToShortDateString()  @booking.TotalPrice</h1>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <h4 class="text-center row-planes">You have not have any flight cancelations.</h4>
+            }
         }
+
+
+
     </div>
 
 }
