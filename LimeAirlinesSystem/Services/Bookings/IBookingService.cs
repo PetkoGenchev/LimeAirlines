@@ -15,10 +15,10 @@
 
         void CheckIn(string bookingId);
 
-        bool AddLuggage(
+        bool AddBaggage(
             string bookingId,
-            int smallLuggage,
-            int mediumLuggage,
-            int largeLuggage);
+            int smallBaggage,
+            int mediumBaggage,
+            int largeBaggage);
     }
 }

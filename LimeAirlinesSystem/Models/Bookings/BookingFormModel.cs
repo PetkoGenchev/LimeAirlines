@@ -4,25 +4,25 @@
     using System.ComponentModel.DataAnnotations;
     using System;
 
-    using static Data.DataConstants.LuggageConstants;
+    using static Data.DataConstants.BaggageConstants;
     using RequiredAttribute = System.ComponentModel.DataAnnotations.RequiredAttribute;
 
     public class BookingFormModel
     {
         [Required]
-        [Range(LuggageMinCount, LuggageMaxCount)]
-        [Display(Name = "Small Luggage")]
-        public int SmallLuggage { get; init; }
+        [Range(BaggageMinCount, BaggageMaxCount)]
+        [Display(Name = "Small Baggage")]
+        public int SmallBaggage { get; init; }
 
         [Required]
-        [Range(LuggageMinCount, LuggageMaxCount)]
-        [Display(Name = "Medium Luggage")]
-        public int MediumLuggage { get; init; }
+        [Range(BaggageMinCount, BaggageMaxCount)]
+        [Display(Name = "Medium Baggage")]
+        public int MediumBaggage { get; init; }
 
         [Required]
-        [Range(LuggageMinCount, LuggageMaxCount)]
-        [Display(Name = "Large Luggage")]
-        public int LargeLuggage { get; init; }
+        [Range(BaggageMinCount, BaggageMaxCount)]
+        [Display(Name = "Large Baggage")]
+        public int LargeBaggage { get; init; }
 
     }
 }

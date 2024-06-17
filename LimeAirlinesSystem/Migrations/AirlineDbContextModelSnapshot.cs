@@ -145,13 +145,13 @@ namespace LimeAirlinesSystem.Migrations
                     b.Property<bool>("IsCheckedIn")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LargeLuggage")
+                    b.Property<int>("LargeBaggage")
                         .HasColumnType("int");
 
-                    b.Property<int>("MediumLuggage")
+                    b.Property<int>("MediumBaggage")
                         .HasColumnType("int");
 
-                    b.Property<int>("SmallLuggage")
+                    b.Property<int>("SmallBaggage")
                         .HasColumnType("int");
 
                     b.Property<int>("TotalPrice")

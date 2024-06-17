@@ -38,13 +38,13 @@
             public const int CategoryMaxLength = 20;
         }
 
-        public class LuggageConstants
+        public class BaggageConstants
         {
-            public const int SmallLuggagePrice = 20;
-            public const int MediumLuggagePrice = 50;
-            public const int LargeLuggagePrice = 60;
-            public const int LuggageMinCount = 0;
-            public const int LuggageMaxCount = 5;
+            public const int SmallBaggagePrice = 20;
+            public const int MediumBaggagePrice = 50;
+            public const int LargeBaggagePrice = 60;
+            public const int BaggageMinCount = 0;
+            public const int BaggageMaxCount = 5;
         }
 
         public class FAQConstants

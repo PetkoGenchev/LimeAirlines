@@ -75,11 +75,11 @@
                 .ProjectTo<FlightBookingServiceModel>(this.mapper)
                 .ToList();
 
-        public bool AddLuggage(
+        public bool AddBaggage(
             string bookingId,
-            int smallLuggage,
-            int mediumLuggage,
-            int largeLuggage)
+            int smallBaggage,
+            int mediumBaggage,
+            int largeBaggage)
         {
             var bookingData = this.data.FlightBookings.Find(bookingId);
 
@@ -90,13 +90,13 @@
 
             var flightInitialPrice = this.data.Flights.Where(x => x.Id == bookingData.FlightId).Select(p => p.Price).FirstOrDefault();
 
-            bookingData.SmallLuggage = smallLuggage;
-            bookingData.MediumLuggage = mediumLuggage;
-            bookingData.LargeLuggage = largeLuggage;
+            bookingData.SmallBaggage = smallBaggage;
+            bookingData.MediumBaggage = mediumBaggage;
+            bookingData.LargeBaggage = largeBaggage;
             bookingData.TotalPrice = flightInitialPrice +
-                smallLuggage * LuggageConstants.SmallLuggagePrice +
-                mediumLuggage * LuggageConstants.MediumLuggagePrice +
-                largeLuggage * LuggageConstants.LargeLuggagePrice;
+                smallBaggage * BaggageConstants.SmallBaggagePrice +
+                mediumBaggage * BaggageConstants.MediumBaggagePrice +
+                largeBaggage * BaggageConstants.LargeBaggagePrice;
 
 
             this.data.SaveChanges();

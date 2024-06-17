@@ -14,9 +14,9 @@ namespace LimeAirlinesSystem.Services.Bookings.Models
         public int Price { get; init; }
         public bool IsCancelled { get; init; }
         public bool IsCheckedIn { get; init; }
-        public int SmallLuggage { get; init; }
-        public int MediumLuggage { get; init; }
-        public int LargeLuggage { get; init; }
+        public int SmallBaggage { get; init; }
+        public int MediumBaggage { get; init; }
+        public int LargeBaggage { get; init; }
         public int TotalPrice { get; init; }
         public string ImageUrl { get; init; }
     }

@@ -118,7 +118,7 @@
     else if (Model.FlightsQuery.TotalFlights == 0)
     {
         <h3 class="cheap-flight-header div-planes-partial">Find great deals</h3>
-        <div class="cheap-flight-flex">
+        <div class="baggage-flex">
             @for (int i = 0; i < Model.CheapestFlight.Count; i++)
             {
                 var flight = Model.CheapestFlight[i];
@@ -129,7 +129,7 @@
                             <img class="card-img lower-opacity" src="@flight.ImageUrl" alt="@flight.EndLocation @flight.Price">
                         </div>
                         <div class="card-img-overlay">
-                            <div class="cheap-flight-flex">
+                            <div class="baggage-flex">
                                 <div class=" font-weight-bold text-white top-left">@flight.EndLocation</div>
                                 <div class="dateDisplay font-weight-bold text-white top-right">@flight.FlightDate</div>
                                 <div class="font-weight-bold text-white low-text low-left">From @flight.StartLocation</div>

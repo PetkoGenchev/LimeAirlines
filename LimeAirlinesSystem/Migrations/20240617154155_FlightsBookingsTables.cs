@@ -267,9 +267,9 @@ namespace LimeAirlinesSystem.Migrations
                     FlightId = table.Column<int>(type: "int", nullable: false),
                     IsCancelled = table.Column<bool>(type: "bit", nullable: false),
                     IsCheckedIn = table.Column<bool>(type: "bit", nullable: false),
-                    SmallLuggage = table.Column<int>(type: "int", nullable: false),
-                    MediumLuggage = table.Column<int>(type: "int", nullable: false),
-                    LargeLuggage = table.Column<int>(type: "int", nullable: false),
+                    SmallBaggage = table.Column<int>(type: "int", nullable: false),
+                    MediumBaggage = table.Column<int>(type: "int", nullable: false),
+                    LargeBaggage = table.Column<int>(type: "int", nullable: false),
                     TotalPrice = table.Column<int>(type: "int", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },

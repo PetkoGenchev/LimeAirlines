@@ -19,23 +19,36 @@ else
 
             <section class="div-planes-partial card mb-3 flex-flights percent100width">
                 <img class="card-img-top img-planes-partial width-15" src="@booking.ImageUrl" alt="@booking.EndLocation @booking.FlightDate?.ToShortDateString() @booking.CountOfSeats">
-                <section id="bookingInfo" class="flight-item max-info flex-booking">
-                    <h4 class="flight-info"> @booking.StartLocation to @booking.EndLocation </h4>
-                    <section class="flex-flights">
+
+
+                <section id="bookingInfo" class="flight-item flex-flights distributed-flex">
+                    <h4 class="flight-info m-auto text-center"> @booking.StartLocation to @booking.EndLocation </h4>
+                    <div class="flex-flights">
                         <div>@booking.FlightDate?.ToShortDateString()</div>
-                        <i class="fa-regular fa-lemon margin-12"></i>
+                        <i class="fa-regular fa-lemon margin-5"></i>
                         <div>Reservation number: @booking.Id.Substring(0, 6).ToUpper()</div>
-                        <i class="fa-regular fa-lemon margin-12"></i>
+                        <i class="fa-regular fa-lemon margin-5"></i>
                         <div>@booking.CountOfSeats <i class="fa-solid fa-user"></i></div>
-                    </section>
+                    </div>
                 </section>
-                <div id="bookingButtons" class="card-body-small text-center flex-2">
+
+                <section class="div-planes-partial card mb-3 flight-item flex-2 flex-200 distributed-flex">
+                    <h6 class="flight-info">Additional Baggage</h6>
+                    <div>Lite (5kg): @booking.SmallBaggage</div>
+                    <div>Classic (10kg): @booking.MediumBaggage</div>
+                    <div>Comfort (20kg): @booking.LargeBaggage</div>
+                </section>
+
+
+
+
+                <div class="card-body-small text-center flex-2 flex-150 distributed-flex">
                     @if (booking.FlightDate <= DateTime.UtcNow.AddDays(30) && booking.IsCheckedIn == false)
                     {
                         <a asp-area="" asp-controller="Bookings" asp-action="CheckIn" asp-route-bookingId="@booking.Id" class="btn btn-warning">Check In</a>
                     }
 
-                    <a asp-area="" asp-controller="Bookings" asp-action="AddLuggage" asp-route-bookingId="@booking.Id" class="btn btn-warning">Add Luggage</a>
+                    <a asp-area="" asp-controller="Bookings" asp-action="AddBaggage" asp-route-bookingId="@booking.Id" class="btn btn-warning">Add Baggage</a>
 
                     @if (booking.IsCheckedIn == false)
                     {
@@ -57,11 +70,17 @@ else
             {
                 foreach (var booking in flightHistoryList)
                 {
-                    <div class="col-md-4 div-flights-partial">
-                        <div class="card mb-3 flights-partial">
-                            <img class="card-title text-center" @booking.StartLocation @booking.EndLocation @booking.FlightDate?.ToShortDateString() @booking.TotalPrice @booking.CountOfSeats>
+                    <section class="flight-item bookingInfo baggage-flex distributed-flex">
+                        <h4 class="flight-info m-auto text-center"> @booking.StartLocation to @booking.EndLocation </h4>
+                        <div class="flex-flights">
+                            <div>@booking.FlightDate?.ToShortDateString()</div>
+                            <i class="fa-regular fa-lemon margin-5"></i>
+                            <div>Reservation number: @booking.Id.Substring(0, 6).ToUpper()</div>
+                            <i class="fa-regular fa-lemon margin-5"></i>
+                            <div>@booking.CountOfSeats <i class="fa-solid fa-user"></i></div>
+                            <h4 class="flight-info m-auto text-center"> Status: Completed </h4>
                         </div>
-                    </div>
+                    </section>
                 }
             }
             else
@@ -82,11 +101,18 @@ else
             {
                 foreach (var booking in cancelledFlightList)
                 {
-                    <div class="col-md-4 div-flights-partial">
-                        <div class="card mb-3 flights-partial">
-                            <h1 class="card-title text-center"> @booking.StartLocation @booking.EndLocation  @booking.FlightDate?.ToShortDateString()  @booking.TotalPrice</h1>
+                    <section class="flight-item cancelled-booking">
+                        <i class="fa-solid fa-plane-circle-xmark flex-50 distributed-flex"></i>
+                        <h4 class="flight-info m-auto text-center flex-200 distributed-flex"> Status: Cancelled </h4>
+                        <h4 class="flight-info m-auto text-center flex-200 distributed-flex"> @booking.StartLocation to @booking.EndLocation </h4>
+                        <div class="flex-flights distributed-flex">
+                            <div>@booking.FlightDate?.ToShortDateString()</div>
+                            <i class="fa-regular fa-lemon margin-5"></i>
+                            <div>Reservation number: @booking.Id.Substring(0, 6).ToUpper()</div>
+                            <i class="fa-regular fa-lemon margin-5"></i>
+                            <div>@booking.CountOfSeats <i class="fa-solid fa-user"></i></div>
                         </div>
-                    </div>
+                    </section>
                 }
             }
             else

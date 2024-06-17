@@ -10,9 +10,9 @@
         public Flight Flight { get; init; }
         public bool IsCancelled { get; set; }
         public bool IsCheckedIn { get; set; }
-        public int SmallLuggage { get; set; }
-        public int MediumLuggage { get; set; }
-        public int LargeLuggage { get; set; }
+        public int SmallBaggage { get; set; }
+        public int MediumBaggage { get; set; }
+        public int LargeBaggage { get; set; }
         public int TotalPrice { get; set; }
         public string ImageUrl { get; set; }
     }

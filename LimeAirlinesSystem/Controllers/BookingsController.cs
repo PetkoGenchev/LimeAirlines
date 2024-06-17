@@ -56,7 +56,7 @@
 
 
         [Authorize]
-        public IActionResult AddLuggage(string bookingId)
+        public IActionResult AddBaggage(string bookingId)
         {
             var booking = this.bookings.BookingDetails(bookingId);
 
@@ -68,13 +68,13 @@
 
         [HttpPost]
         [Authorize]
-        public IActionResult AddLuggage(string bookingId, BookingFormModel booking)
+        public IActionResult AddBaggage(string bookingId, BookingFormModel booking)
         {
-            var edited = this.bookings.AddLuggage(
+            var edited = this.bookings.AddBaggage(
                 bookingId,
-                booking.SmallLuggage,
-                booking.MediumLuggage,
-                booking.LargeLuggage);
+                booking.SmallBaggage,
+                booking.MediumBaggage,
+                booking.LargeBaggage);
 
             if (!edited)
             {
@@ -85,7 +85,7 @@
 
         }
 
-        public IActionResult CancelAddLuggage()
+        public IActionResult CancelAddBaggage()
         {
             return RedirectToAction(nameof(UserBookings));
         }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimeAirlinesSystem.Migrations
 {
     [DbContext(typeof(AirlineDbContext))]
-    [Migration("20240612082902_FlightsBookingsTables")]
+    [Migration("20240617154155_FlightsBookingsTables")]
     partial class FlightsBookingsTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -147,13 +147,13 @@ namespace LimeAirlinesSystem.Migrations
                     b.Property<bool>("IsCheckedIn")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LargeLuggage")
+                    b.Property<int>("LargeBaggage")
                         .HasColumnType("int");
 
-                    b.Property<int>("MediumLuggage")
+                    b.Property<int>("MediumBaggage")
                         .HasColumnType("int");
 
-                    b.Property<int>("SmallLuggage")
+                    b.Property<int>("SmallBaggage")
                         .HasColumnType("int");
 
                     b.Property<int>("TotalPrice")

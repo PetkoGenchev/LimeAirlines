@@ -4,12 +4,12 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
-            <h2 class-"heading-margin text-center">Additional Luggage</h2>
-            <form method="post" class="flex-flights">
-                <div class="form-group luggage-flex">
+            <h2 class-"heading-margin text-center">Additional Baggage</h2>
+            <form method="post" class="flex-flights row-planes">
+                <div class="form-group Baggage-flex">
                     <i class="fa-solid fa-briefcase image-size-30"></i>
-                    <label class="label-luggage" asp-for="SmallLuggage"></label>
-                    <select asp-for="SmallLuggage" class="form-control-lime">
+                    <label class="label-Baggage" asp-for="SmallBaggage"></label>
+                    <select asp-for="SmallBaggage" class="form-control-lime ">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -17,13 +17,14 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                    <span asp-validation-for="SmallLuggage" class="small text-danger"></span>
+                    <span asp-validation-for="SmallBaggage" class="small text-danger"></span>
+                    <div id="result" class="result-box low-right">0</div>
                 </div>
 
-                <div class="form-group luggage-flex">
+                <div class="form-group Baggage-flex">
                     <i class="fa-solid fa-suitcase image-size-30"></i>
-                    <label class="label-luggage" asp-for="MediumLuggage"></label>
-                    <select asp-for="MediumLuggage" class="form-control-lime">
+                    <label class="label-Baggage" asp-for="MediumBaggage"></label>
+                    <select asp-for="MediumBaggage" class="form-control-lime">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -31,13 +32,13 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                    <span asp-validation-for="MediumLuggage" class="small text-danger"></span>
+                    <span asp-validation-for="MediumBaggage" class="small text-danger"></span>
                 </div>
 
-                <div class="form-group luggage-flex">
+                <div class="form-group Baggage-flex">
                     <i class="fa-solid fa-suitcase-rolling image-size-30"></i>
-                    <label class="label-luggage" asp-for="LargeLuggage"></label>
-                    <select asp-for="LargeLuggage" class="form-control-lime">
+                    <label class="label-Baggage" asp-for="LargeBaggage"></label>
+                    <select asp-for="LargeBaggage" class="form-control-lime">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -45,11 +46,25 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                    <span asp-validation-for="LargeLuggage" class="small text-danger"></span>
+                    <span asp-validation-for="LargeBaggage" class="small text-danger"></span>
                 </div>
                 <input class="btn btn-primary" type="submit" value="Save" />
-                <a asp-controller="Bookings" asp-action="CancelAddLuggage" class="btn btn-warning float-right ml-3">Cancel</a>
+                <a asp-controller="Bookings" asp-action="CancelAddBaggage" class="btn btn-warning float-right ml-3">Cancel</a>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    const selectElement = document.getElementById('smallBaggage');
+    const resultDiv = document.getElementById('result');
+
+    function updateResult() {
+        const selectedValue = selectElement.value;
+        const result = selectedValue * 20;
+        resultDiv.textContent = result;
+    }
+
+    selectElement.addEventListener('change', updateResult);
+    updateResult();
+</script>

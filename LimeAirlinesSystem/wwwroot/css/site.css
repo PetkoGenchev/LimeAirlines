@@ -211,9 +211,9 @@ li.image-test i {
     width:80%;
 }
 
-.margin-12{
-    margin-left:15px;
-    margin-right:15px;
+.margin-5{
+    margin-left:5px;
+    margin-right:5px;
     color:limegreen;
 }
 
@@ -228,6 +228,11 @@ li.image-test i {
     box-shadow: 0 0 0 1px black;
     margin-bottom: 5px;
     margin-top: 5px;
+}
+
+.distributed-flex{
+    flex:1;
+    box-sizing:border-box;
 }
 
 
@@ -283,11 +288,7 @@ li.image-test i {
 
 }
 
-.label-luggage{
-
-}
-
-.cheap-flight-flex {
+.baggage-flex {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -298,14 +299,14 @@ li.image-test i {
     border-radius: 12px;
 }
 
-.luggage-flex {
+.cancelled-booking {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     align-content: flex-start;
-    width: 100%;
+    width: 80%;
     border-radius: 12px;
 }
 
@@ -352,6 +353,13 @@ li.image-test i {
 }
 
 
+.result-box {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+
 .form-control-lime {
     display: block;
     height: calc(1.5em + 0.75rem + 2px);
@@ -371,16 +379,36 @@ li.image-test i {
     font-size: 30px;
 }
 
-
-#bookingInfo {
-    flex: 0 1 600px;
+.inline-Baggage{
+    display:inline;
 }
 
-@media screen (max-width: 1200px) {
+.flex-200 {
+    flex: 0 1 200px;
+}
+
+.flex-50{
+    flex: 0 1 50px;
+}
+
+.flex-150 {
+    flex: 0 1 150px;
+}
+
+
+.bookingInfo {
+    flex: 0 1 450px;
+}
+
+.fa-plane-circle-xmark {
+    color: red;
+}
+
+/*@media screen (max-width: 1200px) {
     .max-info {
         display: none;
     }
-}
+}*/
 
 
 
