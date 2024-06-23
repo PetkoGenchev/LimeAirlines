@@ -223,6 +223,12 @@ li.image-test i {
     flex-direction: column;
 }
 
+.flex-3 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
 .flex-2 > a{
     flex:50%;
     box-shadow: 0 0 0 1px black;
@@ -404,14 +410,34 @@ li.image-test i {
     color: red;
 }
 
+.fa-plane-circle-check{
+    color: green;
+}
+
+
+.flex-column-regular{
+    display:flex;
+    flex-direction:column;
+}
+
+.flex-row-regular{
+    display:flex;
+    flex-direction: row;
+}
+
+.warning-style {
+    background: #fff5e4;
+    border-color: #c14b0140;
+}
+
+
+
+
 /*@media screen (max-width: 1200px) {
     .max-info {
         display: none;
     }
 }*/
-
-
-
 #button-container {
     display: flex;
     flex-direction: row;

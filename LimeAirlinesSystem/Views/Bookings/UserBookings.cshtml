@@ -70,15 +70,16 @@ else
             {
                 foreach (var booking in flightHistoryList)
                 {
-                    <section class="flight-item bookingInfo baggage-flex distributed-flex">
-                        <h4 class="flight-info m-auto text-center"> @booking.StartLocation to @booking.EndLocation </h4>
-                        <div class="flex-flights">
+                    <section class="flight-item cancelled-booking">
+                        <i class="fa-solid fa-plane-circle-check flex-50 distributed-flex"></i>
+                        <h4 class="flight-info m-auto text-center flex-200 distributed-flex"> Status: Complated </h4>
+                        <h4 class="flight-info m-auto text-center flex-200 distributed-flex"> @booking.StartLocation to @booking.EndLocation </h4>
+                        <div class="flex-flights distributed-flex">
                             <div>@booking.FlightDate?.ToShortDateString()</div>
                             <i class="fa-regular fa-lemon margin-5"></i>
                             <div>Reservation number: @booking.Id.Substring(0, 6).ToUpper()</div>
                             <i class="fa-regular fa-lemon margin-5"></i>
                             <div>@booking.CountOfSeats <i class="fa-solid fa-user"></i></div>
-                            <h4 class="flight-info m-auto text-center"> Status: Completed </h4>
                         </div>
                     </section>
                 }

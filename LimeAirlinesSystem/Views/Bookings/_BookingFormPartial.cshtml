@@ -3,59 +3,114 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
-            <h2 class-"heading-margin text-center">Additional Baggage</h2>
-            <form method="post" class="flex-flights row-planes">
-                <div class="form-group Baggage-flex">
-                    <i class="fa-solid fa-briefcase image-size-30"></i>
-                    <label class="label-Baggage" asp-for="SmallBaggage"></label>
-                    <select asp-for="SmallBaggage" class="form-control-lime ">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span asp-validation-for="SmallBaggage" class="small text-danger"></span>
-                    <div id="result" class="result-box low-right">0</div>
+        @*         <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6"> *@
+        <section class="flex-row-regular">
+            <h3 class-"heading-margin text-center">Already Included:</h3>
+            <div class="flex-column-regular">
+                <img class="" src="/Images/BaggageImages/smallBaggage.jpg">
+                <div class="flex-row-regular">
+                    <p> 1 small bag</p>
+                    <p> Must fit under the seat on the plane (40cm x 20cm x 25cm).</p>
+
+                </div>
+            </div>
+            <p class="warning-style">
+                If you bring a 2nd bag on board or your bag is too big to fit into the bag sizer
+                (40cm x 20cm x 25cm) you will be charged a fee of up to €70 at the gate for every flight.
+                To avoid fees, add more bags below.
+            </p>
+        </section>
+
+
+        <section class="div-planes-partial card mb-3 flex-row-regular percent100width">
+            <h2 class-"heading-margin text-center">Need Extra Baggage?</h2>
+            <div class="flex-column-regular">
+                <img class="card-img-top img-faq-partial" src="/Images/BaggageImages/smallBaggage.jpg">
+                <img class="card-img-top img-faq-partial" src="/Images/BaggageImages/mediumBaggage.jpg">
+                <img class="card-img-top img-faq-partial" src="/Images/BaggageImages/largeBaggage.jpg">
+            </div>
+            <section class="flex-row-regular">
+                <div>
+                    <p>
+
+                    </p>
+                    <p>
+
+                    </p>
                 </div>
 
-                <div class="form-group Baggage-flex">
-                    <i class="fa-solid fa-suitcase image-size-30"></i>
-                    <label class="label-Baggage" asp-for="MediumBaggage"></label>
-                    <select asp-for="MediumBaggage" class="form-control-lime">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span asp-validation-for="MediumBaggage" class="small text-danger"></span>
+                <div>
+                    <p>
+
+                    </p>
+                    <p>
+
+                    </p>
                 </div>
 
-                <div class="form-group Baggage-flex">
-                    <i class="fa-solid fa-suitcase-rolling image-size-30"></i>
-                    <label class="label-Baggage" asp-for="LargeBaggage"></label>
-                    <select asp-for="LargeBaggage" class="form-control-lime">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span asp-validation-for="LargeBaggage" class="small text-danger"></span>
+                <div>
+                    <p>
+
+                    </p>
+                    <p>
+
+                    </p>
                 </div>
+            </section>
+
+            <form method="post" class="row-planes">
+                <section class="flex-column-regular">
+                    <div class="form-group baggage-flex">
+                        <label class="label-Baggage" asp-for="SmallBaggage"></label>
+                        <select asp-for="SmallBaggage" class="form-control-lime ">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span asp-validation-for="SmallBaggage" class="small text-danger"></span>
+                        @*                     <div id="result" class="result-box low-right">0</div> *@
+                    </div>
+
+                    <div class="form-group baggage-flex">
+
+                        <label class="label-Baggage" asp-for="MediumBaggage"></label>
+                        <select asp-for="MediumBaggage" class="form-control-lime">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span asp-validation-for="MediumBaggage" class="small text-danger"></span>
+                    </div>
+
+                    <div class="form-group baggage-flex">
+                        <label class="label-Baggage" asp-for="LargeBaggage"></label>
+                        <select asp-for="LargeBaggage" class="form-control-lime">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span asp-validation-for="LargeBaggage" class="small text-danger"></span>
+                    </div>
+                </section>
+
                 <input class="btn btn-primary" type="submit" value="Save" />
-                <a asp-controller="Bookings" asp-action="CancelAddBaggage" class="btn btn-warning float-right ml-3">Cancel</a>
+                <a asp-controller="Bookings" asp-action="CancelAddBaggage" class="btn btn-warning">Cancel</a>
             </form>
-        </div>
+            @*         </div> *@
+        </section>
     </div>
 </div>
 
-<script>
+@* <script>
     const selectElement = document.getElementById('smallBaggage');
     const resultDiv = document.getElementById('result');
 
@@ -67,4 +122,4 @@
 
     selectElement.addEventListener('change', updateResult);
     updateResult();
-</script>
+</script> *@
