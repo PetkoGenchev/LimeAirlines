@@ -415,15 +415,29 @@ li.image-test i {
 }
 
 
-.flex-column-regular{
-    display:flex;
-    flex-direction:column;
+
+
+.flex-column-regular {
+    display: flex;
+    flex-direction: column;
 }
 
-.flex-row-regular{
-    display:flex;
+.flex-row-regular {
+    display: flex;
     flex-direction: row;
+
 }
+
+.flex-regular-add {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: flex-start;
+    width: 100%;
+    border-radius: 12px;
+}
+
+
 
 .warning-style {
     background: #fff5e4;

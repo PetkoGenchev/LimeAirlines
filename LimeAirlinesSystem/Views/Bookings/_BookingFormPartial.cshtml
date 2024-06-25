@@ -4,11 +4,11 @@
 <div class="container">
     <div class="row">
         @*         <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6"> *@
-        <section class="flex-row-regular">
+        <section class="flex-column-regular flex-regular-add">
             <h3 class-"heading-margin text-center">Already Included:</h3>
-            <div class="flex-column-regular">
-                <img class="" src="/Images/BaggageImages/smallBaggage.jpg">
-                <div class="flex-row-regular">
+            <div class="flex-row-regular flex-regular-add">
+                <img class="card-img-top img-faq-partial" src="/Images/BaggageImages/smallBaggage.jpg">
+                <div class="flex-column-regular flex-regular-add">
                     <p> 1 small bag</p>
                     <p> Must fit under the seat on the plane (40cm x 20cm x 25cm).</p>
 
@@ -22,14 +22,14 @@
         </section>
 
 
-        <section class="div-planes-partial card mb-3 flex-row-regular percent100width">
+        <section class="div-planes-partial card mb-3 flex-row-regular flex-regular-add percent100width">
             <h2 class-"heading-margin text-center">Need Extra Baggage?</h2>
-            <div class="flex-column-regular">
+            <div class="flex-column-regular flex-regular-add">
                 <img class="card-img-top img-faq-partial" src="/Images/BaggageImages/smallBaggage.jpg">
                 <img class="card-img-top img-faq-partial" src="/Images/BaggageImages/mediumBaggage.jpg">
                 <img class="card-img-top img-faq-partial" src="/Images/BaggageImages/largeBaggage.jpg">
             </div>
-            <section class="flex-row-regular">
+            <section class="flex-row-regular flex-regular-add">
                 <div>
                     <p>
 
@@ -59,9 +59,10 @@
             </section>
 
             <form method="post" class="row-planes">
-                <section class="flex-column-regular">
-                    <div class="form-group baggage-flex">
-                        <label class="label-Baggage" asp-for="SmallBaggage"></label>
+                <section class="flex-column-regular flex-regular-add">
+                    
+                    <div class="form-group flex-column-regular flex-regular-add">
+                        <label class="" asp-for="SmallBaggage"></label>
                         <select asp-for="SmallBaggage" class="form-control-lime ">
                             <option value="0">0</option>
                             <option value="1">1</option>
@@ -74,9 +75,10 @@
                         @*                     <div id="result" class="result-box low-right">0</div> *@
                     </div>
 
-                    <div class="form-group baggage-flex">
 
-                        <label class="label-Baggage" asp-for="MediumBaggage"></label>
+                    <div class="form-group flex-column-regular flex-regular-add">
+
+                        <label class="" asp-for="MediumBaggage"></label>
                         <select asp-for="MediumBaggage" class="form-control-lime">
                             <option value="0">0</option>
                             <option value="1">1</option>
@@ -88,8 +90,9 @@
                         <span asp-validation-for="MediumBaggage" class="small text-danger"></span>
                     </div>
 
-                    <div class="form-group baggage-flex">
-                        <label class="label-Baggage" asp-for="LargeBaggage"></label>
+
+                    <div class="form-group flex-column-regular flex-regular-add">
+                        <label class="" asp-for="LargeBaggage"></label>
                         <select asp-for="LargeBaggage" class="form-control-lime">
                             <option value="0">0</option>
                             <option value="1">1</option>
@@ -100,6 +103,7 @@
                         </select>
                         <span asp-validation-for="LargeBaggage" class="small text-danger"></span>
                     </div>
+
                 </section>
 
                 <input class="btn btn-primary" type="submit" value="Save" />
