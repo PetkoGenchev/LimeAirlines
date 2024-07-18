@@ -64,9 +64,8 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-/*    background-color: #f2feea;*/
+    /*    background-color: #f2feea;*/
     background-image: url(../Images/BodyBackgroundImage.jpg);
-
 }
 
 .footer {
@@ -125,6 +124,18 @@ body {
     height: 60%;
 }
 
+.img-150 {
+    max-width: 150px;
+    max-height:150px;
+    margin: 12px;
+}
+
+.img-100 {
+    max-width: 100px;
+    max-height: 100px;
+    margin: 12px;
+}
+
 .card-img-top.img-faq-partial {
     height: 250px;
 }
@@ -161,7 +172,7 @@ body {
 
 
 .homepage-heading {
-    background-color: #1438FE;
+    background-color: cornflowerblue;
 }
 
 li.image-test i {
@@ -217,6 +228,15 @@ li.image-test i {
     color:limegreen;
 }
 
+.margin-5-tb{
+    margin-top:5px;
+    margin-bottom: 5px;
+}
+
+.margin-5-all{
+    margin:5px;
+}
+
 .flex-2{
     display:flex;
     flex-wrap: wrap;
@@ -262,6 +282,11 @@ li.image-test i {
     width: 20%;
     align-items: center;
     text-align: center;
+}
+
+
+.border-solid-1 {
+    border: 1px solid #dbdee8;
 }
 
 .flight-info {
@@ -360,9 +385,8 @@ li.image-test i {
 
 
 .result-box {
-    margin-top: 10px;
-    padding: 10px;
     border: 1px solid #ccc;
+    max-width: 150px;
 }
 
 
@@ -430,11 +454,35 @@ li.image-test i {
 
 .flex-regular-add {
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    align-content: flex-start;
-    width: 100%;
     border-radius: 12px;
+}
+
+
+
+
+.flex-start-add{
+    justify-content: flex-start;
+}
+
+.flex-space-evenly {
+    justify-content: space-evenly;
+}
+
+.flex-space-between {
+    justify-content: space-between;
+}
+
+
+.flex-align-left {
+    align-items: flex-start;
+}
+
+.gap40{
+    gap:40px;
+}
+
+.align-content {
+    align-content: flex-start;
 }
 
 
@@ -442,6 +490,41 @@ li.image-test i {
 .warning-style {
     background: #fff5e4;
     border-color: #c14b0140;
+}
+
+.text-position {
+    text-align:left;
+}
+
+.margin-12 {
+    margin: 12px;
+}
+
+.margin-right{
+    margin-right: 150px;
+}
+
+.margin-right-small{
+    margin-right: 5px;
+}
+
+.margin-left-small{
+    margin-left: 5px;
+}
+
+.margin-left-25{
+    margin-left: 25px;
+}
+
+.baggage-submit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    flex-direction: column;
+    max-width: 150px;
+    font-weight: 300;
+    font-size: small;
+    bottom: 0;
 }
 
 

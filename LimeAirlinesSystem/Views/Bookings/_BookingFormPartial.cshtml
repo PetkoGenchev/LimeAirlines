@@ -4,126 +4,211 @@
 <div class="container">
     <div class="row">
         @*         <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6"> *@
-        <section class="flex-column-regular flex-regular-add">
-            <h3 class-"heading-margin text-center">Already Included:</h3>
-            <div class="flex-row-regular flex-regular-add">
-                <img class="card-img-top img-faq-partial" src="/Images/BaggageImages/smallBaggage.jpg">
-                <div class="flex-column-regular flex-regular-add">
-                    <p> 1 small bag</p>
+        <section class="card div-planes-partial flex-column-regular flex-regular-add flex-align-left percent100width">
+            <h3 class="heading-margin text-position margin-12">Already Included:</h3>
+            <div class="flex-row-regular flex-regular-add percent100width flex-start-add gap40">
+                <img class="img-100" src="/Images/BaggageImages/smallBaggage.jpg">
+                <div class="flex-column-regular flex-regular-add flex-align-left">
+                    <h4 class=""> 1 Small Bag</h4>
                     <p> Must fit under the seat on the plane (40cm x 20cm x 25cm).</p>
 
                 </div>
             </div>
-            <p class="warning-style">
+            <p class="warning-style margin-12">
                 If you bring a 2nd bag on board or your bag is too big to fit into the bag sizer
-                (40cm x 20cm x 25cm) you will be charged a fee of up to €70 at the gate for every flight.
+                (48cm x 32cm x 18cm) you will be charged a fee of up to €70 at the gate for every flight.
                 To avoid fees, add more bags below.
             </p>
         </section>
 
 
-        <section class="div-planes-partial card mb-3 flex-row-regular flex-regular-add percent100width">
-            <h2 class-"heading-margin text-center">Need Extra Baggage?</h2>
-            <div class="flex-column-regular flex-regular-add">
-                <img class="card-img-top img-faq-partial" src="/Images/BaggageImages/smallBaggage.jpg">
-                <img class="card-img-top img-faq-partial" src="/Images/BaggageImages/mediumBaggage.jpg">
-                <img class="card-img-top img-faq-partial" src="/Images/BaggageImages/largeBaggage.jpg">
+        <h3 class-"heading-margin text-center">Need Extra Baggage?</h3>
+        <section class="div-planes-partial card mb-3 flex-column-regular flex-regular-add percent100width">
+            <div class="flex-row-regular flex-regular-add flex-space-evenly margin-right">
+                <img class="img-150" src="/Images/BaggageImages/smallBaggage.jpg">
+                <img class="img-150" src="/Images/BaggageImages/mediumBaggage.jpg">
+                <img class="img-150" src="/Images/BaggageImages/largeBaggage.jpg">
             </div>
-            <section class="flex-row-regular flex-regular-add">
+            <section class="flex-row-regular flex-regular-add flex-space-evenly margin-right">
                 <div>
-                    <p>
-
+                    <p class="text-center">
+                        48cm x 32cm x 18cm
                     </p>
-                    <p>
-
+                    <p class="text-center">
+                        Cabin Bag
                     </p>
                 </div>
 
                 <div>
-                    <p>
-
+                    <p class="text-center">
+                        67cm x 45cm x 25cm
                     </p>
-                    <p>
-
+                    <p class="text-center">
+                        10kg Check-in Bag
                     </p>
                 </div>
 
                 <div>
-                    <p>
-
+                    <p class="text-center">
+                        76cm x 48cm x 29cm
                     </p>
-                    <p>
-
+                    <p class="text-center">
+                        20kg Check-in Bag
                     </p>
                 </div>
             </section>
 
             <form method="post" class="row-planes">
-                <section class="flex-column-regular flex-regular-add">
-                    
+                <section class="flex-row-regular flex-regular-add flex-space-evenly margin-right">
+
                     <div class="form-group flex-column-regular flex-regular-add">
-                        <label class="" asp-for="SmallBaggage"></label>
-                        <select asp-for="SmallBaggage" class="form-control-lime ">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                        <span asp-validation-for="SmallBaggage" class="small text-danger"></span>
-                        @*                     <div id="result" class="result-box low-right">0</div> *@
+                        <div class="flex-row-regular">
+                            <label class="margin-right-small" asp-for="SmallBaggage"></label>
+                            <p>(20 BGN)</p>
+                        </div>
+
+                        <div class="flex-row-regular">
+                            <select id="SmallBaggage" asp-for="SmallBaggage" class="form-control-lime ">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <span asp-validation-for="SmallBaggage" class="small text-danger"></span>
+
+                            <div class="result-box margin-left-small flex-row-regular flex-faq">
+                                <p class="margin-5-all">Total: </p>
+                                <p id="small-result" class="margin-5-tb"></p>
+                                <p class="margin-5-all"> BGN</p>
+                            </div>
+                        </div>
                     </div>
 
 
                     <div class="form-group flex-column-regular flex-regular-add">
 
-                        <label class="" asp-for="MediumBaggage"></label>
-                        <select asp-for="MediumBaggage" class="form-control-lime">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                        <span asp-validation-for="MediumBaggage" class="small text-danger"></span>
+                        <div class="flex-row-regular">
+                            <label class="margin-right-small" asp-for="MediumBaggage"></label>
+                            <p>(50 BGN)</p>
+                        </div>
+
+                        <div class="flex-row-regular">
+                            <select id="MediumBaggage" asp-for="MediumBaggage" class="form-control-lime">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <span asp-validation-for="MediumBaggage" class="small text-danger"></span>
+
+                            <div class="result-box margin-left-small flex-row-regular flex-faq">
+                                <p class="margin-5-all">Total: </p>
+                                <p id="medium-result" class="margin-5-tb"></p>
+                                <p class="margin-5-all"> BGN</p>
+                            </div>
+                        </div>
+
                     </div>
 
 
                     <div class="form-group flex-column-regular flex-regular-add">
-                        <label class="" asp-for="LargeBaggage"></label>
-                        <select asp-for="LargeBaggage" class="form-control-lime">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                        <span asp-validation-for="LargeBaggage" class="small text-danger"></span>
+                        <div class="flex-row-regular">
+                            <label class="margin-right-small" asp-for="LargeBaggage"></label>
+                            <p>(60 BGN)</p>
+                        </div>
+
+                        <div class="flex-row-regular">
+                            <select id="LargeBaggage" asp-for="LargeBaggage" class="form-control-lime">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <span asp-validation-for="LargeBaggage" class="small text-danger"></span>
+
+                            <div class="result-box margin-left-small flex-row-regular flex-faq">
+                                <p class="margin-5-all">Total: </p>
+                                <p id="large-result" class="margin-5-tb"></p>
+                                <p class="margin-5-all"> BGN</p>
+                            </div>
+                        </div>
                     </div>
 
                 </section>
 
-                <input class="btn btn-primary" type="submit" value="Save" />
-                <a asp-controller="Bookings" asp-action="CancelAddBaggage" class="btn btn-warning">Cancel</a>
+                <section class="flex-column-regular flex-regular-add flex-space-evenly margin-12 baggage-submit">
+                    <ul>
+                        <li>
+                            Only ticketed passengers can benefit from extra baggage sales service.
+                        </li>
+                        <li>
+                            Extra baggage sales can be limited subject to aircraft capacity.
+                        </li>
+                        <li>
+                            Extra baggage sales for group passengers can be done only at counters.
+                        </li>
+                    </ul>
+                    <div>
+                        <input class="btn btn-primary margin-right-small" type="submit" value="Save" />
+                        <a asp-controller="Bookings" asp-action="CancelAddBaggage" class="btn btn-warning">Cancel</a>
+                    </div>
+
+                </section>
+
+
             </form>
             @*         </div> *@
         </section>
     </div>
 </div>
 
-@* <script>
-    const selectElement = document.getElementById('smallBaggage');
-    const resultDiv = document.getElementById('result');
+<script>
+    const selectElementS = document.getElementById('SmallBaggage');
+    const resultDivS = document.getElementById('small-result');
 
-    function updateResult() {
-        const selectedValue = selectElement.value;
+    function updateResultS() {
+        const selectedValue = selectElementS.value;
         const result = selectedValue * 20;
-        resultDiv.textContent = result;
+        resultDivS.textContent = result;
     }
 
-    selectElement.addEventListener('change', updateResult);
-    updateResult();
-</script> *@
+    selectElementS.addEventListener('change', updateResultS);
+    updateResultS();
+
+
+
+    const selectElementM = document.getElementById('MediumBaggage');
+    const resultDivM = document.getElementById('medium-result');
+
+    function updateResultM() {
+        const selectedValue = selectElementM.value;
+        const result = selectedValue * 50;
+        resultDivM.textContent = result;
+    }
+
+    selectElementM.addEventListener('change', updateResultM);
+    updateResultM();
+
+
+
+    const selectElementL = document.getElementById('LargeBaggage');
+    const resultDivL = document.getElementById('large-result');
+
+    function updateResultL() {
+        const selectedValue = selectElementL.value;
+        const result = selectedValue * 60;
+        resultDivL.textContent = result;
+    }
+
+    selectElementL.addEventListener('change', updateResultL);
+    updateResultL();
+
+
+
+</script>

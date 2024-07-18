@@ -2,7 +2,7 @@
 @inject SignInManager<Passanger> SignInManager
 
 
-<h4 class="display-4">Outgoing Flights!</h4>
+<h4 class="display-5">Outgoing Flights!</h4>
 @if (!Model.Flights.Any())
 {
     <div class="text-center">
@@ -14,8 +14,8 @@ else
     <div class="flight-block">
         @foreach (var flight in Model.Flights)
         {
-            <section class="div-planes-partial card mb-3 flex-flights percent80width">
-                <div class="text-center">
+            <section class="div-planes-partial card mb-3 flex-flights percent80width gap40">
+                <div class="margin-left-25 text-center">
                     @if (User.IsAdmin())
                     {
                         <a asp-area="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@flight.Id" class="btn btn-warning">Edit</a>
@@ -33,17 +33,21 @@ else
                         }
                     }
                 </div>
-                <section class="flight-item">
-                    <h4 class="card-title text-center"> Travel Path</h4>
-                    <div class="flight-info"> @flight.StartLocation <i class="fa-solid fa-arrow-right-long"></i> @flight.EndLocation </div>
+                <section class="border-solid-1 flex-flights distributed-flex">
+                    <div class="margin-5-all flex-column-regular">
+                        <h5 class="flight-info text-center"> Travel Path</h5>
+                        <h6 class="flight-info m-auto text-center"> @flight.StartLocation to @flight.EndLocation </h6>
+                    </div>
+                    <div class="margin-5-all flex-column-regular">
+                        <h5 class="flight-info text-center">Date of flight</h5>
+                        <h6 class="flight-info m-auto text-center">@flight.FlightDate?.ToShortDateString()</h6>
+                    </div>
                 </section>
-                <section class="flight-item max-info">
-                    <h4 class="flight-info"> Flight Date</h4>
-                    <div> @flight.FlightDate?.ToShortDateString()</div>
-                </section>
-                <section class="flight-item max-info">
-                    <h4 class="flight-info"> Price</h4>
-                    <div> BGN @flight.Price</div>
+
+                <section class="div-planes-partial card mb-3 flight-item flex-2 flex-150 distributed-flex">
+                    <h6 class="flight-info">Price per seat</h6>
+                    <div>@flight.Price BGN</div>
+
                 </section>
             </section>
         }
@@ -52,7 +56,7 @@ else
 
 @if (Model.TripType == "2")
 {
-    <h4 class="display-4">Return Flights!</h4>
+    <h4 class="display-5">Return Flights!</h4>
 
     @if (!Model.ReturnFlights.Any())
     {
@@ -66,8 +70,8 @@ else
 
             @foreach (var returnflight in Model.ReturnFlights)
             {
-                <section class="div-planes-partial card mb-3 flex-flights percent80width">
-                    <div class="text-center">
+                <section class="div-planes-partial card mb-3 flex-flights percent80width gap40">
+                    <div class="margin-left-25 text-center">
                         @if (User.IsAdmin())
                         {
                             <a asp-area="Admin" asp-controller="Flights" asp-action="Edit" asp-route-id="@returnflight.Id" class="btn btn-warning">Edit</a>
@@ -77,25 +81,29 @@ else
                         {
                             @if (SignInManager.IsSignedIn(User))
                             {
-                                <input type="button" id="btnAddToBookingsReturn" value="Book" class="btn btn-primary btn-block" />
-                                <input type="hidden" id="flightIdReturn" value=@returnflight.Id />
+                                <input type="button" id="btnAddToBookings" value="Book" class="btn btn-primary btn-block" />
+                                <input type="hidden" id="flightId" value=@returnflight.Id />
                                 var passangerCount = (@Model.Passangers == 1) ? "passanger" : "passangers";
 
-                                <div id="snackbarReturn">Flight to @returnflight.EndLocation has been booked for @Model.Passangers @passangerCount.</div>
+                                <div id="snackbar">Flight to @returnflight.EndLocation has been booked for @Model.Passangers @passangerCount.</div>
                             }
                         }
                     </div>
-                    <section class="flight-item">
-                        <h4 class="card-title text-center"> Travel Path</h4>
-                        <div class="flight-info"> @returnflight.StartLocation <i class="fa-solid fa-arrow-right-long"></i> @returnflight.EndLocation </div>
+                    <section class="border-solid-1 flex-flights distributed-flex">
+                        <div class="margin-5-all flex-column-regular">
+                            <h5 class="flight-info text-center"> Travel Path</h5>
+                            <h6 class="flight-info m-auto text-center"> @returnflight.StartLocation to @returnflight.EndLocation </h6>
+                        </div>
+                        <div class="margin-5-all flex-column-regular">
+                            <h5 class="flight-info text-center">Date of flight</h5>
+                            <h6 class="flight-info m-auto text-center">@returnflight.FlightDate?.ToShortDateString()</h6>
+                        </div>
                     </section>
-                    <section class="flight-item max-info">
-                        <h4 class="flight-info"> Flight Date</h4>
-                        <div> @returnflight.FlightDate?.ToShortDateString()</div>
-                    </section>
-                    <section class="flight-item max-info">
-                        <h4 class="flight-info"> Price</h4>
-                        <div> BGN @returnflight.Price</div>
+
+                    <section class="div-planes-partial card mb-3 flight-item flex-2 flex-150 distributed-flex">
+                        <h6 class="flight-info">Price per seat</h6>
+                        <div>@returnflight.Price BGN</div>
+
                     </section>
                 </section>
             }
