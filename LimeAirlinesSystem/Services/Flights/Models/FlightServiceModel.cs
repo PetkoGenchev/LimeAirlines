@@ -11,7 +11,7 @@
 
         public DateTime? FlightDate { get; init; }
 
-        public string FlightDuration { get; init; }
+        public TimeSpan FlightDuration { get; init; }
 
         public int Transfer { get; init; }
 

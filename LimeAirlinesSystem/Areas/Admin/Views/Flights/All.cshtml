@@ -10,11 +10,11 @@
     <thead class="thead-dark">
         <tr>
             <th scope="col">Id</th>
-            <th scope="col">StartLocation</th>
-            <th scope="col">EndLocation</th>
-            <th scope="col">FlightDate</th>
-            <th scope="col">FlightDuration</th>
-            <th scope="col">Transfer</th>
+            <th scope="col">Start Location</th>
+            <th scope="col">End Location</th>
+            <th scope="col">Flight Date</th>
+            <th scope="col">Flight Duration</th>
+            <th scope="col">Transfer Count</th>
             <th scope="col">Price</th>
             <th scope="col">Is Public?</th>
             <th scope="col"></th>
@@ -27,8 +27,8 @@
                 <td scope="col">@flight.Id</td>
                 <td scope="col">@flight.StartLocation</td>
                 <td scope="col">@flight.EndLocation</td>
-                <td scope="col">@flight.FlightDate</td>
-                <td scope="col">@flight.FlightDuration</td>
+                <td scope="col">@flight.FlightDate.Value.ToString("yyyy-MM-dd")</td>
+                <td scope="col">@string.Format("{0:D2}h {1:D2}m", flight.FlightDuration.Hours, flight.FlightDuration.Minutes)</td>
                 <td scope="col">@flight.Transfer</td>
                 <td scope="col">@flight.Price</td>
                 <td scope="col">@(flight.IsPublic ? "Yes" : "No")</td>
