@@ -284,7 +284,7 @@
             .Flights
             .Select(f => f.StartLocation)
             .Distinct()
-            .OrderBy(br => br)
+            .OrderByDescending(br => br)
             .ToList();
 
         public IEnumerable<string> AllFinalLocations()

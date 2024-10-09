@@ -25,9 +25,10 @@
         [Display(Name = "Departure")]
         [DataType(DataType.Date)]
         public DateTime? FlightDate { get; init; }
-        public int Passangers { get; init; }
 
-        public int MaxTransfers { get; init; }
+        public int Passangers { get; init; } = 1;
+
+        public int MaxTransfers { get; init; } = 1;
 
         public int MaxPrice { get; init; }
 
