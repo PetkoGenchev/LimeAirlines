@@ -1,9 +1,6 @@
 ﻿namespace LimeAirlinesSystem.Models.FAQs
 {
     using System.ComponentModel.DataAnnotations;
-    using System.Xml.Linq;
-    using LimeAirlinesSystem.Data;
-
     using static Data.DataConstants.FAQConstants;
 
 

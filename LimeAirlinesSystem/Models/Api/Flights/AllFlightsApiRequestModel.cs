@@ -1,11 +1,6 @@
-﻿using LimeAirlinesSystem.Services.Flights.Models;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
-using System;
-
-namespace LimeAirlinesSystem.Models.Api.Flights
+﻿namespace LimeAirlinesSystem.Models.Api.Flights
 {
+    using System;
     public class AllFlightsApiRequestModel
     {
         public string TripType { get; init; }

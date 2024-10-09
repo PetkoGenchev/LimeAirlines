@@ -5,14 +5,9 @@
     using LimeAirlinesSystem.Data;
     using LimeAirlinesSystem.Data.Models;
     using LimeAirlinesSystem.Services.FAQs.Models;
-    using LimeAirlinesSystem.Services.Flights.Models;
-    using LimeAirlinesSystem.Services.Planes.Models;
-    using Microsoft.Extensions.Primitives;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Numerics;
-    using System.Security.Cryptography.X509Certificates;
-    using System.Security.Cryptography.Xml;
+
 
     public class FAQService : IFAQService
     {

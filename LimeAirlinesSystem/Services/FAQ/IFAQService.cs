@@ -1,9 +1,6 @@
 ﻿namespace LimeAirlinesSystem.Services.FAQs
 {
     using LimeAirlinesSystem.Services.FAQs.Models;
-    using LimeAirlinesSystem.Services.Flights.Models;
-    using LimeAirlinesSystem.Services.Planes.Models;
-    using System;
     using System.Collections.Generic;
 
     public interface IFAQService

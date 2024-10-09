@@ -2,9 +2,7 @@
 {
     using LimeAirlinesSystem.Data.Models;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-    using Microsoft.Data.SqlClient;
     using Microsoft.EntityFrameworkCore;
-    using System.Reflection.Emit;
 
     public class AirlineDbContext : IdentityDbContext<Passanger>
     {

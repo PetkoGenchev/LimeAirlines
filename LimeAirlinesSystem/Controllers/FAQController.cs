@@ -1,16 +1,8 @@
 ﻿namespace LimeAirlinesSystem.Controllers
 {
-    using LimeAirlinesSystem.Services.Home;
     using Microsoft.AspNetCore.Mvc;
-    using LimeAirlinesSystem.Areas.Admin;
-    using Microsoft.CodeAnalysis;
-    using Microsoft.CodeAnalysis.CSharp.Syntax;
     using LimeAirlinesSystem.Services.FAQs;
     using AutoMapper;
-    using LimeAirlinesSystem.Models.Flights;
-    using LimeAirlinesSystem.Models.FAQs;
-    using Microsoft.AspNetCore.Authorization;
-    using LimeAirlinesSystem.Data.Models;
     using LimeAirlinesSystem.Infrastructure.Extensions;
 
     public class FAQController : Controller

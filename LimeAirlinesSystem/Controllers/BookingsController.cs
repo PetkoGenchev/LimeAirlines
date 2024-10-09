@@ -3,17 +3,10 @@
     using AutoMapper;
     using LimeAirlinesSystem.Data.Models;
     using LimeAirlinesSystem.Infrastructure.Extensions;
-    using LimeAirlinesSystem.Models;
     using LimeAirlinesSystem.Models.Bookings;
-    using LimeAirlinesSystem.Models.Flights;
     using LimeAirlinesSystem.Services.Bookings;
-    using LimeAirlinesSystem.Services.Flights;
-    using LimeAirlinesSystem.Services.Home;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using System;
-    using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-    using static WebConstants;
 
     public class BookingsController : Controller
     {

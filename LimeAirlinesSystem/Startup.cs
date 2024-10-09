@@ -63,7 +63,7 @@ namespace LimeAirlinesSystem
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.PrepareDatabase();
+ //           app.PrepareDatabase();
 
             if (env.IsDevelopment())
             {

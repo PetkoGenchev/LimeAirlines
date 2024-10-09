@@ -1,6 +1,5 @@
 ﻿namespace LimeAirlinesSystem.Models.Bookings
 {
-    using Microsoft.Build.Framework;
     using System.ComponentModel.DataAnnotations;
     using System;
 

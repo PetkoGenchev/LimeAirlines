@@ -1,6 +1,5 @@
 ﻿namespace LimeAirlinesSystem.Models.Flights
 {
-    using LimeAirlinesSystem.Infrastructure.Extensions;
     using LimeAirlinesSystem.Services.Flights.Models;
     using System;
     using System.Collections.Generic;
